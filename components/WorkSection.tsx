@@ -55,18 +55,11 @@ const projects: Project[] = [
 
 export default function WorkSection() {
     return (
-        <section id="portfolio" className="relative py-24 md:py-32 px-4 overflow-hidden">
-            {/* Light Blue Grid Pattern */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-60"
-                style={{
-                    backgroundImage: 'linear-gradient(to right, rgba(59, 130, 246, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.15) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px'
-                }}
-            />
+        <section id="portfolio" className="relative py-24 md:py-32 px-4 overflow-hidden bg-white">
+            {/* Solid white background to cover any inherited patterns */}
+            <div className="absolute inset-0 bg-white z-0" />
 
-
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto relative z-10">
                 {/* Section Header */}
                 <div className="mb-16 md:mb-24">
                     <motion.span

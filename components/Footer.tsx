@@ -3,8 +3,18 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaGithub, FaHeart } 
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-white pt-20 pb-10 border-t border-gray-800 font-inter">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <footer className="relative bg-gray-900 text-white pt-20 pb-10 border-t border-gray-800 font-inter overflow-hidden">
+            {/* Subtle Grid Background */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                style={{
+                    backgroundImage: 'linear-gradient(to right, #3b82f6 1px, transparent 1px), linear-gradient(to bottom, #3b82f6 1px, transparent 1px)',
+                    backgroundSize: '24px 24px',
+                    backgroundAttachment: 'fixed'
+                }}
+            />
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
                     {/* Brand Column */}
@@ -31,6 +41,7 @@ export default function Footer() {
                             <li><Link href="/about" className="hover:text-blue-400 transition-colors">About</Link></li>
                             <li><Link href="/services" className="hover:text-blue-400 transition-colors">Services</Link></li>
                             <li><Link href="/portfolio" className="hover:text-blue-400 transition-colors">Portfolio</Link></li>
+                            <li><Link href="/portfolio#faq" className="hover:text-blue-400 transition-colors">FAQ</Link></li>
                             <li><Link href="/contact" className="hover:text-blue-400 transition-colors">Contact</Link></li>
                         </ul>
                     </div>
@@ -39,20 +50,24 @@ export default function Footer() {
                     <div>
                         <h4 className="text-lg font-semibold mb-6 font-outfit">Services</h4>
                         <ul className="space-y-4 text-gray-400 text-sm">
-                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">Web Development</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">Web Platforms</Link></li>
                             <li><Link href="/services" className="hover:text-blue-400 transition-colors">Mobile Apps</Link></li>
-                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">UI/UX Design</Link></li>
-                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">Cloud Solutions</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">AI Automation</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">Cloud & DevOps</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">UX Design</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">IT Operations</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">Custom Solutions</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">Dedicated Teams</Link></li>
+                            <li><Link href="/services" className="hover:text-blue-400 transition-colors">IT Consulting</Link></li>
                         </ul>
                     </div>
 
-                    {/* Legal / Newsletter */}
+
+                    {/* Legal */}
                     <div>
                         <h4 className="text-lg font-semibold mb-6 font-outfit">Legal</h4>
                         <ul className="space-y-4 text-gray-400 text-sm">
-                            <li><Link href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-                            <li><Link href="#" className="hover:text-blue-400 transition-colors">Terms of Service</Link></li>
-                            <li><Link href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</Link></li>
+                            <li><Link href="/privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
                         </ul>
                     </div>
                 </div>

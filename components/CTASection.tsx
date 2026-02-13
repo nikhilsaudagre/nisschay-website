@@ -4,39 +4,7 @@ import { FaArrowRight, FaShieldAlt, FaRocket, FaLayerGroup, FaTrophy } from "rea
 
 export default function CTASection() {
     return (
-        <section className="relative py-24 px-4 overflow-hidden">
-            {/* Light Blue Grid Pattern */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-60"
-                style={{
-                    backgroundImage: 'linear-gradient(to right, rgba(59, 130, 246, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.15) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px'
-                }}
-            />
-
-            {/* Background - Matches Hero/Page Light Theme */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-primary-100/50 -z-20"></div>
-
-            {/* Subtle Animated Background Elements */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-                <motion.div
-                    animate={{
-                        y: [-20, 20, -20],
-                        opacity: [0.3, 0.5, 0.3],
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-10 right-10 w-64 h-64 bg-primary-200 rounded-full blur-[80px] mix-blend-multiply"
-                />
-                <motion.div
-                    animate={{
-                        y: [20, -20, 20],
-                        opacity: [0.3, 0.5, 0.3],
-                    }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-10 left-10 w-80 h-80 bg-cyan-200 rounded-full blur-[80px] mix-blend-multiply"
-                />
-            </div>
-
+        <section className="relative py-24 px-4 overflow-hidden bg-white">
             <div className="max-w-5xl mx-auto text-center relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -52,18 +20,18 @@ export default function CTASection() {
                             letterSpacing: "-0.02em"
                         }}
                     >
-                        <span className="text-gray-900">You Scrolled to the End.</span>
+                        <span className="text-gray-900">You've Seen What We Can Do.</span>
                         <br />
                         <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">
-                            That's a Victory.
+                            Let's Build Yours.
                         </span>
                     </h2>
 
-                    {/* Subheading - Connecting behavior to value */}
+                    {/* Subheading - Connecting exploration to action */}
                     <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                        Most people settle for the surface. You dug deeper to find the truth.
-                        That kind of dedication is exactly what we look for in a partner.
-                        <span className="block mt-4 font-medium text-primary-700">Let's build something winning together.</span>
+                        You've explored our work, understood our process, and seen the results we deliver.
+                        Now it's time to turn your vision into reality.
+                        <span className="block mt-4 font-medium text-primary-700">Ready to start your success story?</span>
                     </p>
 
                     {/* Trust Pillars */}

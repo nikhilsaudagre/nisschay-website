@@ -6,8 +6,6 @@ import { FaBars, FaTimes, FaArrowRight } from "react-icons/fa";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
-    const [visible, setVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -16,22 +14,11 @@ export default function Navbar() {
 
             // Determine if scrolled styling should apply
             setScrolled(currentScrollY > 20);
-
-            // Determine visibility based on scroll direction
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                // Scrolling down & past threshold -> hide
-                setVisible(false);
-            } else {
-                // Scrolling up or at top -> show
-                setVisible(true);
-            }
-
-            setLastScrollY(currentScrollY);
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
+    }, []);
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -43,16 +30,21 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"
-                } ${scrolled ? "py-4" : "py-6"}`}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled
+                ? "py-3"
+                : "py-6"
+                }`}
         >
             <div
-                className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300`}
+                className={`mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out ${scrolled
+                    ? "max-w-4xl"
+                    : "max-w-7xl"
+                    }`}
             >
                 <div
-                    className={`relative flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 ${scrolled
-                        ? "bg-white/80 backdrop-blur-md shadow-lg border border-white/20"
-                        : "bg-white/50 backdrop-blur-sm border border-transparent"
+                    className={`relative flex items-center justify-between transition-all duration-500 ease-in-out ${scrolled
+                        ? "px-6 py-3 bg-white/80 backdrop-blur-xl shadow-2xl border border-gray-200/50 rounded-full"
+                        : "px-6 py-3 bg-white"
                         }`}
                 >
                     {/* Logo */}

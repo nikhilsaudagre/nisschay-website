@@ -12,7 +12,7 @@ export default function Home() {
     <main className="relative bg-white min-h-screen">
 
       <HeroSection />
-      <AboutSection />
+      <AboutSection showLearnMore={true} />
       <ServicesSection />
       <ProcessSection />
       <WorkSection />

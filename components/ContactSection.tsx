@@ -20,16 +20,6 @@ export default function ContactSection() {
 
     return (
         <section className="relative py-16 sm:py-20 md:py-24 px-4 overflow-hidden bg-white" id="contact">
-            {/* Light Blue Grid Pattern */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-60"
-                style={{
-                    backgroundImage: 'linear-gradient(to right, rgba(59, 130, 246, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.15) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px'
-                }}
-            />
-
-
             <div className="max-w-7xl mx-auto rounded-2xl sm:rounded-3xl overflow-hidden relative shadow-xl border border-gray-200">
 
                 {/* Light Background */}
@@ -85,6 +75,20 @@ export default function ContactSection() {
                                 />
                             </div>
 
+                            {/* Business Hours & Response Time */}
+                            <div className="mb-8 p-4 rounded-xl bg-blue-50/50 border border-blue-100">
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex items-center gap-2 text-gray-700">
+                                        <span className="font-semibold">Business Hours:</span>
+                                        <span>Mon-Fri, 9 AM - 6 PM IST</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-700">
+                                        <span className="font-semibold">Response Time:</span>
+                                        <span>Usually within 24 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="flex gap-4">
                                 <SocialLink icon={FaLinkedin} href="#" />
                                 <SocialLink icon={FaTwitter} href="#" />
@@ -116,9 +120,26 @@ export default function ContactSection() {
                                             >
                                                 <FaCheckCircle className="text-5xl sm:text-6xl text-green-500 mb-4" />
                                             </motion.div>
-                                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
-                                            <p className="text-gray-600 text-center text-sm sm:text-base">
-                                                Your message has been sent successfully. We'll get back to you soon!
+                                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Message Received!</h3>
+                                            <p className="text-gray-700 text-center text-sm sm:text-base font-medium mb-4">
+                                                What happens next:
+                                            </p>
+                                            <div className="text-left max-w-sm mx-auto space-y-2 text-sm text-gray-600">
+                                                <div className="flex items-start gap-2">
+                                                    <span className="text-blue-600 font-bold">1.</span>
+                                                    <span>We'll review your request (within 2 hours)</span>
+                                                </div>
+                                                <div className="flex items-start gap-2">
+                                                    <span className="text-blue-600 font-bold">2.</span>
+                                                    <span>You'll hear from us (within 24 hours)</span>
+                                                </div>
+                                                <div className="flex items-start gap-2">
+                                                    <span className="text-blue-600 font-bold">3.</span>
+                                                    <span>We'll schedule a discovery call</span>
+                                                </div>
+                                            </div>
+                                            <p className="text-gray-500 text-xs mt-4">
+                                                Check your email for confirmation.
                                             </p>
                                         </motion.div>
                                     )}
@@ -138,6 +159,52 @@ export default function ContactSection() {
                                             <option className="text-gray-900 bg-white">Mobile Application</option>
                                             <option className="text-gray-900 bg-white">UI/UX Design</option>
                                             <option className="text-gray-900 bg-white">IT Consulting</option>
+                                            <option className="text-gray-900 bg-white">AI/ML Integration</option>
+                                            <option className="text-gray-900 bg-white">Other</option>
+                                        </select>
+                                        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 pointer-events-none text-gray-400 z-0">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div className="relative group">
+                                            <select className="w-full px-5 py-4 pt-5 rounded-xl bg-white border border-gray-300 focus:border-blue-500 focus:bg-blue-50/50 transition-all duration-300 outline-none text-gray-900 appearance-none font-medium cursor-pointer relative z-10">
+                                                <option value="" className="text-gray-900 bg-white">Budget Range</option>
+                                                <option className="text-gray-900 bg-white">Under $5,000</option>
+                                                <option className="text-gray-900 bg-white">$5,000 - $15,000</option>
+                                                <option className="text-gray-900 bg-white">$15,000 - $30,000</option>
+                                                <option className="text-gray-900 bg-white">$30,000+</option>
+                                                <option className="text-gray-900 bg-white">Not sure yet</option>
+                                            </select>
+                                            <div className="absolute top-1/2 right-4 transform -translate-y-1/2 pointer-events-none text-gray-400 z-0">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                            </div>
+                                        </div>
+                                        <div className="relative group">
+                                            <select className="w-full px-5 py-4 pt-5 rounded-xl bg-white border border-gray-300 focus:border-blue-500 focus:bg-blue-50/50 transition-all duration-300 outline-none text-gray-900 appearance-none font-medium cursor-pointer relative z-10">
+                                                <option value="" className="text-gray-900 bg-white">Project Timeline</option>
+                                                <option className="text-gray-900 bg-white">ASAP (1-2 weeks)</option>
+                                                <option className="text-gray-900 bg-white">1-2 months</option>
+                                                <option className="text-gray-900 bg-white">3-6 months</option>
+                                                <option className="text-gray-900 bg-white">6+ months</option>
+                                                <option className="text-gray-900 bg-white">Flexible</option>
+                                            </select>
+                                            <div className="absolute top-1/2 right-4 transform -translate-y-1/2 pointer-events-none text-gray-400 z-0">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="relative group">
+                                        <select className="w-full px-5 py-4 pt-5 rounded-xl bg-white border border-gray-300 focus:border-blue-500 focus:bg-blue-50/50 transition-all duration-300 outline-none text-gray-900 appearance-none font-medium cursor-pointer relative z-10">
+                                            <option value="" className="text-gray-900 bg-white">How did you hear about us?</option>
+                                            <option className="text-gray-900 bg-white">Google Search</option>
+                                            <option className="text-gray-900 bg-white">Referral</option>
+                                            <option className="text-gray-900 bg-white">LinkedIn</option>
+                                            <option className="text-gray-900 bg-white">Portfolio/Website</option>
+                                            <option className="text-gray-900 bg-white">Social Media</option>
+                                            <option className="text-gray-900 bg-white">Other</option>
                                         </select>
                                         <div className="absolute top-1/2 right-4 transform -translate-y-1/2 pointer-events-none text-gray-400 z-0">
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>

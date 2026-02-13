@@ -45,7 +45,7 @@ export default function HeroSection() {
 
 
     return (
-        <section id="home" className="relative min-h-[120vh] md:min-h-[120vh] flex items-center justify-center overflow-hidden pt-48 md:pt-40 pb-32 md:pb-24 px-4 sm:px-6 bg-white">
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-20 pb-32 md:pb-24 px-4 sm:px-6 bg-white">
 
             {/* Main Content */}
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
@@ -87,7 +87,7 @@ export default function HeroSection() {
                             fontSize: "clamp(1rem, 2vw + 0.3rem, 1.25rem)"
                         }}
                     >
-                        Where innovation meets execution—<br className="md:hidden" />building products that matter.
+                        Full-stack development agency specializing in<br className="md:hidden" /> web apps, mobile apps, and cloud solutions<br className="md:hidden" /> for <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">growing businesses</span>.
                     </motion.p>
 
                     {/* CTA Buttons */}
@@ -95,7 +95,7 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="flex flex-col sm:flex-row gap-5 md:gap-4 justify-center items-center mb-16 md:mb-12 w-full max-w-md mx-auto sm:max-w-none px-6 sm:px-12 md:px-0"
+                        className="flex flex-col sm:flex-row gap-5 md:gap-4 justify-center items-center mb-16 md:mb-12 w-full max-w-xs mx-auto sm:max-w-none px-4 sm:px-12 md:px-0"
                     >
                         <Link
                             href="/contact"
@@ -110,7 +110,7 @@ export default function HeroSection() {
                             <div className="svg-wrapper scale-90">
                                 <FaPaperPlane />
                             </div>
-                            <span>Get Started</span>
+                            <span>Book Free Consultation</span>
                         </Link>
                         <Link href="/portfolio" className="w-full sm:w-auto min-w-[160px] px-6 py-3.5 bg-white text-primary-600 text-sm font-medium rounded-full border border-primary-500 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105 flex items-center justify-center">
                             View Our Work

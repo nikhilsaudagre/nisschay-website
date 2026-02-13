@@ -1,4 +1,6 @@
 import ServicesSection from "@/components/ServicesSection";
+import ServiceDetailsSection from "@/components/ServiceDetailsSection";
+import ServiceBreakdownSection from "@/components/ServiceBreakdownSection";
 import TechStackSection from "@/components/TechStackSection";
 
 export const metadata = {
@@ -8,17 +10,10 @@ export const metadata = {
 
 export default function ServicesPage() {
     return (
-        <main className="relative bg-gradient-to-br from-primary-50 via-white to-primary-100/50 min-h-screen pt-28">
-            {/* Shared Background Grid */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none fixed">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
-                {/* Background Orbs */}
-                <div className="absolute left-0 top-0 -z-10 h-[310px] w-[310px] rounded-full bg-primary-400 opacity-20 blur-[100px]"></div>
-                <div className="absolute right-0 top-[80vh] -z-10 h-[450px] w-[450px] rounded-full bg-cyan-400 opacity-15 blur-[120px]"></div>
-            </div>
-
+        <main className="relative bg-white min-h-screen pt-28">
             <ServicesSection />
+            <ServiceBreakdownSection />
+            <ServiceDetailsSection />
             <TechStackSection />
         </main>
     );

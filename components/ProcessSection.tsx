@@ -95,18 +95,6 @@ export default function ProcessSection() {
             className="relative w-full lg:min-h-[225vh] py-20 px-4 bg-white overflow-hidden"
             id="process"
         >
-            {/* Light Blue Grid Pattern */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-60"
-                style={{
-                    backgroundImage: 'linear-gradient(to right, rgba(59, 130, 246, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.15) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px'
-                }}
-            />
-
-
-
-
             {/* Section Header */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -263,25 +251,194 @@ export default function ProcessSection() {
                 </motion.div>
             </div>
 
-            {/* Mobile & Tablet: Enhanced Vertical Timeline */}
-            <div className="lg:hidden max-w-3xl mx-auto relative">
-                {/* Vertical connecting line */}
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-30" />
-
-                <div className="space-y-8">
-                    {steps.map((step, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ delay: index * 0.1 }}
-                            className="relative"
-                        >
-                            <MobileCard step={step} />
-                        </motion.div>
-                    ))}
+            {/* Mobile & Tablet: Card Stack with Parallax */}
+            <div className="lg:hidden relative w-full max-w-lg mx-auto px-4">
+                {/* Background decorative elements with parallax */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {/* Floating gradient orbs */}
+                    <motion.div
+                        className="absolute w-64 h-64 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-400/20 blur-3xl"
+                        style={{ top: '10%', left: '-20%' }}
+                        animate={{
+                            y: [0, 30, 0],
+                            scale: [1, 1.1, 1],
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+                    <motion.div
+                        className="absolute w-64 h-64 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-3xl"
+                        style={{ top: '50%', right: '-20%' }}
+                        animate={{
+                            y: [0, -30, 0],
+                            scale: [1, 1.15, 1],
+                        }}
+                        transition={{
+                            duration: 10,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
                 </div>
+
+                {/* Progress indicator */}
+                <div className="sticky top-20 z-10 mb-8">
+                    <div className="bg-white/80 backdrop-blur-md rounded-full p-2 shadow-lg border border-gray-200/50">
+                        <div className="flex items-center justify-between px-4 py-2">
+                            <span className="text-sm font-semibold text-gray-700">Your Progress</span>
+                            <div className="flex gap-1.5">
+                                {steps.map((_, index) => (
+                                    <motion.div
+                                        key={index}
+                                        className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
+                                        initial={{ scale: 0.6, opacity: 0.3 }}
+                                        whileInView={{ scale: 1, opacity: 1 }}
+                                        viewport={{ once: false, amount: 0.8, margin: "-100px" }}
+                                        transition={{ delay: index * 0.1 }}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Stacked cards with parallax effect */}
+                <div className="space-y-6 relative">
+                    {steps.map((step, index) => {
+                        const isEven = index % 2 === 0;
+
+                        return (
+                            <motion.div
+                                key={index}
+                                className="relative"
+                                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                viewport={{ once: true, margin: "-50px", amount: 0.3 }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 100,
+                                    damping: 20,
+                                    delay: index * 0.1
+                                }}
+                            >
+                                {/* Parallax background layer */}
+                                <motion.div
+                                    className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${step.color} opacity-10 blur-xl`}
+                                    style={{
+                                        transform: `translateY(${index * 2}px)`,
+                                    }}
+                                    whileInView={{
+                                        y: [0, -10, 0],
+                                    }}
+                                    viewport={{ once: false, amount: 0.5 }}
+                                    transition={{
+                                        duration: 3 + index * 0.5,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                />
+
+                                {/* Main card with depth */}
+                                <motion.div
+                                    className="relative bg-white rounded-3xl p-6 shadow-xl border border-gray-200/60 overflow-hidden"
+                                    style={{
+                                        transformStyle: 'preserve-3d',
+                                    }}
+                                    whileHover={{
+                                        y: -8,
+                                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                                    }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    {/* Gradient overlay on hover */}
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 hover:opacity-5 transition-opacity duration-300`} />
+
+                                    {/* Floating icon with parallax */}
+                                    <motion.div
+                                        className="relative mb-6"
+                                        style={{
+                                            transform: 'translateZ(20px)',
+                                        }}
+                                        whileInView={{
+                                            y: [0, -8, 0],
+                                        }}
+                                        viewport={{ once: false, amount: 0.5 }}
+                                        transition={{
+                                            duration: 2.5,
+                                            repeat: Infinity,
+                                            ease: "easeInOut",
+                                            delay: index * 0.2
+                                        }}
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            {/* Icon */}
+                                            <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg`}>
+                                                <step.icon className="w-8 h-8 text-white relative z-10" />
+                                                {/* Icon glow */}
+                                                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.color} blur-md opacity-50`} />
+                                            </div>
+
+                                            {/* Step number badge */}
+                                            <motion.div
+                                                className={`w-14 h-14 rounded-xl ${step.bgColor} flex items-center justify-center text-white font-bold text-lg shadow-lg`}
+                                                whileHover={{ rotate: 360 }}
+                                                transition={{ duration: 0.6 }}
+                                            >
+                                                {step.number}
+                                            </motion.div>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* Content */}
+                                    <div className="relative z-10">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-3 font-outfit">
+                                            {step.title}
+                                        </h3>
+                                        <p className="text-gray-600 leading-relaxed">
+                                            {step.desc}
+                                        </p>
+                                    </div>
+
+                                    {/* Decorative corner accent */}
+                                    <div className={`absolute -bottom-6 ${isEven ? '-right-6' : '-left-6'} w-24 h-24 rounded-full bg-gradient-to-br ${step.color} opacity-10 blur-2xl`} />
+
+                                    {/* Progress connector line */}
+                                    {index < steps.length - 1 && (
+                                        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-0.5 h-6 bg-gradient-to-b from-gray-300 to-transparent" />
+                                    )}
+                                </motion.div>
+
+                                {/* Side accent line with parallax */}
+                                <motion.div
+                                    className={`absolute top-8 ${isEven ? '-left-2' : '-right-2'} w-1 h-20 rounded-full bg-gradient-to-b ${step.color} opacity-30`}
+                                    initial={{ scaleY: 0 }}
+                                    whileInView={{ scaleY: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
+                                />
+                            </motion.div>
+                        );
+                    })}
+                </div>
+
+                {/* Bottom completion indicator */}
+                <motion.div
+                    className="mt-12 text-center"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                >
+                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-semibold text-sm">Journey Complete</span>
+                    </div>
+                </motion.div>
             </div>
 
             {/* Call to Action - Professional & Reassuring */}
@@ -445,27 +602,32 @@ function PathCard({ step, side }: { step: any; side: string }) {
 
 function MobileCard({ step }: { step: any }) {
     return (
-        <div className="flex gap-4 items-start">
-            {/* Step Number & Icon */}
-            <div className="flex-shrink-0">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg relative`}>
-                    <step.icon className="w-8 h-8 text-white" />
-                    <div className={`absolute -top-2 -right-2 w-8 h-8 rounded-lg ${step.bgColor} flex items-center justify-center text-white font-bold text-xs shadow-lg`}>
-                        {step.number}
-                    </div>
-                </div>
+        <motion.div
+            className="w-full p-7 rounded-2xl bg-white shadow-xl hover:shadow-2xl border border-gray-200/60 backdrop-blur-xl transition-all duration-300 group relative"
+            whileHover={{ scale: 1.02, y: -4 }}
+            whileTap={{ scale: 0.98 }}
+        >
+            {/* Step Number Badge */}
+            <div className={`absolute -top-3 -right-3 w-12 h-12 rounded-xl ${step.bgColor} flex items-center justify-center text-white font-bold text-lg shadow-lg z-10`}>
+                {step.number}
+            </div>
+
+            {/* Icon */}
+            <div className={`w-16 h-16 mx-auto mb-5 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg`}>
+                <step.icon className="w-8 h-8 text-white" />
             </div>
 
             {/* Content */}
-            <div className="flex-1 pt-1">
-                <h3 className="text-xl font-bold text-gray-900 mb-2 font-outfit">
-                    {step.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                    {step.desc}
-                </p>
-            </div>
-        </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3 text-center font-outfit">
+                {step.title}
+            </h3>
+            <p className="text-sm text-gray-600 text-center leading-relaxed">
+                {step.desc}
+            </p>
+
+            {/* Hover glow */}
+            <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 -z-10`} />
+        </motion.div>
     );
 }
 

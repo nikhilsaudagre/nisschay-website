@@ -1,9 +1,43 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { FaRocket, FaHeart, FaShieldAlt, FaStar, FaHandshake, FaLightbulb } from "react-icons/fa";
+import { useState, useEffect, useRef } from "react";
 
-export default function AboutSection() {
+
+// Animated Counter Component
+function AnimatedCounter({ end, duration = 2, suffix = "" }: { end: number; duration?: number; suffix?: string }) {
+    const [count, setCount] = useState(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    useEffect(() => {
+        if (!isInView) return;
+
+        let startTime: number | null = null;
+        const animate = (currentTime: number) => {
+            if (!startTime) startTime = currentTime;
+            const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            setCount(Math.floor(easeOutQuart * end));
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                setCount(end);
+            }
+        };
+
+        requestAnimationFrame(animate);
+    }, [isInView, end, duration]);
+
+    return <span ref={ref}>{count}{suffix}</span>;
+}
+
+export default function AboutSection({ showLearnMore = false }: { showLearnMore?: boolean }) {
+
     const coreValues = [
         {
             icon: FaLightbulb,
@@ -43,7 +77,7 @@ export default function AboutSection() {
     ];
 
     return (
-        <section id="about" className="relative w-full overflow-hidden mt-32 md:mt-40">
+        <section id="about" className="relative w-full overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
 
                 {/* LEFT SIDE: Image Backdrop with Overlay */}
@@ -83,17 +117,17 @@ export default function AboutSection() {
                                     letterSpacing: "-0.02em"
                                 }}
                             >
-                                <span className="opacity-90">More Than</span>
+                                <span className="opacity-90">Your Growth</span>
                                 <br />
                                 <span className="bg-gradient-to-r from-blue-200 via-indigo-200 to-white bg-clip-text text-transparent font-normal">
-                                    Just Code.
+                                    Partner in Tech.
                                 </span>
                             </h2>
                             <p className="text-gray-100 text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 max-w-lg font-light drop-shadow-sm">
-                                <span className="font-semibold text-white">Nisschay</span> is a forward-thinking specialized tech agency. We bridge the gap between complex backend logic and intuitive user experiences, helping businesses scale with confidence.
+                                We turn complex business challenges into elegant digital solutions—helping startups and growing businesses <span className="font-semibold text-white">launch faster, scale smarter, and compete stronger.</span>
                             </p>
                             <p className="text-gray-200 text-sm sm:text-base leading-relaxed max-w-lg drop-shadow-sm">
-                                We are a collective of passionate creators, problem solvers, and strategic thinkers dedicated to building the future of the web.
+                                Unlike traditional agencies, we act as your extended tech team—bringing Silicon Valley-level expertise without the Silicon Valley price tag.
                             </p>
                         </motion.div>
                     </div>
@@ -115,7 +149,13 @@ export default function AboutSection() {
                                 <div className="h-px flex-1 bg-gray-200 rounded-full"></div>
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
-                                A tech-first agency specializing in building scalable digital products that drive real business outcomes. We combine technical excellence with strategic thinking to deliver solutions that matter.
+                                The software development industry had a problem: businesses were forced to choose between expensive agencies with slow processes or cheap solutions with unreliable quality.
+                            </p>
+                            <p className="text-gray-600 leading-relaxed mt-4">
+                                We founded Nisschay in 2023 to fill that gap—offering enterprise-grade development with startup agility. Our team brings experience from leading tech companies, but we operate with the speed and flexibility that growing businesses need.
+                            </p>
+                            <p className="text-gray-600 leading-relaxed mt-4">
+                                We're not just building software; we're building long-term partnerships that help our clients scale confidently.
                             </p>
                         </motion.div>
 
@@ -132,15 +172,15 @@ export default function AboutSection() {
                                 <div className="text-xs text-gray-600 font-medium">Founded</div>
                             </div>
                             <div className="bg-gradient-to-br from-purple-50 to-white p-5 rounded-xl border border-purple-100 hover:shadow-lg transition-shadow">
-                                <div className="text-3xl font-bold text-purple-600 mb-1">15+</div>
+                                <div className="text-3xl font-bold text-purple-600 mb-1"><AnimatedCounter end={15} />+</div>
                                 <div className="text-xs text-gray-600 font-medium">Team Members</div>
                             </div>
                             <div className="bg-gradient-to-br from-cyan-50 to-white p-5 rounded-xl border border-cyan-100 hover:shadow-lg transition-shadow">
-                                <div className="text-3xl font-bold text-cyan-600 mb-1">25+</div>
+                                <div className="text-3xl font-bold text-cyan-600 mb-1"><AnimatedCounter end={25} />+</div>
                                 <div className="text-xs text-gray-600 font-medium">Projects Delivered</div>
                             </div>
                             <div className="bg-gradient-to-br from-green-50 to-white p-5 rounded-xl border border-green-100 hover:shadow-lg transition-shadow">
-                                <div className="text-3xl font-bold text-green-600 mb-1">98%</div>
+                                <div className="text-3xl font-bold text-green-600 mb-1"><AnimatedCounter end={98} suffix="%" /></div>
                                 <div className="text-xs text-gray-600 font-medium">Client Satisfaction</div>
                             </div>
                         </motion.div>
@@ -206,6 +246,32 @@ export default function AboutSection() {
                                 ))}
                             </div>
                         </motion.div>
+
+                        {/* Learn More Button */}
+                        {showLearnMore && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                                className="pt-6"
+                            >
+                                <a
+                                    href="/about"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg group"
+                                >
+                                    <span>Learn More About Us</span>
+                                    <svg
+                                        className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
+                            </motion.div>
+                        )}
 
                     </div>
                 </div>
