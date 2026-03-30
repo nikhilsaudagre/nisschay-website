@@ -1,329 +1,216 @@
 "use client";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { MouseEvent } from "react";
-import {
-    FiMonitor, FiSmartphone, FiCpu, FiCloud,
-    FiLayout, FiSettings, FiCode, FiUsers, FiBriefcase
-} from "react-icons/fi";
-import Script from "next/script";
 
-const services = [
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { 
+    FiMonitor, FiSmartphone, FiCpu, FiCloud, 
+    FiLayout, FiCode, FiArrowRight, FiArrowUpRight
+} from "react-icons/fi";
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+
+const keyServices = [
     {
+        id: 1,
         title: "Enterprise Web Platforms",
-        desc: "Scalable, high-performance web architectures optimized for SEO and speed.",
+        category: "Scalable Architecture",
         icon: FiMonitor,
-        colSpan: "md:col-span-2"
+        color: "from-blue-600 to-indigo-700",
+        accent: "bg-blue-500",
     },
     {
+        id: 2,
         title: "Mobile App Engineering",
-        desc: "Native & Cross-platform solutions for seamless iOS & Android experiences.",
+        category: "iOS & Android",
         icon: FiSmartphone,
-        colSpan: "md:col-span-1"
+        color: "from-emerald-500 to-teal-600",
+        accent: "bg-emerald-500",
     },
     {
-        title: "Intelligent Automation & AI",
-        desc: "Generative AI integrations, smart agents, and workflow automation.",
+        id: 3,
+        title: "Intelligent AI Solutions",
+        category: "Generative AI & Agents",
         icon: FiCpu,
-        colSpan: "md:col-span-1"
+        color: "from-purple-600 to-violet-700",
+        accent: "bg-purple-500",
     },
     {
-        title: "Cloud Infrastructure & DevOps",
-        desc: "Secure, auto-scaling cloud environments with CI/CD for rapid deployment.",
+        id: 4,
+        title: "Cloud & DevOps",
+        category: "Secure Infrastructure",
         icon: FiCloud,
-        colSpan: "md:col-span-1"
+        color: "from-sky-500 to-blue-600",
+        accent: "bg-sky-500",
     },
     {
-        title: "Immersive Experience Design",
-        desc: "User-centric interfaces backed by behavioral research and premium aesthetics.",
+        id: 5,
+        title: "Experience Design",
+        category: "UI/UX & Branding",
         icon: FiLayout,
-        colSpan: "md:col-span-1"
+        color: "from-rose-500 to-pink-600",
+        accent: "bg-rose-500",
     },
     {
-        title: "Managed IT Operations",
-        desc: "Proactive infrastructure monitoring, security patching, and 24/7 reliability.",
-        icon: FiSettings,
-        colSpan: "md:col-span-1"
-    },
-    {
-        title: "Bespoke Digital Solutions",
-        desc: "Custom-engineered software solving unique business challenges off-the-shelf tools can't.",
+        id: 6,
+        title: "Bespoke Software",
+        category: "Custom Engineering",
         icon: FiCode,
-        colSpan: "md:col-span-2"
+        color: "from-cyan-500 to-blue-600",
+        accent: "bg-cyan-500",
     },
-    {
-        title: "Dedicated Teams",
-        desc: "Specialized agile teams integrated seamlessly into your workflow.",
-        icon: FiUsers,
-        colSpan: "md:col-span-2"
-    },
-    {
-        title: "IT Consulting",
-        desc: "Strategic technology guidance to align IT with your business goals.",
-        icon: FiBriefcase,
-        colSpan: "md:col-span-1"
-    }
 ];
 
-function ServiceCard({ title, desc, icon: Icon, colSpan = "md:col-span-1", index }: { title: string, desc: string, icon: any, colSpan?: string, index: number }) {
+export default function ServicesSection() {
+    const [hoveredID, setHoveredID] = useState<number | null>(null);
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-        const { left, top } = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    }
+    const springConfig = { damping: 25, stiffness: 150 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!containerRef.current) return;
+            const rect = containerRef.current.getBoundingClientRect();
+            mouseX.set(e.clientX - rect.left);
+            mouseY.set(e.clientY - rect.top);
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [mouseX, mouseY]);
 
     return (
-        <motion.div
-            className={`group relative border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden rounded-[2rem] hover:border-blue-500/50 transition-colors duration-500 min-h-[240px] flex flex-col justify-center items-center text-center p-5 cursor-pointer ${colSpan}`}
-            onMouseMove={handleMouseMove}
-            initial="idle"
-            whileHover="hover"
+        <section 
+            ref={containerRef}
+            className="relative py-24 md:py-32 bg-white overflow-hidden cursor-default border-y border-gray-100"
+            id="services"
         >
-            {/* Spotlight Gradient */}
-            <motion.div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
-                style={{
-                    background: useMotionTemplate`
-                        radial-gradient(
-                        650px circle at ${mouseX}px ${mouseY}px,
-                        rgba(59, 130, 246, 0.05),
-                        transparent 80%
-                        )
-                    `,
-                }}
-            />
-
-
-
-            {/* Icon Area */}
-            <motion.div
-                layout
-                variants={{
-                    idle: { y: 0, rotate: 0 },
-                    hover: { y: -10, rotate: 360 }
-                }}
-                transition={{ duration: 0.6, type: "spring" }}
-                className="mb-4 p-3 rounded-full bg-blue-50/80 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 relative z-10 backdrop-blur-sm"
-            >
-                <motion.div
-                    animate={{
-                        y: [0, -5, 0],
-                        scale: [1, 1.1, 1]
-                    }}
-                    transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.2 // Deterministic delay
-                    }}
-                >
-                    <Icon className="w-7 h-7" />
-                </motion.div>
-            </motion.div>
-
-            {/* Title */}
-            <motion.h3
-                layout
-                variants={{
-                    idle: { y: 0 },
-                    hover: { y: -5 }
-                }}
-                transition={{ duration: 0.3 }}
-                className="text-xl font-bold text-gray-900 mb-1.5 font-outfit tracking-tight relative z-10"
-            >
-                {title}
-            </motion.h3>
-
-            {/* Description (Revealed on parent hover) */}
-            <motion.div
-                variants={{
-                    idle: { opacity: 0, height: 0, marginTop: 0 },
-                    hover: { opacity: 1, height: "auto", marginTop: 8 }
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden relative z-10"
-            >
-                <p className="text-gray-500 leading-relaxed font-light text-sm px-2 max-w-md mx-auto">
-                    {desc}
-                </p>
-            </motion.div>
-        </motion.div>
-    );
-}
-
-export default function ServicesSection() {
-    return (
-        <section className="relative w-full py-24 px-4 md:px-8 bg-[#f8fafc]" id="services">
-            {/* Connected Particles Background */}
-            <canvas
-                id="particle-network"
-                className="absolute inset-0 w-full h-full pointer-events-none opacity-30"
-            />
-            <Script id="particle-network-script" strategy="afterInteractive">
-                {`
-                    (function() {
-                        const canvas = document.getElementById('particle-network');
-                        if (!canvas) return;
-                        
-                        const ctx = canvas.getContext('2d');
-                        let width, height;
-                        let particles = [];
-                        
-                        // Configuration
-                        const particleCount = 100;
-                        const connectionDistance = 180;
-                        const moveSpeed = 0.8;
-                        
-                        function resize() {
-                            width = canvas.width = canvas.offsetWidth;
-                            height = canvas.height = canvas.offsetHeight;
-                        }
-                        
-                        class Particle {
-                            constructor() {
-                                this.x = Math.random() * width;
-                                this.y = Math.random() * height;
-                                this.vx = (Math.random() - 0.5) * moveSpeed;
-                                this.vy = (Math.random() - 0.5) * moveSpeed;
-                                this.size = Math.random() * 4 + 2;
-                            }
-                            
-                            update() {
-                                this.x += this.vx;
-                                this.y += this.vy;
-                                
-                                if (this.x < 0) this.x = width; // Wrap around
-                                if (this.x > width) this.x = 0;
-                                if (this.y < 0) this.y = height;
-                                if (this.y > height) this.y = 0;
-                            }
-                            
-                            draw() {
-                                ctx.beginPath();
-                                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                                ctx.fillStyle = '#3b82f6'; // Blue-500
-                                ctx.fill();
-                            }
-                        }
-                        
-                        function init() {
-                            resize();
-                            particles = [];
-                            for (let i = 0; i < particleCount; i++) {
-                                particles.push(new Particle());
-                            }
-                        }
-                        
-                        function animate() {
-                            ctx.clearRect(0, 0, width, height);
-                            
-                            // Update and draw particles
-                            particles.forEach(p => {
-                                p.update();
-                                p.draw();
-                            });
-                            
-                            // Draw connections
-                            ctx.strokeStyle = '#3b82f6';
-                            ctx.lineWidth = 1.5;
-                            
-                            for (let i = 0; i < particles.length; i++) {
-                                for (let j = i + 1; j < particles.length; j++) {
-                                    const dx = particles[i].x - particles[j].x;
-                                    const dy = particles[i].y - particles[j].y;
-                                    const distance = Math.sqrt(dx * dx + dy * dy);
-                                    
-                                    if (distance < connectionDistance) {
-                                        ctx.beginPath();
-                                        ctx.moveTo(particles[i].x, particles[i].y);
-                                        ctx.lineTo(particles[j].x, particles[j].y);
-                                        // Fade opacity based on distance
-                                        ctx.globalAlpha = 1 - (distance / connectionDistance);
-                                        ctx.stroke();
-                                        ctx.globalAlpha = 1.0;
-                                    }
-                                }
-                            }
-                            
-                            requestAnimationFrame(animate);
-                        }
-                        
-                        window.addEventListener('resize', resize);
-                        init();
-                        animate();
-                    })();
-                `}
-            </Script>
-
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="text-center mb-20">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]"
-                        style={{
-                            fontFamily: "var(--font-playfair)",
-                            fontWeight: 400,
-                            letterSpacing: "-0.02em"
-                        }}
-                    >
-                        <span className="text-gray-900">The Nisschay </span>
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                            Stack
-                        </span>
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="max-w-2xl mx-auto text-lg md:text-xl text-gray-500 leading-relaxed font-light"
-                    >
-                        Precision engineering for digital growth. Hover to discover our capabilities.
-                    </motion.p>
+            <div className="max-w-7xl mx-auto px-4 relative z-10">
+                {/* Header */}
+                <div className="flex flex-col items-center text-center mb-20">
+                    <div className="max-w-3xl">
+                        <motion.span
+                            className="inline-block py-1 px-3 rounded-full bg-gray-50 text-gray-500 text-xs font-semibold mb-4 tracking-wider uppercase"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            Specialized Expertise
+                        </motion.span>
+                        <motion.h2
+                            className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-gray-900"
+                            style={{ 
+                                fontFamily: "var(--font-playfair)", 
+                                letterSpacing: "-0.03em" 
+                            }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            Engineering Excellence.
+                        </motion.h2>
+                    </div>
                 </div>
 
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.1 }}
-                    variants={{
-                        hidden: { opacity: 0 },
-                        visible: {
-                            opacity: 1,
-                            transition: {
-                                staggerChildren: 0.2
-                            }
-                        }
-                    }}
-                >
-                    {services.map((service, idx) => (
-                        <motion.div
-                            key={idx}
-                            className={service.colSpan || "md:col-span-1"}
-                            variants={{
-                                hidden: { opacity: 0, y: 50, x: -20 },
-                                visible: {
-                                    opacity: 1,
-                                    y: 0,
-                                    x: 0,
-                                    transition: {
-                                        type: "spring",
-                                        stiffness: 50,
-                                        damping: 15
-                                    }
-                                }
-                            }}
+                {/* Interactive Service Titles */}
+                <div className="relative space-y-4">
+                    {keyServices.map((service, index) => (
+                        <div
+                            key={service.id}
+                            className="group relative border-b border-gray-100 last:border-0 py-8 md:py-12 transition-colors duration-500 hover:border-gray-300"
+                            onMouseEnter={() => setHoveredID(service.id)}
+                            onMouseLeave={() => setHoveredID(null)}
                         >
-                            <ServiceCard {...service} title={service.title} desc={service.desc} icon={service.icon} colSpan="" index={idx} />
-                        </motion.div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-baseline gap-4 md:gap-8 overflow-hidden">
+                                    <span className="text-gray-300 text-sm md:text-xl font-light font-mono leading-none">
+                                        0{index + 1}
+                                    </span>
+                                    <motion.h3 
+                                        className="text-3xl md:text-5xl lg:text-6xl font-light text-gray-900 group-hover:italic transition-all duration-500 origin-left"
+                                        style={{ fontFamily: "var(--font-playfair)" }}
+                                    >
+                                        {service.title}
+                                    </motion.h3>
+                                    <div className="hidden md:flex items-center gap-2 opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-700 delay-100">
+                                        <div className={`w-3 h-3 rounded-full ${service.accent}`} />
+                                        <span className="text-sm uppercase tracking-widest text-gray-400 font-medium whitespace-nowrap">
+                                            {service.category}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-gray-900 group-hover:border-gray-900 transition-all duration-500">
+                                    <FiArrowUpRight className="w-6 h-6 md:w-10 md:h-10 text-gray-400 group-hover:text-white transition-colors duration-500" />
+                                </div>
+                            </div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
+
+                {/* Final CTA */}
+                <div className="mt-20 md:mt-32 flex justify-center">
+                    <Link href="/contact" className="group/btn relative inline-flex items-center gap-4 px-10 py-6 rounded-full border border-gray-200 bg-white text-gray-900 overflow-hidden transition-all duration-500 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:px-14 active:scale-95">
+                        <span className="relative z-10 text-xl font-medium transition-colors duration-500 group-hover/btn:text-white">
+                            Build Your Vision
+                        </span>
+                        <FiArrowRight className="relative z-10 w-6 h-6 transition-all duration-500 group-hover/btn:translate-x-2 group-hover/btn:text-white" />
+                    </Link>
+                </div>
             </div>
+
+            {/* Floating Portal (Icon & Color Reveal) */}
+            <motion.div
+                className="pointer-events-none absolute z-20 w-[250px] h-[350px] md:w-[400px] md:h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white border border-gray-100"
+                style={{
+                    left: springX,
+                    top: springY,
+                    translateX: "-50%",
+                    translateY: "-50%",
+                    display: hoveredID ? "block" : "none",
+                }}
+                initial={{ scale: 0, opacity: 0, rotate: -15 }}
+                animate={{ 
+                    scale: hoveredID ? 1 : 0, 
+                    opacity: hoveredID ? 1 : 0,
+                    rotate: hoveredID ? 0 : -15,
+                }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            >
+                <div className="relative w-full h-full">
+                    {keyServices.map((service) => (
+                        <div
+                            key={service.id}
+                            className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ${
+                                hoveredID === service.id ? "opacity-100 scale-100" : "opacity-0 scale-110"
+                            }`}
+                        >
+                            <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-90`} />
+                            {/* Decorative Pattern */}
+                            <div className="absolute inset-0 opacity-20" 
+                                 style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+                            
+                            <motion.div
+                                animate={hoveredID === service.id ? { 
+                                    scale: [1, 1.1, 1],
+                                    rotate: [0, 5, -5, 0]
+                                } : {}}
+                                transition={{ duration: 4, repeat: Infinity }}
+                            >
+                                <service.icon size={150} className="text-white relative z-10 filter drop-shadow-2xl" />
+                            </motion.div>
+
+                            <div className="absolute bottom-10 left-10 right-10 text-white z-10">
+                                <p className="text-white/60 text-xs uppercase tracking-[0.3em] font-bold mb-2">Service Highlight</p>
+                                <h4 className="text-3xl font-bold font-outfit">{service.title}</h4>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </motion.div>
         </section>
     );
 }

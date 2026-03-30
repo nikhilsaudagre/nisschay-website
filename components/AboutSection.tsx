@@ -148,14 +148,17 @@ export default function AboutSection({ showLearnMore = false }: { showLearnMore?
                                 About Nisschay
                                 <div className="h-px flex-1 bg-gray-200 rounded-full"></div>
                             </h3>
+                            <div className="mb-2">
+                                <span className="text-xs font-bold uppercase tracking-widest text-blue-500">Why We Built This</span>
+                            </div>
                             <p className="text-gray-600 leading-relaxed">
-                                The software development industry had a problem: businesses were forced to choose between expensive agencies with slow processes or cheap solutions with unreliable quality.
+                                Great ideas kept dying — not because founders lacked vision, but because building great software was too slow, too expensive, or too unreliable. We started Nisschay to fix that.
                             </p>
                             <p className="text-gray-600 leading-relaxed mt-4">
-                                We founded Nisschay in 2023 to fill that gap—offering enterprise-grade development with startup agility. Our team brings experience from leading tech companies, but we operate with the speed and flexibility that growing businesses need.
+                                Since 2023, we've helped startups launch, businesses modernize, and founders stop worrying about the technology beneath their vision. Our team runs lean, ships fast, and thinks long-term.
                             </p>
                             <p className="text-gray-600 leading-relaxed mt-4">
-                                We're not just building software; we're building long-term partnerships that help our clients scale confidently.
+                                We measure our success simply: if your product is growing, we've done our job. That's the Nisschay standard — and it's what keeps our clients coming back.
                             </p>
                         </motion.div>
 

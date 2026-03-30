@@ -2,10 +2,10 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
-import WorkSection from "@/components/WorkSection";
 import TechStackSection from "@/components/TechStackSection";
 import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
+import WorkTeaserSection from "@/components/WorkTeaserSection";
 
 export default function Home() {
   return (
@@ -14,8 +14,8 @@ export default function Home() {
       <HeroSection />
       <AboutSection showLearnMore={true} />
       <ServicesSection />
+      <WorkTeaserSection />
       <ProcessSection />
-      <WorkSection />
       <TechStackSection />
       <CTASection />
       <ContactSection />
