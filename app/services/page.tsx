@@ -1,6 +1,7 @@
 import ServicesBentoGrid from "@/components/ServicesBentoGrid";
 import ServiceDetailsSection from "@/components/ServiceDetailsSection";
 import ServiceBreakdownSection from "@/components/ServiceBreakdownSection";
+import IndustrySolutionsSection from "@/components/IndustrySolutionsSection";
 import TechStackSection from "@/components/TechStackSection";
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function ServicesPage() {
         <main className="relative bg-white min-h-screen pt-28">
             <ServicesBentoGrid />
             <ServiceBreakdownSection />
+            <IndustrySolutionsSection />
             <ServiceDetailsSection />
             <TechStackSection />
         </main>

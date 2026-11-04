@@ -1,192 +1,267 @@
 "use client";
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FiCheckCircle, FiCompass, FiCpu, FiGitMerge, FiLayers, FiGlobe, FiShield } from "react-icons/fi";
+import {
+    FiCheckCircle,
+    FiCompass,
+    FiCpu,
+    FiGitMerge,
+    FiLayers,
+    FiGlobe,
+    FiShield,
+    FiArrowRight,
+    FiCheck
+} from "react-icons/fi";
 
 const steps = [
     {
-        title: "The Decision",
-        desc: "Initial consultation to understand your goals, define project scope, and establish success metrics. We align on a shared vision with clear deliverables.",
-        icon: FiCheckCircle,
         number: "01",
-        color: "from-emerald-500 to-teal-500",
-        bgColor: "bg-emerald-500"
+        phase: "Define",
+        phaseColor: "text-emerald-600 bg-emerald-50 border-emerald-100",
+        title: "Scoping & Alignment",
+        desc: "We conduct deep scoping audits to align product goals, map business logic parameters, and define performance benchmarks.",
+        icon: FiCheckCircle,
+        deliverables: [
+            "Product Spec Document (PRD)",
+            "Business Logic Map",
+            "Milestone Timeline & Scope"
+        ],
+        tooling: ["Miro", "Jira Discovery"]
     },
     {
-        title: "Strategic Planning",
-        desc: "Comprehensive wireframes, user journey maps, and technical architecture. You'll receive detailed mockups and documentation for approval.",
-        icon: FiCompass,
         number: "02",
-        color: "from-blue-500 to-indigo-500",
-        bgColor: "bg-blue-500"
+        phase: "Define",
+        phaseColor: "text-emerald-600 bg-emerald-50 border-emerald-100",
+        title: "Architectural Blueprinting",
+        desc: "Designing high-fidelity Figma prototypes alongside system architecture schemas and secure database models.",
+        icon: FiCompass,
+        deliverables: [
+            "Figma UX/UI Prototypes",
+            "Entity Diagrams (ERD)",
+            "API Schema Specifications"
+        ],
+        tooling: ["Figma", "dbdiagram.io"]
     },
     {
-        title: "Implementation",
-        desc: "Agile development sprints with weekly demos. Watch your product come to life in real-time with continuous feedback loops and iterative improvements.",
-        icon: FiCpu,
         number: "03",
-        color: "from-violet-500 to-purple-500",
-        bgColor: "bg-violet-500"
+        phase: "Build",
+        phaseColor: "text-blue-600 bg-blue-50 border-blue-100",
+        title: "Agile Sprints",
+        desc: "Iterative coding sprints coupled with weekly staging demos, keeping engineering transparent and feedback loops immediate.",
+        icon: FiCpu,
+        deliverables: [
+            "Feature Iteration Drops",
+            "Staging URLs Access",
+            "Dev Progress Dashboard"
+        ],
+        tooling: ["Next.js", "TypeScript"]
     },
     {
-        title: "Refinement",
-        desc: "Rigorous testing, user feedback integration, and UI/UX polish. Every interaction is refined to perfection based on real-world usage patterns.",
-        icon: FiGitMerge,
         number: "04",
-        color: "from-pink-500 to-rose-500",
-        bgColor: "bg-pink-500"
+        phase: "Build",
+        phaseColor: "text-blue-600 bg-blue-50 border-blue-100",
+        title: "Quality & Optimization",
+        desc: "Conducting rigorous unit checks, end-to-end integration audits, and visual polishing to refine every interface interaction.",
+        icon: FiGitMerge,
+        deliverables: [
+            "Jest & E2E Code Coverage",
+            "Lighthouse Speed Audits",
+            "Cross-Device Verification"
+        ],
+        tooling: ["Jest", "Lighthouse"]
     },
     {
-        title: "Confirmation",
-        desc: "Final quality assurance, performance optimization, and client approval. Your product is battle-tested and ready for the world stage.",
-        icon: FiLayers,
         number: "05",
-        color: "from-cyan-500 to-blue-500",
-        bgColor: "bg-cyan-500"
+        phase: "Build",
+        phaseColor: "text-blue-600 bg-blue-50 border-blue-100",
+        title: "Staging & Sign-off",
+        desc: "Subjecting the product to final end-to-end load tests and diagnostic checks prior to client verification.",
+        icon: FiLayers,
+        deliverables: [
+            "User Acceptance Testing (UAT)",
+            "System Compliance Audit",
+            "Pre-Launch Config Check"
+        ],
+        tooling: ["Cypress", "SonarQube"]
     },
     {
-        title: "Deployment",
-        desc: "Seamless launch with zero downtime. Your product goes live globally with comprehensive monitoring, rollback strategies, and launch support.",
-        icon: FiGlobe,
         number: "06",
-        color: "from-orange-500 to-amber-500",
-        bgColor: "bg-orange-500"
+        phase: "Scale",
+        phaseColor: "text-purple-600 bg-purple-50 border-purple-100",
+        title: "Orchestration & Launch",
+        desc: "Executing global edge deployments with zero-downtime container overrides and active traffic performance monitoring.",
+        icon: FiGlobe,
+        deliverables: [
+            "Zero-Downtime Release",
+            "SSL & DNS Configuration",
+            "Edge Cache Diagnostics"
+        ],
+        tooling: ["Docker", "Cloudflare"]
     },
     {
-        title: "Support & Scale",
-        desc: "Ongoing maintenance, performance monitoring, and feature enhancements. We ensure stability, security, and continuous growth as you scale.",
-        icon: FiShield,
         number: "07",
-        color: "from-green-500 to-emerald-500",
-        bgColor: "bg-green-500"
+        phase: "Scale",
+        phaseColor: "text-purple-600 bg-purple-50 border-purple-100",
+        title: "Maintenance & Scale",
+        desc: "Ongoing infrastructure checks, database optimization, and security patches to ensure stability as your platform scales.",
+        icon: FiShield,
+        deliverables: [
+            "24/7 Uptime Monitoring",
+            "Database Query Tuning",
+            "Security Updates & Patches"
+        ],
+        tooling: ["Prometheus", "Datadog"]
     }
 ];
 
 export default function ProcessSection() {
     return (
         <section
-            className="relative w-full py-20 md:py-32 px-4 sm:px-6 bg-white"
+            className="relative w-full py-20 md:py-28 px-4 sm:px-6 bg-white"
             id="process"
         >
-            {/* Decorative Elements */}
-
             <div className="max-w-7xl mx-auto relative z-10">
-                {/* Split Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    
+                    {/* Left Sticky Header Panel */}
+                    <div className="lg:col-span-5 lg:sticky lg:top-28 flex flex-col items-start text-left">
+                        <motion.span
+                            className="text-xs font-mono uppercase tracking-[0.25em] text-blue-600 bg-blue-50 px-4 py-2 rounded-full select-none"
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            [ Delivery Process ]
+                        </motion.span>
+                        
+                        <motion.h2
+                            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15] mb-6 mt-4 font-display"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            Bespoke Execution. <br className="hidden sm:inline" />
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-black">
+                                Built for Velocity.
+                            </span>
+                        </motion.h2>
 
-                    {/* LEFT SIDE - Heading & Subheading */}
-                    <div className="relative">
-                        <div className="lg:sticky lg:top-32 lg:h-fit">
-                            <motion.div
-                                initial={{ opacity: 0, x: -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.7 }}
+                        <motion.p
+                            className="text-base text-gray-500 leading-relaxed font-light mb-8 max-w-lg"
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            We align custom architecture, agile development cycles, and strict security compliance to transform complex concepts into battle-tested products.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="hidden lg:block"
+                        >
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
                             >
-                                {/* Eyebrow Text */}
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                    className="inline-block mb-4"
-                                >
-                                    <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider bg-blue-50 px-4 py-2 rounded-full">
-                                        Our Process
-                                    </span>
-                                </motion.div>
-
-                                {/* Main Heading */}
-                                <h2
-                                    className="text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight"
-                                    style={{
-                                        fontFamily: "var(--font-playfair)",
-                                        fontWeight: 400,
-                                        letterSpacing: "-0.02em"
-                                    }}
-                                >
-                                    <span className="text-gray-900">Your Journey to </span>
-                                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                                        Victory
-                                    </span>
-                                </h2 >
-
-                                {/* Subheading */}
-                                <p className="text-gray-600 text-lg md:text-xl leading-relaxed mb-8">
-                                    From initial spark to market success—our battle-tested process transforms ambitious ideas into scalable digital products that users love and investors notice.
-                                </p>
-
-                                {/* CTA Button */}
-                                <motion.div>
-                                    <Link
-                                        href="/contact"
-                                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 hover:-translate-y-1"
-                                    >
-                                        <span>Start Your Journey</span>
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </Link>
-                                </motion.div>
-                            </motion.div>
-                        </div>
-
-                        {/* Vertical Line - Hidden on mobile, visible on desktop */}
-                        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-300 to-transparent" />
+                                <span>Start Project</span>
+                                <FiArrowRight className="w-4 h-4" />
+                            </Link>
+                        </motion.div>
                     </div>
 
-                    {/* RIGHT SIDE - Process Cards Grid */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-                    >
-                        {steps.map((step, index) => {
-                            const Icon = step.icon;
-                            // Make the last item span 2 columns if it's the last odd item
-                            const isLastOdd = index === steps.length - 1 && steps.length % 2 !== 0;
+                    {/* Right Timeline Panel */}
+                    <div className="lg:col-span-7 relative pl-8 sm:pl-12">
+                        
+                        {/* Vertical timeline connector track */}
+                        <div className="absolute left-[11px] sm:left-[15px] top-4 bottom-4 w-[2px] bg-slate-100 z-0" />
 
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                                    whileHover={{ scale: 1.05, y: -8 }}
-                                    className={`group relative bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden ${isLastOdd ? 'sm:col-span-2' : ''}`}
-                                >
-                                    {/* Gradient Background on Hover */}
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-
-                                    <div className="relative">
-                                        {/* Number Badge */}
-                                        <div className={`absolute -top-3 -right-3 w-12 h-12 rounded-xl ${step.bgColor} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
+                        <div className="space-y-10">
+                            {steps.map((step, idx) => {
+                                const StepIcon = step.icon;
+                                return (
+                                    <motion.div
+                                        key={idx}
+                                        className="group relative flex flex-col items-start gap-1"
+                                        initial={{ opacity: 0, y: 25 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        transition={{ duration: 0.5, delay: idx * 0.05 }}
+                                    >
+                                        {/* Connector Node */}
+                                        <div className="absolute -left-[29px] sm:-left-[39px] top-2 w-6 h-6 sm:w-[26px] sm:h-[26px] rounded-full border-2 border-white bg-slate-100 text-slate-500 font-mono text-[10px] font-bold flex items-center justify-center transition-all duration-300 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white group-hover:shadow-[0_0_8px_rgba(37,99,235,0.4)] z-10 select-none">
                                             {step.number}
                                         </div>
 
-                                        {/* Icon */}
-                                        <div className={`w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-gray-100 ${isLastOdd ? 'mx-auto' : ''}`}>
-                                            <Icon className="w-8 h-8 text-gray-900" />
+                                        {/* Step Info Card */}
+                                        <div className="w-full bg-slate-50/25 border border-slate-100/70 rounded-2xl p-6 transition-all duration-300 hover:border-slate-200/80 hover:bg-slate-50/50 hover:shadow-sm">
+                                            <div className="flex items-center gap-3">
+                                                <span className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${step.phaseColor}`}>
+                                                    {step.phase}
+                                                </span>
+                                                <div className="text-slate-400 font-mono text-[10px]">
+                                                    Step {step.number}
+                                                </div>
+                                            </div>
+
+                                            <h3 className="text-lg font-bold text-gray-900 mt-2.5 mb-1.5 flex items-center gap-2 font-display">
+                                                <StepIcon className="w-4.5 h-4.5 text-slate-700" />
+                                                <span>{step.title}</span>
+                                            </h3>
+
+                                            <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-light">
+                                                {step.desc}
+                                            </p>
+
+                                            {/* Checklist Deliverables */}
+                                            <div className="mt-4 pt-4 border-t border-slate-100/60">
+                                                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2.5">
+                                                    Key Deliverables:
+                                                </div>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                                    {step.deliverables.map((item, dIdx) => (
+                                                        <div key={dIdx} className="flex items-center gap-2 text-xs text-slate-600">
+                                                            <FiCheck className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                                                            <span className="font-light">{item}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            {/* Tool badges */}
+                                            <div className="mt-4 pt-3 border-t border-slate-100/40 flex flex-wrap items-center gap-1.5">
+                                                <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 mr-1 select-none">
+                                                    Tooling:
+                                                </span>
+                                                {step.tooling.map((tool, tIdx) => (
+                                                    <span
+                                                        key={tIdx}
+                                                        className="text-[9px] font-mono text-slate-500 bg-slate-100 border border-slate-200/50 px-2 py-0.5 rounded select-none"
+                                                    >
+                                                        {tool}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
 
-                                        {/* Content */}
-                                        <h3 className={`text-xl md:text-2xl font-bold text-gray-900 mb-3 font-outfit ${isLastOdd ? 'text-center' : ''}`}>
-                                            {step.title}
-                                        </h3>
-                                        <p className={`text-gray-600 leading-relaxed text-sm md:text-base ${isLastOdd ? 'text-center max-w-2xl mx-auto' : ''}`}>
-                                            {step.desc}
-                                        </p>
-                                    </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </div>
 
-                                    {/* Decorative corner accent */}
-                                    <div className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br ${step.color} opacity-10 blur-2xl`} />
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
+                    <div className="mt-6 text-center lg:hidden">
+                        <Link
+                            href="/contact"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg"
+                        >
+                            <span>Start Project</span>
+                            <FiArrowRight className="w-5 h-5" />
+                        </Link>
+                    </div>
+
                 </div>
             </div>
         </section >

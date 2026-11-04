@@ -94,9 +94,9 @@ export default function PortfolioFAQSection() {
                         <span>Frequently Asked Questions</span>
                     </div>
                     <h2
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]"
+                        className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]"
                         style={{
-                            fontFamily: "var(--font-playfair)",
+                            fontFamily: "var(--font-display)",
                             fontWeight: 400,
                             letterSpacing: "-0.02em"
                         }}

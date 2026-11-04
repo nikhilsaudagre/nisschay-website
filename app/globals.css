@@ -35,6 +35,11 @@
   --background: #ffffff;
   --foreground: #0f172a;
 
+  /* Brand Identity Colors sampled from Nisschay Arch Logo */
+  --brand-blue: #0057fe;
+  --brand-blue-hover: #0047d6;
+  --brand-navy: #000c24;
+
   /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(0, 135, 255, 0.15);
@@ -53,11 +58,15 @@
   --color-primary-800: var(--primary-800);
   --color-primary-900: var(--primary-900);
 
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-hover: var(--brand-blue-hover);
+  --color-brand-navy: var(--brand-navy);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
   /* Premium Typography System - Option 1 */
-  --font-display: var(--font-playfair);
+  --font-display: var(--font-outfit);
   /* H1 - Hero/Display Headings */
   --font-heading: var(--font-outfit);
   /* H2-H5 - Section Headings */
@@ -101,6 +110,22 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Custom Animations */
@@ -304,4 +329,58 @@ html {
   to {
     transform: translateY(-0.1em);
   }
+}
+
+/* Premium Tech Stack Marquee Styles */
+.tech-stack-container-3d {
+  overflow: visible;
+}
+
+.tech-stack-track-3d {
+  will-change: transform;
+}
+
+.mask-linear-fade {
+  mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+}
+
+@keyframes drift-slow {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(60px, -40px) scale(1.15);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes drift-slower {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-50px, 60px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-drift-slow {
+  animation: drift-slow 18s ease-in-out infinite;
+}
+
+.animate-drift-slower {
+  animation: drift-slower 25s ease-in-out infinite;
+}
+/* Smooth scrolling & section offset for fixed navbar */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id], div[id] {
+  scroll-margin-top: 6rem;
 }

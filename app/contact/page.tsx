@@ -1,5 +1,6 @@
 import ContactSection from "@/components/ContactSection";
 import ContactHeroSection from "@/components/ContactHeroSection";
+import ContactObjectionSection from "@/components/ContactObjectionSection";
 
 export const metadata = {
     title: "Contact Us - Nisschay",
@@ -10,6 +11,7 @@ export default function ContactPage() {
     return (
         <main className="relative bg-white min-h-screen pt-28">
             <ContactHeroSection />
+            <ContactObjectionSection />
             <ContactSection />
         </main>
     );

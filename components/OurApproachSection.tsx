@@ -7,25 +7,25 @@ export default function OurApproachSection() {
         {
             icon: FaComments,
             title: "Discovery & Strategy",
-            description: "We start by deeply understanding your business goals, target audience, and technical requirements. No cookie-cutter solutions—every project is tailored to your needs.",
+            description: "We analyze your business goals, map user journeys, and specify technical requirements. We tailor every project to your unique business needs—never using cookie-cutter templates.",
             color: "blue"
         },
         {
             icon: FaCode,
             title: "Agile Development",
-            description: "Using modern development practices, we build in sprints with continuous feedback loops. You're involved at every stage, ensuring we're always aligned with your vision.",
+            description: "We build in rapid development sprints with continuous feedback loops. We involve you at every stage, ensuring strict alignment with your product vision.",
             color: "purple"
         },
         {
             icon: FaRocket,
             title: "Launch & Deployment",
-            description: "We handle everything from testing to deployment, ensuring a smooth launch. Our team ensures your product goes live without a hitch.",
+            description: "We direct everything from automated testing to production deployment, launching your product with zero downtime and total reliability.",
             color: "cyan"
         },
         {
             icon: FaHeadset,
             title: "Ongoing Support",
-            description: "Our partnership doesn't end at launch. We provide ongoing maintenance, updates, and support to ensure your product continues to perform at its best.",
+            description: "We monitor, update, and support your product post-launch, keeping your systems running at peak performance as you scale.",
             color: "green"
         }
     ];
@@ -58,9 +58,9 @@ export default function OurApproachSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl text-gray-900 mb-4"
+                    <h2 className="text-3xl md:text-5xl text-gray-900 mb-4"
                         style={{
-                            fontFamily: "var(--font-playfair)",
+                            fontFamily: "var(--font-display)",
                             fontWeight: 400,
                             letterSpacing: "-0.02em"
                         }}

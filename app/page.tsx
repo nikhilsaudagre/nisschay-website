@@ -1,8 +1,10 @@
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
+import QuoteSection from "@/components/QuoteSection";
+import MeetNisschaySection from "@/components/MeetNisschaySection";
+import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
-import TechStackSection from "@/components/TechStackSection";
+import HomeTechStackSection from "@/components/HomeTechStackSection";
 import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
 import WorkTeaserSection from "@/components/WorkTeaserSection";
@@ -12,11 +14,13 @@ export default function Home() {
     <main className="relative bg-white min-h-screen">
 
       <HeroSection />
-      <AboutSection showLearnMore={true} />
+      <QuoteSection />
+      <MeetNisschaySection />
+      <WhyChooseUsSection />
       <ServicesSection />
       <WorkTeaserSection />
       <ProcessSection />
-      <TechStackSection />
+      <HomeTechStackSection />
       <CTASection />
       <ContactSection />
     </main>

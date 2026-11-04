@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaCheckCircle } from "react-icons/fa";
 
 export default function StoryTimelineSection() {
     const milestones = [
@@ -56,12 +55,12 @@ export default function StoryTimelineSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-                        style={{ fontFamily: "var(--font-playfair)" }}
+                        style={{ fontFamily: "var(--font-display)" }}
                     >
                         Our Journey
                     </h2>
                     <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                        From a bold idea to a trusted development partner—here's how we got here.
+                        From a bold idea to a trusted development partner—here&apos;s how we got here.
                     </p>
                 </motion.div>
 

@@ -1,174 +1,147 @@
 "use client";
+import React from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { FaArrowRight, FaCode, FaMobile, FaServer, FaPaperPlane, FaCheckCircle, FaUsers, FaClock } from "react-icons/fa";
-import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { Caveat } from "next/font/google";
+import { motion } from "framer-motion";
+import { 
+    FiArrowRight,
+    FiClock,
+    FiCheckCircle,
+    FiCode 
+} from "react-icons/fi";
+
+const caveat = Caveat({
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    display: "swap",
+});
 
 export default function HeroSection() {
-    // Typewriter State
-    const [text, setText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [loopNum, setLoopNum] = useState(0);
-    const [typingSpeed, setTypingSpeed] = useState(150);
-    const [isFlying, setIsFlying] = useState(false);
-
-    // Words to cycle through - More impactful messaging
-    const words = ["Digital Excellence", "Market Leaders", "Growth Engines", "User Experiences"];
-
-    useEffect(() => {
-        const handleType = () => {
-            const i = loopNum % words.length;
-            const fullText = words[i];
-
-            setText(isDeleting
-                ? fullText.substring(0, text.length - 1)
-                : fullText.substring(0, text.length + 1)
-            );
-
-            // Typing Speed logic
-            setTypingSpeed(isDeleting ? 50 : 150);
-
-            if (!isDeleting && text === fullText) {
-                // Finished typing word, pause before deleting
-                setTimeout(() => setIsDeleting(true), 2000);
-            } else if (isDeleting && text === "") {
-                // Finished deleting, move to next word
-                setIsDeleting(false);
-                setLoopNum(loopNum + 1);
-            }
-        };
-
-        const timer = setTimeout(handleType, typingSpeed);
-        return () => clearTimeout(timer);
-    }, [text, isDeleting, loopNum, typingSpeed, words]);
-
-
-
     return (
-        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-20 pb-32 md:pb-24 px-4 sm:px-6 bg-white">
+        <section 
+            id="home" 
+            className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-24 pb-8 lg:pb-10 bg-white"
+        >
+            {/* Drifting Background Gradients */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 opacity-40">
+                <div className="absolute -top-10 -left-10 w-96 h-96 bg-blue-100/35 rounded-full filter blur-[100px] animate-pulse" style={{ animationDuration: "8s" }} />
+                <div className="absolute top-1/4 -right-10 w-80 h-80 bg-indigo-100/25 rounded-full filter blur-[100px] animate-pulse" style={{ animationDuration: "12s" }} />
+            </div>
 
-            {/* Main Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
-                <div className="text-center">
-
-                    {/* Main Heading - Bricolage Grotesque (Distinctive Display Font) */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="leading-[1.1] mb-8 md:mb-6 px-2 sm:px-8 md:px-12 overflow-visible w-full"
-                        style={{
-                            fontFamily: "var(--font-playfair)",
-                            fontWeight: 400,
-                            letterSpacing: "-0.02em",
-                            fontSize: "clamp(1.75rem, 5vw + 1rem, 4.5rem)"
-                        }}
-                    >
-                        <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 bg-clip-text text-transparent inline-block px-2">Transform Ideas Into</span>
-                        <br />
-                        <span className="text-gray-900 inline-flex items-center justify-center w-full">
-                            {text}
-                            <span className="typewriter-cursor" style={{ height: "clamp(2.5rem, 5vw + 1rem, 5rem)" }}>&nbsp;</span>
-                        </span>
-                    </motion.h1>
-
-
-                    {/* Subheading - Geist Sans Typography */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-gray-900 w-full max-w-[95%] md:max-w-[1000px] mx-auto mb-12 md:mb-10 px-4 sm:px-6 box-border"
-                        style={{
-                            fontFamily: "var(--font-inter)",
-                            fontWeight: 500,
-                            lineHeight: 1.5,
-                            letterSpacing: "0.01em",
-                            fontSize: "clamp(1rem, 2vw + 0.3rem, 1.25rem)"
-                        }}
-                    >
-                        Full-stack development agency specializing in<br className="md:hidden" /> web apps, mobile apps, and cloud solutions<br className="md:hidden" /> for <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">growing businesses</span>.
-                    </motion.p>
-
-                    {/* CTA Buttons */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="flex flex-col sm:flex-row gap-5 md:gap-4 justify-center items-center mb-16 md:mb-12 w-full max-w-xs mx-auto sm:max-w-none px-4 sm:px-12 md:px-0"
-                    >
-                        <Link
-                            href="/contact"
-                            onClick={(e) => {
-                                setIsFlying(true);
-                                setTimeout(() => {
-                                    setIsFlying(false);
-                                }, 800);
-                            }}
-                            className={`btn-flight group w-full sm:w-auto min-w-[160px] px-6 py-3.5 bg-primary-600 text-white text-sm font-medium rounded-full hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2 no-underline ${isFlying ? "is-flying" : ""}`}
+            <div className="relative z-10 w-full max-w-7xl mx-auto pl-6 pr-5 sm:pl-12 sm:pr-8 lg:pl-14 lg:pr-12 py-4 lg:py-8">
+                <div className="grid grid-cols-1 lg:grid-cols-[53%_1fr] gap-8 lg:gap-10 xl:gap-12 items-center">
+                    
+                    {/* Left Column: Copy & Actions (about 53%) */}
+                    <div className="w-full flex flex-col items-start text-left justify-center">
+                        {/* Pre-title Plain Category Label */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-700 bg-slate-100/90 border border-slate-200/80 px-3.5 py-1.5 rounded-full select-none mb-5"
                         >
-                            <div className="svg-wrapper scale-90">
-                                <FaPaperPlane />
-                            </div>
-                            <span>Book Free Consultation</span>
-                        </Link>
-                        <Link href="/portfolio" className="w-full sm:w-auto min-w-[160px] px-6 py-3.5 bg-white text-primary-600 text-sm font-medium rounded-full border border-primary-500 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105 flex items-center justify-center">
-                            View Our Work
-                        </Link>
-                    </motion.div>
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#0057fe]" />
+                            <span>IT Services &amp; Digital Marketing</span>
+                        </motion.div>
 
-                    {/* Stats Ticker - Continuous Scroll */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.8 }}
-                        className="mt-16 md:mt-12 w-full max-w-2xl mx-auto overflow-hidden relative"
-                    >
-                        {/* Gradient fade masks on edges */}
-                        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-                        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                        {/* Title: single H1 on page, navy text, accent only on 'move your business forward.' */}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="text-balance leading-[1.14] mb-5 font-black tracking-tight text-[#000c24] font-display text-[clamp(1.65rem,1.15vw+0.95rem,2.45rem)] w-full max-w-none"
+                        >
+                            Technology and digital solutions<br className="hidden md:block" />{" "}
+                            that{" "}
+                            <span className="text-[#0057fe]">
+                                move your business forward.
+                            </span>
+                        </motion.h1>
 
-                        <div className="relative w-full flex overflow-hidden">
-                            <motion.div
-                                className="flex gap-8 whitespace-nowrap"
-                                animate={{ x: ["0%", "-50%"] }}
-                                transition={{
-                                    repeat: Infinity,
-                                    ease: "linear",
-                                    duration: 20
-                                }}
+                        {/* Subline: 60-65 characters per line, WCAG AA contrast */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="text-slate-600 mb-6 leading-relaxed font-normal text-base sm:text-lg max-w-[580px]"
+                        >
+                            From custom software and websites to intelligent automation and digital marketing, we help businesses turn challenges into practical digital solutions.
+                        </motion.p>
+
+                        {/* Buttons: Primary "Book Free Consultation" & Quieter Secondary "Our Services" (full-width stacked on mobile) */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto"
+                        >
+                            <Link
+                                href="/contact"
+                                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#0057fe] hover:bg-[#0047d6] text-white text-sm font-bold font-outfit rounded-full transition-all duration-200 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0057fe] active:scale-95"
                             >
-                                {/* Duplicate stats for seamless loop */}
-                                {[...Array(2)].map((_, setIndex) => (
-                                    <div key={setIndex} className="flex gap-8">
-                                        <StatPill number="25+" label="Projects Delivered" icon={FaCheckCircle} />
-                                        <StatPill number="25+" label="Happy Clients" icon={FaUsers} />
-                                        <StatPill number="2+" label="Years Experience" icon={FaClock} />
-                                    </div>
-                                ))}
-                            </motion.div>
-                        </div>
-                    </motion.div>
+                                <span>Book Free Consultation</span>
+                                <FiArrowRight size={14} />
+                            </Link>
+                            <Link
+                                href="#services"
+                                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center px-7 py-3.5 bg-white text-slate-700 hover:text-slate-900 text-sm font-semibold font-outfit rounded-full border border-slate-200/90 hover:bg-slate-50 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057fe] active:scale-95 shadow-xs"
+                            >
+                                Our Services
+                            </Link>
+                        </motion.div>
 
+                        {/* Three Commitment Chips (No fake numbers/ratings) */}
+                        {/* // VERIFY that I can keep each promise. */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-5 sm:pt-6 border-t border-slate-100 mt-6 sm:mt-7 w-full"
+                        >
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200/80 text-[11px] sm:text-xs font-medium text-slate-700 select-none">
+                                <FiClock className="text-[#0057fe] shrink-0" size={13} />
+                                <span>Reply within 24 hours</span>
+                            </div>
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200/80 text-[11px] sm:text-xs font-medium text-slate-700 select-none">
+                                <FiCode className="text-[#0057fe] shrink-0" size={13} />
+                                <span>You own the source code</span>
+                            </div>
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200/80 text-[11px] sm:text-xs font-medium text-slate-700 select-none">
+                                <FiCheckCircle className="text-[#0057fe] shrink-0" size={13} />
+                                <span>Fixed-price quotes</span>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Right Column: Business Journey Illustration (about 52%) */}
+                    <div className="w-full flex flex-col items-center lg:items-end justify-center mt-8 lg:mt-0">
+                        {/* Handwritten Note (keeps from overlapping on any screen size) */}
+                        <div className="w-full flex justify-center lg:justify-end pr-0 lg:pr-2 mb-2 select-none">
+                            <div className="inline-flex items-center gap-1.5 rotate-[-2deg] max-w-full">
+                                <span className={`${caveat.className} text-xl sm:text-2xl font-bold text-[#0057fe] tracking-wide text-center`}>
+                                    a good website works while you sleep
+                                </span>
+                                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#0057fe] translate-y-1 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M7 17l9.2-9.2M17 17V7H7" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        {/* Transparent Business Journey Illustration (1641 x 887, max-w ~820px) */}
+                        <div className="w-full flex justify-center lg:justify-end">
+                            <Image
+                                src="/images/nisschay-business-journey.webp"
+                                alt="Nisschay business journey illustration: turning challenges into practical digital solutions"
+                                width={1641}
+                                height={887}
+                                priority
+                                className="w-full h-auto object-contain max-w-[820px] select-none pointer-events-none"
+                            />
+                        </div>
+                    </div>
 
                 </div>
-            </div >
-        </section >
-    );
-}
-
-// StatPill Component for scrolling stats
-function StatPill({ number, label, icon: Icon }: { number: string; label: string; icon: any }) {
-    return (
-        <div className="flex items-center gap-2">
-            <Icon className="w-4 h-4 text-blue-600" />
-            <span className="text-lg font-bold text-gray-900" style={{ fontFamily: "var(--font-outfit)" }}>
-                {number}
-            </span>
-            <span className="text-sm font-medium text-gray-600">
-                {label}
-            </span>
-            <span className="text-gray-300 mx-2">•</span>
-        </div>
+            </div>
+        </section>
     );
 }

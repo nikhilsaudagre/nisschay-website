@@ -1,7 +1,7 @@
 import { IconType } from "react-icons";
 import {
     FiMonitor, FiSmartphone, FiCpu, FiCloud,
-    FiLayout, FiSettings, FiCode, FiUsers, FiBriefcase
+    FiLayout, FiCode
 } from "react-icons/fi";
 
 export interface ServiceBreakdown {
@@ -23,408 +23,273 @@ export interface ServiceBreakdown {
 
 export const serviceBreakdowns: ServiceBreakdown[] = [
     {
-        id: "web-platforms",
-        title: "Enterprise Web Platforms",
+        id: "web-saas",
+        title: "Web & SaaS Development",
         icon: FiMonitor,
-        description: "Build scalable, high-performance web applications that handle millions of users. From e-commerce platforms to SaaS products, we create web solutions optimized for speed, SEO, and conversion.",
+        description: "We build high-performance web applications and custom SaaS products optimized for speed, SEO, and global scaling. We design storefronts and platforms that engage users and convert them into paying customers.",
         benefits: [
             {
-                title: "Lightning-Fast Performance",
-                description: "Sub-second page loads with Next.js and advanced caching strategies"
+                title: "Sub-Second Page Speed",
+                description: "Optimized server-side rendering (SSR) and edge delivery for lightning-fast loads."
             },
             {
-                title: "SEO Optimized",
-                description: "Server-side rendering and metadata optimization for top search rankings"
+                title: "SEO-Ready Architecture",
+                description: "Built-in dynamic metadata schemas, semantic HTML, and sitemaps for top rankings."
             },
             {
-                title: "Scalable Architecture",
-                description: "Handle 10x traffic growth without performance degradation"
+                title: "Payment & Subscription Integrations",
+                description: "Seamless integration with Stripe, Razorpay, and subscription engines."
             },
             {
-                title: "Conversion Focused",
-                description: "UX design backed by behavioral research to maximize conversions"
+                title: "Scalable Multi-Tenant Platforms",
+                description: "Solid databases and multi-tenant logic designed for modern SaaS startups."
             }
         ],
         useCases: [
             {
-                scenario: "E-Commerce Platform",
-                description: "High-traffic online stores with complex product catalogs, payment processing, and inventory management"
+                scenario: "SaaS Platforms & MVPs",
+                description: "User portals, dynamic dashboards, multi-role access control, and subscription billings."
             },
             {
-                scenario: "SaaS Application",
-                description: "Multi-tenant platforms with user dashboards, analytics, and subscription management"
+                scenario: "E-Commerce & D2C Storefronts",
+                description: "High-speed storefronts with custom checkout experiences, inventory sync, and Indian payment gateways."
             },
             {
-                scenario: "Corporate Website",
-                description: "Professional brand presence with CMS integration, blogs, and lead generation"
+                scenario: "Corporate Web Platforms",
+                description: "Premium websites with headless CMS integrations like Sanity or Strapi for easy content edits."
             }
         ],
-        technologies: ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Redis", "AWS", "Vercel"],
+        technologies: ["Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS", "PostgreSQL", "MongoDB", "Stripe / Razorpay"],
         whyChoose: [
-            "Proven track record with 25+ successful web projects",
-            "Average 40% improvement in page load speed",
-            "Built-in analytics and performance monitoring",
-            "Ongoing support and optimization post-launch"
+            "Startups launched with our MVPs have raised funding successfully",
+            "Average 45% improvement in conversion rates after migration to Next.js",
+            "Modern, developer-friendly clean codebases that scale cleanly",
+            "Ongoing maintenance and optimization post-launch"
         ]
     },
     {
         id: "mobile-apps",
-        title: "Mobile App Engineering",
+        title: "Mobile App Development",
         icon: FiSmartphone,
-        description: "Native and cross-platform mobile applications for iOS and Android. We build apps that users love, with smooth performance, intuitive UX, and seamless integration with your backend systems.",
+        description: "We engineer high-performance native and cross-platform mobile apps for iOS and Android. Our designs prioritize offline capability, smooth 60fps animations, and native device feature integrations.",
         benefits: [
             {
-                title: "Cross-Platform Efficiency",
-                description: "One codebase for iOS and Android saves 40% development time"
+                title: "Single Codebase Efficiency",
+                description: "React Native and Flutter save up to 40% development time and cost."
             },
             {
-                title: "Native Performance",
-                description: "Smooth 60fps animations and instant response times"
+                title: "Fluid Animations & UX",
+                description: "Ultra-responsive screens designed for intuitive swipe patterns and gesture controls."
             },
             {
-                title: "Offline Capability",
-                description: "Apps work seamlessly even without internet connection"
+                title: "Device Feature Integrations",
+                description: "Seamless connections to GPS, biometrics, camera, Bluetooth, and local storage."
             },
             {
-                title: "Push Notifications",
-                description: "Re-engage users with targeted, personalized notifications"
+                title: "Offline Syncing Capabilities",
+                description: "Local data caching systems ensuring your app works perfectly without internet."
             }
         ],
         useCases: [
             {
-                scenario: "Consumer Apps",
-                description: "Social platforms, fitness trackers, food delivery, and lifestyle apps"
+                scenario: "D2C Brand Mobile Apps",
+                description: "Fast shop layouts, push notifications for deals, cart recovery, and mobile-first payments."
             },
             {
-                scenario: "Business Tools",
-                description: "Field service apps, inventory management, and employee productivity tools"
+                scenario: "Fintech & Edtech Solutions",
+                description: "Secure dashboards, real-time tracking, interactive video players, and data privacy."
             },
             {
-                scenario: "On-Demand Services",
-                description: "Ride-sharing, home services, and marketplace applications"
+                scenario: "On-Demand Delivery Platforms",
+                description: "Real-time map tracking, driver dispatch, auto-alerts, and localized payment options."
             }
         ],
-        technologies: ["React Native", "Flutter", "TypeScript", "Firebase", "Redux", "GraphQL", "iOS", "Android"],
+        technologies: ["React Native", "Flutter", "TypeScript", "Firebase", "Redux Toolkit", "GraphQL", "iOS (Swift)", "Android (Kotlin)"],
         whyChoose: [
-            "Apps with 200K+ active users in production",
-            "Average 4.5+ star rating on app stores",
-            "Complete App Store and Play Store submission support",
-            "Post-launch monitoring and crash analytics"
+            "Apps designed by us have crossed 100k+ downloads on the App Store & Play Store",
+            "Clean store submission support with 100% approval rates",
+            "Regular updates, security compliance, and crash tracking integrations",
+            "Pre-integrated deep linking and marketing analytics"
         ]
     },
     {
         id: "ai-automation",
-        title: "Intelligent Automation & AI",
+        title: "AI Integration & Automation",
         icon: FiCpu,
-        description: "Harness the power of AI to automate workflows, analyze data, and enhance customer experiences. From chatbots to predictive analytics, we integrate cutting-edge AI into your business processes.",
+        description: "We integrate state-of-the-art Generative AI models, vector databases, and custom automation workflows to optimize business operations, increase efficiency, and lower support costs.",
         benefits: [
             {
-                title: "Cost Reduction",
-                description: "Reduce operational costs by 40-60% through intelligent automation"
+                title: "Massive Cost Savings",
+                description: "Automate 60%+ of repetitive tasks and direct customer queries to AI systems."
             },
             {
-                title: "24/7 Availability",
-                description: "AI agents work around the clock without breaks or downtime"
+                title: "WhatsApp Bot Automation",
+                description: "Integrate custom AI customer support directly inside the app your users use daily."
             },
             {
-                title: "Data-Driven Insights",
-                description: "Uncover patterns and predictions from your business data"
+                title: "Vector Search & Retrieval",
+                description: "Connect AI agents directly to your proprietary company wikis and PDF knowledge bases."
             },
             {
-                title: "Scalable Support",
-                description: "Handle unlimited customer queries simultaneously"
+                title: "24/7 Virtual Workers",
+                description: "Support and booking agents operating continuously with no delays or downtime."
             }
         ],
         useCases: [
             {
-                scenario: "Customer Support Automation",
-                description: "AI chatbots handling 70% of support tickets with 95% accuracy"
+                scenario: "WhatsApp Customer Support",
+                description: "Intelligent chatbot bots answering queries, checking orders, and sharing links on WhatsApp."
             },
             {
-                scenario: "Document Processing",
-                description: "Automated extraction and analysis of invoices, contracts, and forms"
+                scenario: "Workflow Automations (Zapier/Make)",
+                description: "Connecting CRMs, Gmail, Slack, and spreadsheets to sync business pipelines automatically."
             },
             {
-                scenario: "Predictive Analytics",
-                description: "Forecast sales, detect fraud, and optimize inventory with ML models"
+                scenario: "Custom AI Content Copilots",
+                description: "Internal AI engines designed to generate marketing collateral, transcribe audio, or audit files."
             }
         ],
-        technologies: ["OpenAI GPT-4", "Claude", "LangChain", "Python", "TensorFlow", "Pinecone", "FastAPI"],
+        technologies: ["OpenAI API", "Claude / Anthropic", "LangChain", "Python", "Pinecone / ChromaDB", "FastAPI", "WhatsApp Cloud API"],
         whyChoose: [
-            "Expertise in latest AI models (GPT-4, Claude, Gemini)",
-            "Custom training on your business data",
-            "Ethical AI implementation with bias mitigation",
-            "Continuous model improvement and fine-tuning"
+            "Deploy custom AI agents fine-tuned to your brand's unique tone and data",
+            "Secure API architectures keeping business information completely private",
+            "Average 50% decrease in support response times post-integration",
+            "Expertise across modern AI agentic frameworks"
+        ]
+    },
+    {
+        id: "custom-software",
+        title: "Custom Software Development",
+        icon: FiCode,
+        description: "We architect and program custom software solutions tailored to your unique internal business workflows. From complex ERP dashboards to custom database portals, we build tools off-the-shelf software can't replace.",
+        benefits: [
+            {
+                title: "Engineered for Your Workflow",
+                description: "Completely tailored around your business processes without unnecessary bloat."
+            },
+            {
+                title: "No Monthly Licensing Fees",
+                description: "Full intellectual property ownership—build once, own forever."
+            },
+            {
+                title: "Enterprise Security Integration",
+                description: "Built-in role-based access controls, complete audit trails, and data encryption."
+            },
+            {
+                title: "Seamless Legacy Integration",
+                description: "Connect old systems to modern, fast interfaces without losing history."
+            }
+        ],
+        useCases: [
+            {
+                scenario: "Internal Operations Hubs",
+                description: "Custom ERPs, CRMs, inventory tracking dashboards, and employee portals."
+            },
+            {
+                scenario: "API Integrations & Bridges",
+                description: "Connecting disparate third-party tools to create single, cohesive business workflows."
+            },
+            {
+                scenario: "Legacy Tech Modernization",
+                description: "Re-platforming slow, old software systems into fast, modern cloud-native web portals."
+            }
+        ],
+        technologies: ["React", "Node.js", "TypeScript", "Python", "Django", "PostgreSQL", "Docker", "REST / GraphQL APIs"],
+        whyChoose: [
+            "End-to-end consulting, delivery, and onboarding support",
+            "Experience rebuilding core business portals with zero uptime disruption",
+            "Strict agile delivery models with visible updates every two weeks",
+            "Comprehensive post-delivery technical documentation and training"
+        ]
+    },
+    {
+        id: "ui-ux-design",
+        title: "UI/UX & Product Design",
+        icon: FiLayout,
+        description: "We craft stunning, premium, and interactive product designs and visual branding identity. We base our work on user research, user journey analysis, and clean component systems to maximize user engagement.",
+        benefits: [
+            {
+                title: "High-Converting Layouts",
+                description: "Optimized user paths and conversion rate optimization (CRO) best practices."
+            },
+            {
+                title: "Interactive Prototyping",
+                description: "High-fidelity Figma prototypes allowing you to see and feel the app before coding."
+            },
+            {
+                title: "Comprehensive Design Systems",
+                description: "Reusable component tokens ensuring brand consistency across web, mobile, and print."
+            },
+            {
+                title: "Research-Driven UX",
+                description: "User testing and heatmaps ensuring layouts map cleanly to target demographics."
+            }
+        ],
+        useCases: [
+            {
+                scenario: "Startup App Blueprinting",
+                description: "From napkin sketches to complete dev-ready app interface design prototypes."
+            },
+            {
+                scenario: "Legacy UI Modernization",
+                description: "Redesigning old, clunky, complex software to make it intuitive and beautiful."
+            },
+            {
+                scenario: "Visual Identity & Brand Systems",
+                description: "Logos, type selections, color schemes, and vector design standards."
+            }
+        ],
+        technologies: ["Figma", "Framer", "Adobe Photoshop / Illustrator", "Storybook", "Hotjar / Heatmaps"],
+        whyChoose: [
+            "Designs engineered by UI/UX experts targeting high conversion",
+            "Deliver clean, organized Figma files with clear developer instructions",
+            "Emphasis on sleek, dark modes, gradients, and micro-animations",
+            "Agile design sprints that value collaborative iterations"
         ]
     },
     {
         id: "cloud-devops",
-        title: "Cloud Infrastructure & DevOps",
+        title: "Cloud & DevOps Services",
         icon: FiCloud,
-        description: "Build secure, auto-scaling cloud environments with automated deployment pipelines. We handle infrastructure so you can focus on building great products.",
+        description: "We design, deploy, and maintain secure, auto-scaling cloud server architectures. We setup automated deployment (CI/CD) pipelines to guarantee high availability and sub-second load times.",
         benefits: [
             {
-                title: "Auto-Scaling",
-                description: "Automatically handle traffic spikes without manual intervention"
+                title: "99.9% Production Uptime",
+                description: "Automated database backups and multi-region failovers."
             },
             {
-                title: "99.9% Uptime",
-                description: "High availability with multi-region redundancy"
+                title: "CI/CD Pipeline Automations",
+                description: "Push changes to staging or production safely in minutes with GitHub Actions."
             },
             {
-                title: "Rapid Deployment",
-                description: "Ship updates in minutes with CI/CD automation"
+                title: "Resource Cost Reductions",
+                description: "Audit existing cloud systems to terminate unused components and scale resources efficiently."
             },
             {
-                title: "Cost Optimization",
-                description: "Pay only for resources you use with smart scaling"
+                title: "Real-time Infrastructure Alerting",
+                description: "Continuous monitoring to detect performance issues before they impact your clients."
             }
         ],
         useCases: [
             {
-                scenario: "Microservices Architecture",
-                description: "Containerized applications with Kubernetes orchestration"
+                scenario: "Cloud Migration",
+                description: "Moving applications from expensive local servers to secure AWS or Google Cloud servers."
             },
             {
-                scenario: "Data Pipeline",
-                description: "ETL workflows processing millions of records daily"
+                scenario: "Infrastructure-as-Code (IaC)",
+                description: "Using Terraform to configure stable, repeatable setups."
             },
             {
-                scenario: "Disaster Recovery",
-                description: "Automated backups and failover systems for business continuity"
+                scenario: "Server Load Optimization",
+                description: "Setting up auto-scalers and CDNs to support high traffic on Indian festival/sale days."
             }
         ],
-        technologies: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions"],
+        technologies: ["Amazon Web Services (AWS)", "Google Cloud (GCP)", "Docker", "Kubernetes", "Terraform", "GitHub Actions", "Datadog / Prometheus"],
         whyChoose: [
-            "Certified cloud architects (AWS, Azure, GCP)",
-            "Infrastructure as Code for reproducibility",
-            "24/7 monitoring and alerting",
-            "Security best practices and compliance"
-        ]
-    },
-    {
-        id: "ux-design",
-        title: "Immersive Experience Design",
-        icon: FiLayout,
-        description: "Create user interfaces that delight and convert. Our designs are backed by user research, accessibility standards, and modern aesthetics that make your brand stand out.",
-        benefits: [
-            {
-                title: "User-Centered Design",
-                description: "Research-driven interfaces optimized for your target audience"
-            },
-            {
-                title: "Accessibility First",
-                description: "WCAG compliant designs that work for everyone"
-            },
-            {
-                title: "Brand Consistency",
-                description: "Design systems ensuring cohesive experience across platforms"
-            },
-            {
-                title: "Conversion Optimization",
-                description: "A/B tested designs that maximize user engagement"
-            }
-        ],
-        useCases: [
-            {
-                scenario: "Product Redesign",
-                description: "Modernize legacy applications with fresh, intuitive interfaces"
-            },
-            {
-                scenario: "Design System",
-                description: "Scalable component libraries for consistent brand experience"
-            },
-            {
-                scenario: "User Research",
-                description: "Usability testing and user interviews to validate design decisions"
-            }
-        ],
-        technologies: ["Figma", "Adobe XD", "Framer", "React", "Tailwind CSS", "Storybook", "Analytics"],
-        whyChoose: [
-            "Award-winning design portfolio",
-            "Average 35% increase in user engagement",
-            "Rapid prototyping and iteration",
-            "Handoff-ready designs with developer specs"
-        ]
-    },
-    {
-        id: "it-operations",
-        title: "Managed IT Operations",
-        icon: FiSettings,
-        description: "Proactive infrastructure monitoring, security patching, and 24/7 reliability. We keep your systems running smoothly so you can focus on your business.",
-        benefits: [
-            {
-                title: "Proactive Monitoring",
-                description: "Detect and resolve issues before they impact users"
-            },
-            {
-                title: "Security Patching",
-                description: "Regular updates to protect against vulnerabilities"
-            },
-            {
-                title: "24/7 Support",
-                description: "Round-the-clock technical support and incident response"
-            },
-            {
-                title: "Performance Optimization",
-                description: "Continuous tuning for maximum efficiency"
-            }
-        ],
-        useCases: [
-            {
-                scenario: "Application Monitoring",
-                description: "Real-time alerts for downtime, errors, and performance issues"
-            },
-            {
-                scenario: "Database Management",
-                description: "Backup, optimization, and scaling of production databases"
-            },
-            {
-                scenario: "Security Compliance",
-                description: "Regular audits and compliance reporting (SOC 2, HIPAA, GDPR)"
-            }
-        ],
-        technologies: ["Datadog", "New Relic", "PagerDuty", "Splunk", "Prometheus", "Grafana", "Ansible"],
-        whyChoose: [
-            "Average 99.95% uptime for managed systems",
-            "15-minute response time for critical issues",
-            "Transparent reporting and SLA tracking",
-            "Predictable monthly pricing"
-        ]
-    },
-    {
-        id: "custom-solutions",
-        title: "Bespoke Digital Solutions",
-        icon: FiCode,
-        description: "Custom-engineered software solving unique business challenges that off-the-shelf tools can't address. From complex integrations to industry-specific platforms.",
-        benefits: [
-            {
-                title: "Tailored to Your Needs",
-                description: "Built specifically for your business processes and requirements"
-            },
-            {
-                title: "Competitive Advantage",
-                description: "Unique features that differentiate you from competitors"
-            },
-            {
-                title: "Full Ownership",
-                description: "Complete control over your codebase and intellectual property"
-            },
-            {
-                title: "Seamless Integration",
-                description: "Works perfectly with your existing systems and workflows"
-            }
-        ],
-        useCases: [
-            {
-                scenario: "Industry-Specific Platform",
-                description: "Healthcare portals, legal case management, or financial trading systems"
-            },
-            {
-                scenario: "Complex Integrations",
-                description: "Connect disparate systems (ERP, CRM, legacy databases)"
-            },
-            {
-                scenario: "Internal Tools",
-                description: "Custom dashboards, reporting tools, and workflow automation"
-            }
-        ],
-        technologies: ["Full Stack", "API Development", "System Integration", "Legacy Modernization", "Custom Frameworks"],
-        whyChoose: [
-            "Experience across 15+ industries",
-            "Agile development with 2-week sprints",
-            "Comprehensive documentation and training",
-            "Long-term partnership and evolution"
-        ]
-    },
-    {
-        id: "dedicated-teams",
-        title: "Dedicated Teams",
-        icon: FiUsers,
-        description: "Specialized agile teams integrated seamlessly into your workflow. Scale your development capacity with experienced engineers, designers, and product managers.",
-        benefits: [
-            {
-                title: "Rapid Scaling",
-                description: "Add 5-10 skilled team members in 2 weeks"
-            },
-            {
-                title: "Cost Effective",
-                description: "40-60% savings compared to local hiring"
-            },
-            {
-                title: "Full Integration",
-                description: "Teams work in your timezone and use your tools"
-            },
-            {
-                title: "Flexible Contracts",
-                description: "Scale up or down based on project needs"
-            }
-        ],
-        useCases: [
-            {
-                scenario: "Product Development",
-                description: "Full-stack teams building your product roadmap"
-            },
-            {
-                scenario: "Staff Augmentation",
-                description: "Fill skill gaps with specialized developers"
-            },
-            {
-                scenario: "Long-Term Partnership",
-                description: "Dedicated teams that grow with your company"
-            }
-        ],
-        technologies: ["Your Tech Stack", "Agile Methodologies", "Jira", "Slack", "Git", "CI/CD"],
-        whyChoose: [
-            "Average 3+ years tenure with clients",
-            "Pre-vetted senior engineers (5+ years experience)",
-            "Transparent time tracking and reporting",
-            "No long-term contracts required"
-        ]
-    },
-    {
-        id: "it-consulting",
-        title: "IT Consulting",
-        icon: FiBriefcase,
-        description: "Strategic technology guidance to align IT with your business goals. From architecture reviews to digital transformation roadmaps.",
-        benefits: [
-            {
-                title: "Strategic Planning",
-                description: "Technology roadmaps aligned with business objectives"
-            },
-            {
-                title: "Risk Mitigation",
-                description: "Identify and address technical debt and vulnerabilities"
-            },
-            {
-                title: "Vendor Selection",
-                description: "Unbiased recommendations for tools and platforms"
-            },
-            {
-                title: "Team Training",
-                description: "Upskill your team on modern technologies and practices"
-            }
-        ],
-        useCases: [
-            {
-                scenario: "Architecture Review",
-                description: "Audit existing systems and recommend improvements"
-            },
-            {
-                scenario: "Digital Transformation",
-                description: "Modernize legacy systems and processes"
-            },
-            {
-                scenario: "Technology Selection",
-                description: "Choose the right tech stack for your next project"
-            }
-        ],
-        technologies: ["Architecture Patterns", "Best Practices", "Industry Standards", "Technology Evaluation"],
-        whyChoose: [
-            "15+ years combined consulting experience",
-            "Worked with Fortune 500 and startups",
-            "Actionable recommendations, not just reports",
-            "Hands-on implementation support available"
+            "Certified Cloud Professionals handling security configurations",
+            "Infrastructure design optimized for cost-savings and rapid expansion",
+            "Comprehensive server audit report and security recommendations",
+            "24/7 emergency response engineering support"
         ]
     }
 ];

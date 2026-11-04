@@ -28,12 +28,33 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nisschay - Tech Solutions & Innovation",
-  description: "Nisschay is a tech startup offering cutting-edge web design, app development, and IT services to transform your digital presence.",
+  metadataBase: new URL("https://nisschay.com"),
+  title: {
+    default: "Nisschay - High-Performance Software Engineering",
+    template: "%s | Nisschay",
+  },
+  description: "Nisschay is the best IT company in Amravati, engineering custom software, SaaS products, mobile applications, and AI integrations designed for enterprise scale and startup velocity.",
+  keywords: ["SaaS Development", "Custom Software Development", "AI Solutions", "WhatsApp Business Automation", "Mobile App Development", "IT Solutions", "best IT company in Amravati", "IT company in Amravati", "software development in Amravati"],
+  authors: [{ name: "Nisschay Team" }],
+  openGraph: {
+    title: "Nisschay - High-Performance Software Engineering",
+    description: "Bespoke system architecture and premium visual designs. From secure SaaS platforms to agentic AI workflows—we build the code that runs your business.",
+    url: "https://nisschay.com",
+    siteName: "Nisschay",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nisschay - High-Performance Software Engineering",
+    description: "Bespoke system architecture and premium visual designs. From secure SaaS platforms to agentic AI workflows.",
+    creator: "@nisschay",
+  },
 };
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function RootLayout({
   children,
@@ -48,6 +69,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );

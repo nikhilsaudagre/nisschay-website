@@ -1,282 +1,563 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import React from "react";
 import Image from "next/image";
-import { FaRocket, FaHeart, FaShieldAlt, FaStar, FaHandshake, FaLightbulb } from "react-icons/fa";
-import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { Caveat } from "next/font/google";
+import { 
+    FiArrowRight, 
+    FiGlobe, 
+    FiSmartphone, 
+    FiCode, 
+    FiCpu, 
+    FiTrendingUp,
+    FiAlertCircle,
+    FiCheckCircle,
+    FiClock,
+    FiCompass,
+    FiTarget,
+    FiRepeat,
+    FiEye,
+    FiShield
+} from "react-icons/fi";
+import { siteConfig } from "@/lib/siteConfig";
 
+const caveat = Caveat({
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    display: "swap",
+});
 
-// Animated Counter Component
-function AnimatedCounter({ end, duration = 2, suffix = "" }: { end: number; duration?: number; suffix?: string }) {
-    const [count, setCount] = useState(0);
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
+// ==========================================
+// STORYTELLING CONTENT CONFIGURATION
+// ==========================================
+const STORY_CONTENT = {
+    hero: {
+        tag: "Our Story & Ethos",
+        line1: "What's Behind",
+        line2: "Nisschay?",
+        subheading: "A small studio built on one idea: do the work properly.",
+    },
+    chapter1: {
+        number: "01",
+        label: "THE PROBLEM",
+        headline: "Good businesses shouldn't be held back by technology.",
+        narrative: [
+            `Nisschay is a founder-led studio based in ${siteConfig.city || "Amravati"}, India. The name comes from 'nishchay' (निश्चय), meaning resolve and determination.`,
+            "We started Nisschay after watching too many capable, hardworking businesses hit an invisible digital wall. Their products and services were exceptional, but their digital presence was working against them: slow pages that drove customers away, fragmented tools that wasted hours, and zero search visibility.",
+            "Technology should be an accelerator for your business, not a constant source of friction."
+        ],
+        pills: [
+            { text: "Outdated websites", icon: FiGlobe, rotate: "-rotate-2", offset: "translate-y-0" },
+            { text: "Manual processes", icon: FiClock, rotate: "rotate-1", offset: "translate-y-1" },
+            { text: "Poor online visibility", icon: FiEye, rotate: "-rotate-1", offset: "translate-y-0" },
+            { text: "Disconnected systems", icon: FiAlertCircle, rotate: "rotate-2", offset: "-translate-y-1" },
+            { text: "Missed opportunities", icon: FiTarget, rotate: "-rotate-1", offset: "translate-y-1" },
+        ],
+    },
+    chapter2: {
+        number: "02",
+        label: "WHY NISSCHAY EXISTS",
+        headline: "Different capabilities. One connected approach.",
+        narrative: [
+            "Most businesses are forced to coordinate with multiple disjointed vendors: a designer who doesn't understand code, an agency that doesn't understand operations, and a marketer who doesn't understand the product.",
+            "We bring design, modern software engineering, and digital growth under one cohesive roof. Every piece communicates with the next, built by the same core people you talk to directly."
+        ],
+        capabilities: [
+            {
+                code: "01. WEB",
+                title: "Website Development",
+                desc: "Fast, conversion-focused websites that tell your story clearly and work round the clock.",
+                icon: FiGlobe,
+            },
+            {
+                code: "02. APP",
+                title: "Application Development",
+                desc: "Fluid, reliable web and mobile apps engineered with modern reactive frameworks.",
+                icon: FiSmartphone,
+            },
+            {
+                code: "03. SYS",
+                title: "Custom Software",
+                desc: "Bespoke operational tools and dashboards built around how your team actually works.",
+                icon: FiCode,
+            },
+            {
+                code: "04. AI",
+                title: "AI & Automation",
+                desc: "Intelligent workflows, WhatsApp bots, and integrations that eliminate repetitive manual tasks.",
+                icon: FiCpu,
+            },
+            {
+                code: "05. SEO",
+                title: "Digital Marketing",
+                desc: "Targeted SEO, content, and search presence that bring the right high-intent customers to you.",
+                icon: FiTrendingUp,
+            },
+        ],
+    },
+    chapter3: {
+        number: "03",
+        label: "WHAT WE BELIEVE",
+        headline: "Built with purpose. Delivered with ownership.",
+        narrative: "We believe exceptional digital products are born from craft, transparency, and true ownership. These five core principles guide every line of code we write and every decision we make.",
+        principles: [
+            {
+                num: "01",
+                title: "Honest Communication",
+                desc: "Plain language and direct engineer access. No technical obfuscation, middle managers, or inflated promises.",
+                icon: FiCheckCircle,
+            },
+            {
+                num: "02",
+                title: "Thoughtful Engineering",
+                desc: "We write clean, purposeful code that solves tangible business bottlenecks instead of chasing unnecessary complexity.",
+                icon: FiCompass,
+            },
+            {
+                num: "03",
+                title: "Clear Execution",
+                desc: "Weekly staging deployments, transparent roadmaps, and fixed-price commitments so you never face surprises.",
+                icon: FiClock,
+            },
+            {
+                num: "04",
+                title: "Long-Term Thinking",
+                desc: "You own 100% of your source code and intellectual property. Architectures engineered to scale for years to come.",
+                icon: FiTarget,
+            },
+            {
+                num: "05",
+                title: "Continuous Improvement",
+                desc: "A digital launch is just day one. We test, measure real visitor feedback, and refine your platform so results compound.",
+                icon: FiRepeat,
+            },
+        ],
+        cta: {
+            prompt: "Ready to build your digital presence properly?",
+            primaryLabel: "Book Free Consultation",
+            primaryHref: "/contact",
+            secondaryLabel: "Explore Our Services",
+            secondaryHref: "/services",
+        }
+    },
+} as const;
 
-    useEffect(() => {
-        if (!isInView) return;
+export default function AboutSection({
+    showLearnMore = true,
+    isStandalone = false,
+}: {
+    showLearnMore?: boolean;
+    showDetailed?: boolean;
+    isStandalone?: boolean;
+} = {}) {
+    const shouldReduceMotion = useReducedMotion();
 
-        let startTime: number | null = null;
-        const animate = (currentTime: number) => {
-            if (!startTime) startTime = currentTime;
-            const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            setCount(Math.floor(easeOutQuart * end));
-
-            if (progress < 1) {
-                requestAnimationFrame(animate);
-            } else {
-                setCount(end);
-            }
+    // Section header slide animations (600ms ease-out)
+    const animLine1 = shouldReduceMotion
+        ? { initial: { opacity: 1, x: 0 } }
+        : {
+            initial: { opacity: 0, x: -50 },
+            whileInView: { opacity: 1, x: 0 },
+            viewport: { once: true, margin: "-40px" },
+            transition: { duration: 0.6, ease: "easeOut" as const },
         };
 
-        requestAnimationFrame(animate);
-    }, [isInView, end, duration]);
+    const animLine2 = shouldReduceMotion
+        ? { initial: { opacity: 1, x: 0 } }
+        : {
+            initial: { opacity: 0, x: 50 },
+            whileInView: { opacity: 1, x: 0 },
+            viewport: { once: true, margin: "-40px" },
+            transition: { duration: 0.6, ease: "easeOut" as const, delay: 0.1 },
+        };
 
-    return <span ref={ref}>{count}{suffix}</span>;
-}
+    // Stagger animation helpers
+    const animFadeLeft = shouldReduceMotion
+        ? {}
+        : {
+            initial: { opacity: 0, x: -30 },
+            whileInView: { opacity: 1, x: 0 },
+            viewport: { once: true, margin: "-40px" },
+            transition: { duration: 0.5, ease: "easeOut" as const },
+        };
 
-export default function AboutSection({ showLearnMore = false }: { showLearnMore?: boolean }) {
-
-    const coreValues = [
-        {
-            icon: FaLightbulb,
-            title: "Innovation",
-            desc: "We don't just follow trends; we set them. Pioneering solutions for complex challenges.",
-            color: "text-amber-500",
-            bg: "bg-amber-50",
-            colSpan: "col-span-1 md:col-span-2",
-        },
-        {
-            icon: FaShieldAlt,
-            title: "Integrity",
-            desc: "Transparency is our foundation. We build trust through honest collaboration.",
-            color: "text-emerald-500",
-            bg: "bg-emerald-50",
-            colSpan: "col-span-1",
-            delay: 0.1,
-        },
-        {
-            icon: FaHeart,
-            title: "Passion",
-            desc: "We love what we do, and it shows in every line of code we write.",
-            color: "text-rose-500",
-            bg: "bg-rose-50",
-            colSpan: "col-span-1",
-            delay: 0.2,
-        },
-        {
-            icon: FaStar,
-            title: "Excellence",
-            desc: "Good isn't enough. We strive for pixel-perfect perfection in every delivery.",
-            color: "text-purple-500",
-            bg: "bg-purple-50",
-            colSpan: "col-span-1 md:col-span-2",
-            delay: 0.3,
-        },
-    ];
+    const animFadeRight = shouldReduceMotion
+        ? {}
+        : {
+            initial: { opacity: 0, x: 30 },
+            whileInView: { opacity: 1, x: 0 },
+            viewport: { once: true, margin: "-40px" },
+            transition: { duration: 0.5, ease: "easeOut" as const },
+        };
 
     return (
-        <section id="about" className="relative w-full overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+        <section
+            id="about"
+            className={`relative w-full overflow-x-clip bg-white ${isStandalone ? "pt-8 sm:pt-12 lg:pt-16 pb-24 sm:pb-32 lg:pb-40" : "py-20 sm:py-28 lg:py-36"}`}
+        >
+            {/* Same container as Navbar and Hero */}
+            <div className="relative z-10 w-full max-w-7xl mx-auto pl-6 pr-5 sm:pl-12 sm:pr-8 lg:pl-14 lg:pr-12 space-y-28 sm:space-y-36 lg:space-y-44">
 
-                {/* LEFT SIDE: Image Backdrop with Overlay */}
-                <div className="relative flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-16 sm:py-20 lg:py-0 overflow-hidden group min-h-[500px] sm:min-h-[600px] lg:min-h-[800px] lg:h-auto">
-                    {/* Background Image - Full Visibility */}
-                    <div className="absolute inset-0 z-0">
-                        <Image
-                            src="/about-team.png"
-                            alt="Nisschay Team Collaboration"
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-1000"
-                            priority
-                            unoptimized={true}
-                        />
-
-                        {/* Gradient Overlay for Text Readability - Darkening bottom/center */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-gray-900/30 z-10" />
-                        <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay z-10" />
+                {/* ========================================================
+                    TOP SECTION HEADER: Brand Slide-in Typography
+                ======================================================== */}
+                <div className="w-full flex flex-col items-center justify-center text-center select-none space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200/90 text-xs font-mono uppercase tracking-widest text-slate-700">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#0057fe]" />
+                        <span>{isStandalone ? "About Nisschay · Studio Story" : STORY_CONTENT.hero.tag}</span>
                     </div>
 
-                    {/* Content */}
-                    <div className="relative z-20 max-w-xl">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                    <div className="flex flex-col items-center justify-center leading-none">
+                        <motion.h2
+                            {...animLine1}
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#000c24] tracking-tight"
                         >
-                            <div className="inline-block px-4 py-1.5 mb-4 sm:mb-6 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide backdrop-blur-md">
-                                WHO WE ARE
+                            {STORY_CONTENT.hero.line1}
+                        </motion.h2>
+                        <motion.h2
+                            {...animLine2}
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#0057fe] tracking-tight mt-1"
+                        >
+                            {STORY_CONTENT.hero.line2}
+                        </motion.h2>
+                    </div>
+
+                    <p className="text-slate-600 text-base sm:text-lg md:text-xl font-normal max-w-2xl mt-4 leading-relaxed text-balance">
+                        {STORY_CONTENT.hero.subheading}
+                    </p>
+                </div>
+
+
+                {/* ========================================================
+                    CHAPTER 01 — THE PROBLEM (Asymmetric Editorial Spread)
+                ======================================================== */}
+                <div className="relative">
+                    {/* Chapter Header Anchor */}
+                    <div className="flex items-center gap-4 mb-10 sm:mb-14">
+                        <span className="text-xs font-mono font-bold tracking-widest text-[#0057fe] uppercase px-3.5 py-1.5 bg-blue-50/80 border border-blue-200/60 rounded-full">
+                            Chapter {STORY_CONTENT.chapter1.number}{" · "}{STORY_CONTENT.chapter1.label}
+                        </span>
+                        <div className="h-px bg-slate-200 flex-1 max-w-xs" />
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                        
+                        {/* Narrative Left Column */}
+                        <motion.div 
+                            {...animFadeLeft}
+                            className="lg:col-span-6 space-y-6"
+                        >
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000c24] tracking-tight leading-[1.25] text-balance">
+                                {STORY_CONTENT.chapter1.headline}
+                            </h3>
+
+                            <div className="space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+                                {STORY_CONTENT.chapter1.narrative.map((para, idx) => (
+                                    <p key={idx}>{para}</p>
+                                ))}
                             </div>
-                            <h2
-                                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 sm:mb-8 leading-[1.1] text-white"
-                                style={{
-                                    fontFamily: "var(--font-playfair)",
-                                    fontWeight: 400,
-                                    letterSpacing: "-0.02em"
-                                }}
-                            >
-                                <span className="opacity-90">Your Growth</span>
-                                <br />
-                                <span className="bg-gradient-to-r from-blue-200 via-indigo-200 to-white bg-clip-text text-transparent font-normal">
-                                    Partner in Tech.
+
+                            <div className="pt-2">
+                                <span className={`${caveat.className} text-xl sm:text-2xl text-[#0057fe] font-bold rotate-[-1.5deg] inline-block`}>
+                                    technology should remove barriers, not build them.
                                 </span>
-                            </h2>
-                            <p className="text-gray-100 text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 max-w-lg font-light drop-shadow-sm">
-                                We turn complex business challenges into elegant digital solutions—helping startups and growing businesses <span className="font-semibold text-white">launch faster, scale smarter, and compete stronger.</span>
-                            </p>
-                            <p className="text-gray-200 text-sm sm:text-base leading-relaxed max-w-lg drop-shadow-sm">
-                                Unlike traditional agencies, we act as your extended tech team—bringing Silicon Valley-level expertise without the Silicon Valley price tag.
-                            </p>
+                            </div>
                         </motion.div>
+
+                        {/* Asymmetric Problem Pills Composition Right Column */}
+                        <motion.div 
+                            {...animFadeRight}
+                            className="lg:col-span-6"
+                        >
+                            <div className="relative bg-slate-50/80 rounded-3xl border border-slate-200/90 p-8 sm:p-12 min-h-[380px] flex flex-col justify-center">
+                                
+                                <div className="space-y-6">
+                                    <div className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+                                        Common friction points businesses face
+                                    </div>
+
+                                    {/* Asymmetric Pills Cluster */}
+                                    <div className="flex flex-wrap items-center gap-3 sm:gap-3.5">
+                                        {STORY_CONTENT.chapter1.pills.map((pill, idx) => {
+                                            const Icon = pill.icon;
+                                            return (
+                                                <div
+                                                    key={idx}
+                                                    className={`inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white shadow-xs border border-slate-200/80 text-slate-700 ${pill.rotate} ${pill.offset} hover:border-[#0057fe]/40 transition-all select-none`}
+                                                >
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500/80 shrink-0" />
+                                                    <Icon className="text-slate-400 text-sm" />
+                                                    <span className="text-sm sm:text-[15px] font-medium text-[#000c24]">
+                                                        {pill.text}
+                                                    </span>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+
+                                    {/* Editorial handwritten margin aside */}
+                                    <div className="pt-4 flex justify-end pr-2 select-none">
+                                        <div className="inline-flex items-center gap-1.5 rotate-[-2deg]">
+                                            <span className={`${caveat.className} text-lg sm:text-xl font-bold text-slate-500`}>
+                                                sound familiar?
+                                            </span>
+                                            <svg className="w-4 h-4 text-slate-400 translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M7 17l9.2-9.2M17 17V7H7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </motion.div>
+
                     </div>
                 </div>
 
-                {/* RIGHT SIDE: Clean White Background & Informative About Content */}
-                <div className="relative bg-white flex flex-col justify-center px-6 sm:px-12 lg:px-16 py-16 sm:py-20 lg:py-12">
-                    <div className="relative w-full max-w-2xl mx-auto space-y-8 sm:space-y-12">
 
-                        {/* Section 1: About Nisschay Header */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <h3 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                                About Nisschay
-                                <div className="h-px flex-1 bg-gray-200 rounded-full"></div>
-                            </h3>
-                            <div className="mb-2">
-                                <span className="text-xs font-bold uppercase tracking-widest text-blue-500">Why We Built This</span>
-                            </div>
-                            <p className="text-gray-600 leading-relaxed">
-                                Great ideas kept dying — not because founders lacked vision, but because building great software was too slow, too expensive, or too unreliable. We started Nisschay to fix that.
-                            </p>
-                            <p className="text-gray-600 leading-relaxed mt-4">
-                                Since 2023, we've helped startups launch, businesses modernize, and founders stop worrying about the technology beneath their vision. Our team runs lean, ships fast, and thinks long-term.
-                            </p>
-                            <p className="text-gray-600 leading-relaxed mt-4">
-                                We measure our success simply: if your product is growing, we've done our job. That's the Nisschay standard — and it's what keeps our clients coming back.
-                            </p>
-                        </motion.div>
+                {/* ========================================================
+                    CHAPTER 02 — WHY NISSCHAY EXISTS (Capability Convergence)
+                ======================================================== */}
+                <div className="relative">
+                    {/* Chapter Header Anchor */}
+                    <div className="flex items-center gap-4 mb-8 sm:mb-12">
+                        <span className="text-xs font-mono font-bold tracking-widest text-[#0057fe] uppercase px-3.5 py-1.5 bg-blue-50/80 border border-blue-200/60 rounded-full">
+                            Chapter {STORY_CONTENT.chapter2.number}{" · "}{STORY_CONTENT.chapter2.label}
+                        </span>
+                        <div className="h-px bg-slate-200 flex-1 max-w-xs" />
+                    </div>
 
-                        {/* Section 2: Company Stats */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            className="grid grid-cols-2 md:grid-cols-4 gap-4"
-                        >
-                            <div className="bg-gradient-to-br from-blue-50 to-white p-5 rounded-xl border border-blue-100 hover:shadow-lg transition-shadow">
-                                <div className="text-3xl font-bold text-blue-600 mb-1">2023</div>
-                                <div className="text-xs text-gray-600 font-medium">Founded</div>
-                            </div>
-                            <div className="bg-gradient-to-br from-purple-50 to-white p-5 rounded-xl border border-purple-100 hover:shadow-lg transition-shadow">
-                                <div className="text-3xl font-bold text-purple-600 mb-1"><AnimatedCounter end={15} />+</div>
-                                <div className="text-xs text-gray-600 font-medium">Team Members</div>
-                            </div>
-                            <div className="bg-gradient-to-br from-cyan-50 to-white p-5 rounded-xl border border-cyan-100 hover:shadow-lg transition-shadow">
-                                <div className="text-3xl font-bold text-cyan-600 mb-1"><AnimatedCounter end={25} />+</div>
-                                <div className="text-xs text-gray-600 font-medium">Projects Delivered</div>
-                            </div>
-                            <div className="bg-gradient-to-br from-green-50 to-white p-5 rounded-xl border border-green-100 hover:shadow-lg transition-shadow">
-                                <div className="text-3xl font-bold text-green-600 mb-1"><AnimatedCounter end={98} suffix="%" /></div>
-                                <div className="text-xs text-gray-600 font-medium">Client Satisfaction</div>
-                            </div>
-                        </motion.div>
+                    <div className="max-w-3xl space-y-4 mb-14">
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000c24] tracking-tight leading-[1.25] text-balance">
+                            {STORY_CONTENT.chapter2.headline}
+                        </h3>
 
-                        {/* Section 3: Why Choose Nisschay */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                        >
-                            <h4 className="text-2xl font-bold text-gray-900 mb-6">Why Choose Nisschay</h4>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="group p-5 rounded-xl bg-white border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
-                                    <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                        <FaRocket size={20} />
-                                    </div>
-                                    <h5 className="font-bold text-gray-900 mb-2">End-to-End Solutions</h5>
-                                    <p className="text-sm text-gray-600 leading-relaxed">From concept to deployment and beyond, we handle every aspect of your digital journey.</p>
-                                </div>
-                                <div className="group p-5 rounded-xl bg-white border border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300">
-                                    <div className="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                        <FaLightbulb size={20} />
-                                    </div>
-                                    <h5 className="font-bold text-gray-900 mb-2">Agile Methodology</h5>
-                                    <p className="text-sm text-gray-600 leading-relaxed">Rapid iterations with continuous feedback ensure we're always aligned with your goals.</p>
-                                </div>
-                                <div className="group p-5 rounded-xl bg-white border border-gray-100 hover:border-cyan-200 hover:shadow-lg transition-all duration-300">
-                                    <div className="w-10 h-10 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                        <FaStar size={20} />
-                                    </div>
-                                    <h5 className="font-bold text-gray-900 mb-2">Modern Tech Stack</h5>
-                                    <p className="text-sm text-gray-600 leading-relaxed">Leveraging cutting-edge technologies to build future-proof, scalable solutions.</p>
-                                </div>
-                                <div className="group p-5 rounded-xl bg-white border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
-                                    <div className="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                        <FaHandshake size={20} />
-                                    </div>
-                                    <h5 className="font-bold text-gray-900 mb-2">True Partnership</h5>
-                                    <p className="text-sm text-gray-600 leading-relaxed">We're invested in your long-term success, not just project completion.</p>
-                                </div>
-                            </div>
-                        </motion.div>
+                        <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+                            {STORY_CONTENT.chapter2.narrative[0]}
+                        </p>
+                    </div>
 
-                        {/* Section 4: Core Values (Compact) */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            className="pt-8 border-t border-gray-200"
+                    {/* Convergence Architecture: Left Wing + Center Hub + Right Wing */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                        
+                        {/* Left Wing (Capabilities 1 & 2) */}
+                        <motion.div 
+                            {...animFadeLeft}
+                            className="lg:col-span-4 flex flex-col justify-between gap-5"
                         >
-                            <h4 className="text-xl font-bold text-gray-900 mb-4">Our Core Values</h4>
-                            <div className="flex flex-wrap gap-3">
-                                {coreValues.map((value, idx) => (
+                            {STORY_CONTENT.chapter2.capabilities.slice(0, 2).map((cap, idx) => {
+                                const Icon = cap.icon;
+                                return (
                                     <div
                                         key={idx}
-                                        className={`group flex items-center gap-2 px-4 py-2.5 rounded-full ${value.bg} border border-gray-100 hover:shadow-md transition-all duration-300`}
+                                        className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#0057fe]/40 transition-all flex flex-col justify-between flex-1 group"
                                     >
-                                        <value.icon className={`${value.color} group-hover:scale-110 transition-transform`} size={18} />
-                                        <span className="font-semibold text-gray-900 text-sm">{value.title}</span>
+                                        <div className="space-y-3">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-xs font-mono font-bold text-[#0057fe]">
+                                                    {cap.code}
+                                                </span>
+                                                <Icon className="text-slate-400 group-hover:text-[#0057fe] transition-colors text-base" />
+                                            </div>
+                                            <h4 className="text-lg font-bold text-[#000c24] tracking-tight">
+                                                {cap.title}
+                                            </h4>
+                                            <p className="text-[15px] text-slate-600 leading-relaxed font-normal">
+                                                {cap.desc}
+                                            </p>
+                                        </div>
+
+                                        <div className="pt-4 mt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-medium text-[#0057fe]">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#0057fe]" />
+                                            <span>In-house engineering</span>
+                                        </div>
                                     </div>
-                                ))}
-                            </div>
+                                );
+                            })}
                         </motion.div>
 
-                        {/* Learn More Button */}
-                        {showLearnMore && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.4 }}
-                                className="pt-6"
-                            >
-                                <a
-                                    href="/about"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg group"
-                                >
-                                    <span>Learn More About Us</span>
-                                    <svg
-                                        className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
+                        {/* Center Hub: The Unified Engine Anchor */}
+                        <div className="lg:col-span-4 rounded-3xl bg-slate-50 border border-slate-200/90 p-8 sm:p-10 flex flex-col items-center justify-center text-center space-y-6">
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center p-4">
+                                <Image
+                                    src="/logo-mark.png"
+                                    alt="Nisschay Logo Mark"
+                                    width={64}
+                                    height={64}
+                                    className="w-full h-full object-contain"
+                                    priority
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <span className="text-xs font-mono uppercase tracking-widest text-[#0057fe] font-bold block">
+                                    Nisschay Studio
+                                </span>
+                                <h4 className="text-lg sm:text-xl font-bold text-[#000c24]">
+                                    One Unified Delivery Team
+                                </h4>
+                                <p className="text-sm text-slate-600 max-w-xs mx-auto leading-relaxed">
+                                    {STORY_CONTENT.chapter2.narrative[1]}
+                                </p>
+                            </div>
+
+                            <div className="pt-2 border-t border-slate-200/80 w-full max-w-xs flex items-center justify-center gap-2 text-xs font-mono text-slate-500">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                <span>Zero middleman markup</span>
+                            </div>
+                        </div>
+
+                        {/* Right Wing (Capabilities 3, 4 & 5) */}
+                        <motion.div 
+                            {...animFadeRight}
+                            className="lg:col-span-4 flex flex-col justify-between gap-5"
+                        >
+                            {STORY_CONTENT.chapter2.capabilities.slice(2, 5).map((cap, idx) => {
+                                const Icon = cap.icon;
+                                return (
+                                    <div
+                                        key={idx}
+                                        className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#0057fe]/40 transition-all flex flex-col justify-between flex-1 group"
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </a>
-                            </motion.div>
-                        )}
+                                        <div className="space-y-2 sm:space-y-3">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-xs font-mono font-bold text-[#0057fe]">
+                                                    {cap.code}
+                                                </span>
+                                                <Icon className="text-slate-400 group-hover:text-[#0057fe] transition-colors text-base" />
+                                            </div>
+                                            <h4 className="text-base sm:text-lg font-bold text-[#000c24] tracking-tight">
+                                                {cap.title}
+                                            </h4>
+                                            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
+                                                {cap.desc}
+                                            </p>
+                                        </div>
+
+                                        <div className="pt-3 mt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-medium text-[#0057fe]">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#0057fe]" />
+                                            <span>Integrated delivery</span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </motion.div>
 
                     </div>
+                </div>
+
+
+                {/* ========================================================
+                    CHAPTER 03 — WHAT WE BELIEVE (Principles & Ownership)
+                ======================================================== */}
+                <div className="relative">
+                    {/* Chapter Header Anchor */}
+                    <div className="flex items-center gap-4 mb-8 sm:mb-12">
+                        <span className="text-xs font-mono font-bold tracking-widest text-[#0057fe] uppercase px-3.5 py-1.5 bg-blue-50/80 border border-blue-200/60 rounded-full">
+                            Chapter {STORY_CONTENT.chapter3.number}{" · "}{STORY_CONTENT.chapter3.label}
+                        </span>
+                        <div className="h-px bg-slate-200 flex-1 max-w-xs" />
+                    </div>
+
+                    <div className="max-w-3xl space-y-4 mb-14">
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000c24] tracking-tight leading-[1.25] text-balance">
+                            {STORY_CONTENT.chapter3.headline}
+                        </h3>
+
+                        <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+                            {STORY_CONTENT.chapter3.narrative}
+                        </p>
+                    </div>
+
+                    {/* Editorial Layout: Studio Ownership Anchor + 5 Principles Ledger */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        
+                        {/* Left Anchor: Clear IP Sovereignty Commitment */}
+                        <div className="lg:col-span-5 p-8 sm:p-10 rounded-3xl bg-[#000c24] text-white flex flex-col justify-between min-h-[380px] space-y-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-mono text-blue-300">
+                                    <FiShield className="text-sm" />
+                                    <span>Client Sovereignty</span>
+                                </div>
+                                <h4 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">
+                                    You Own Your Code. Always.
+                                </h4>
+                                <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                                    We build systems with standard frameworks and clean architecture. You receive 100% of the intellectual property, repository access, and documentation. No vendor lock-in or proprietary traps.
+                                </p>
+                            </div>
+
+                            <div className="pt-6 border-t border-slate-800 flex items-center justify-between">
+                                <span className={`${caveat.className} text-xl sm:text-2xl text-blue-300 font-bold`}>
+                                    built with conviction.
+                                </span>
+                                <span className="text-xs font-mono text-slate-400">100% IP Handover</span>
+                            </div>
+                        </div>
+
+                        {/* Right Ledger: The 5 Principles */}
+                        <div className="lg:col-span-7 divide-y divide-slate-200 border-y border-slate-200">
+                            {STORY_CONTENT.chapter3.principles.map((pr, idx) => {
+                                const Icon = pr.icon;
+                                return (
+                                    <div
+                                        key={idx}
+                                        className="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-6 group"
+                                    >
+                                        <div className="flex items-center gap-3 shrink-0">
+                                            <span className="text-xs font-mono font-bold text-[#0057fe] w-6">
+                                                {pr.num}
+                                            </span>
+                                            <Icon className="text-slate-400 group-hover:text-[#0057fe] transition-colors text-base" />
+                                        </div>
+
+                                        <div className="flex-1 space-y-1">
+                                            <h4 className="text-base sm:text-lg font-bold text-[#000c24] tracking-tight">
+                                                {pr.title}
+                                            </h4>
+                                            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
+                                                {pr.desc}
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                    </div>
+
+                    {/* Concluding CTA Strip */}
+                    <div className="mt-14 sm:mt-18 p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div className="space-y-1 text-center sm:text-left">
+                            <h4 className="text-lg sm:text-xl font-bold text-[#000c24]">
+                                {STORY_CONTENT.chapter3.cta.prompt}
+                            </h4>
+                            <p className="text-sm text-slate-600">
+                                Direct consultation with engineers. No sales pitches, just clear roadmaps.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-3 items-center w-full sm:w-auto">
+                            <Link
+                                href={STORY_CONTENT.chapter3.cta.primaryHref}
+                                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#0057fe] hover:bg-[#0047d6] text-white text-sm font-bold font-outfit rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
+                            >
+                                <span>{STORY_CONTENT.chapter3.cta.primaryLabel}</span>
+                                <FiArrowRight size={14} />
+                            </Link>
+                            {showLearnMore && (
+                                <Link
+                                    href={STORY_CONTENT.chapter3.cta.secondaryHref}
+                                    className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center px-7 py-3.5 bg-white text-slate-700 hover:text-slate-900 text-sm font-semibold font-outfit rounded-full border border-slate-200/90 hover:bg-slate-50 transition-all duration-200 active:scale-95 shadow-xs"
+                                >
+                                    {STORY_CONTENT.chapter3.cta.secondaryLabel}
+                                </Link>
+                            )}
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
