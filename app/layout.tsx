@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Outfit, Inter } from "next/font/google";
+import { Playfair_Display, Outfit, Inter, Caveat, Geist } from "next/font/google";
 import "./globals.css";
 
 // Premium Typography System - Option 1
@@ -24,6 +24,14 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Handwritten Accents & Notes - Caveat
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -55,6 +63,10 @@ export const metadata: Metadata = {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
 
 export default function RootLayout({
   children,
@@ -62,9 +74,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body
-        className={`${playfairDisplay.variable} ${outfit.variable} ${inter.variable} antialiased`}
+        className={`${playfairDisplay.variable} ${outfit.variable} ${inter.variable} ${caveat.variable} antialiased`}
       >
         <Navbar />
         {children}

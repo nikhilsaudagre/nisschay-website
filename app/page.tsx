@@ -16,8 +16,8 @@ export default function Home() {
       <HeroSection />
       <QuoteSection />
       <MeetNisschaySection />
-      <WhyChooseUsSection />
       <ServicesSection />
+      <WhyChooseUsSection />
       <WorkTeaserSection />
       <ProcessSection />
       <HomeTechStackSection />

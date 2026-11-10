@@ -55,7 +55,7 @@ export default function WhyChooseUsSection() {
     };
 
     return (
-        <section className="relative w-full py-20 md:py-28 bg-white overflow-hidden">
+        <section id="why-choose-us" className="relative w-full py-20 md:py-28 bg-white overflow-hidden">
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
                 

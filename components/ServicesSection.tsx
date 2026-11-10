@@ -1,313 +1,521 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-    FiMonitor, FiSmartphone, FiCpu, FiCloud, 
-    FiLayout, FiCode, FiArrowRight, FiCheck
-} from "react-icons/fi";
-import {
-    SiNextdotjs, SiTailwindcss, SiTypescript, SiSpringboot, SiOracle, SiOpenai, SiTensorflow
-} from "react-icons/si";
-import {
-    FaReact, FaFigma, FaJava, FaPython, FaDocker, FaHtml5, FaCss3Alt, FaJs
-} from "react-icons/fa";
-import { VscAzure } from "react-icons/vsc";
-import { useState } from "react";
+import React from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { Caveat } from "next/font/google";
+import { 
+    FiArrowRight, 
+    FiGlobe, 
+    FiGrid, 
+    FiLayers, 
+    FiCpu, 
+    FiTrendingUp, 
+    FiServer 
+} from "react-icons/fi";
 
-const keyServices = [
-    {
-        id: 1,
-        slug: "web-saas",
-        title: "Web & SaaS Development",
-        category: "SaaS & Web Apps",
-        icon: FiMonitor,
-        color: "from-blue-600 to-indigo-700",
-        accent: "bg-blue-500",
-        capabilities: [
-            "Custom Client Dashboards",
-            "Sub-second Serverless SSR",
-            "Multi-tenant SaaS Architecture",
-            "Stripe Gateway Subscriptions"
-        ],
-        tech: [
-            { name: "Next.js", icon: SiNextdotjs },
-            { name: "React", icon: FaReact },
-            { name: "TypeScript", icon: SiTypescript },
-            { name: "Tailwind", icon: SiTailwindcss }
-        ]
-    },
-    {
-        id: 2,
-        slug: "mobile-apps",
-        title: "Mobile App Development",
-        category: "iOS & Android",
-        icon: FiSmartphone,
-        color: "from-emerald-500 to-teal-600",
-        accent: "bg-emerald-500",
-        capabilities: [
-            "Offline Data Caching",
-            "Native Hardware Integrations",
-            "Biometric Authentication",
-            "FCM Push Notification Hubs"
-        ],
-        tech: [
-            { name: "React Native", icon: FaReact },
-            { name: "TypeScript", icon: SiTypescript },
-            { name: "Java", icon: FaJava },
-            { name: "Docker", icon: FaDocker }
-        ]
-    },
-    {
-        id: 3,
-        slug: "ai-automation",
-        title: "AI Integration & Automation",
-        category: "AI & WhatsApp Automation",
-        icon: FiCpu,
-        color: "from-purple-600 to-violet-700",
-        accent: "bg-purple-500",
-        capabilities: [
-            "Generative Agent Workflows",
-            "Vector Search Pipelines",
-            "WhatsApp Business Automation",
-            "Multi-model LLM API Sync"
-        ],
-        tech: [
-            { name: "Python", icon: FaPython },
-            { name: "OpenAI API", icon: SiOpenai },
-            { name: "TensorFlow", icon: SiTensorflow },
-            { name: "Docker", icon: FaDocker }
-        ]
-    },
-    {
-        id: 4,
-        slug: "custom-software",
-        title: "Custom Software Development",
-        category: "Custom ERPs & SaaS MVPs",
-        icon: FiCode,
-        color: "from-cyan-500 to-blue-600",
-        accent: "bg-cyan-500",
-        capabilities: [
-            "Bespoke Enterprise ERPs",
-            "ACID Storage Integrity",
-            "Automated Operations Ledgers",
-            "Legacy API Modernization"
-        ],
-        tech: [
-            { name: "Java", icon: FaJava },
-            { name: "Spring Boot", icon: SiSpringboot },
-            { name: "Oracle DB", icon: SiOracle },
-            { name: "Docker", icon: FaDocker }
-        ]
-    },
-    {
-        id: 5,
-        slug: "ui-ux-design",
-        title: "UI/UX & Product Design",
-        category: "UX & Interactive Prototypes",
-        icon: FiLayout,
-        color: "from-rose-500 to-pink-600",
-        accent: "bg-rose-500",
-        capabilities: [
-            "Interactive Figma Prototypes",
-            "Design Tokens Code Exports",
-            "Wireframe Journey Mappings",
-            "A/B Conversion Testing"
-        ],
-        tech: [
-            { name: "Figma", icon: FaFigma },
-            { name: "HTML5", icon: FaHtml5 },
-            { name: "CSS3", icon: FaCss3Alt },
-            { name: "JavaScript", icon: FaJs }
-        ]
-    },
-    {
-        id: 6,
-        slug: "cloud-devops",
-        title: "Cloud & DevOps Services",
-        category: "CI/CD & Cloud Scaling",
-        icon: FiCloud,
-        color: "from-sky-500 to-blue-600",
-        accent: "bg-sky-500",
-        capabilities: [
-            "Elastic Kubernetes Scaling",
-            "GitOps CI/CD Pipelines",
-            "Global Edge CDN Caching",
-            "99.99% Multi-region Uptime"
-        ],
-        tech: [
-            { name: "Docker", icon: FaDocker },
-            { name: "Azure Cloud", icon: VscAzure },
-            { name: "Java", icon: FaJava },
-            { name: "Next.js", icon: SiNextdotjs }
-        ]
-    },
-];
+// Handwritten font strictly for the 3 key headline action words: Build, Automate, Grow
+const caveat = Caveat({
+    subsets: ["latin"],
+    weight: ["700"],
+    display: "swap",
+});
 
-export default function ServicesSection() {
-    const [activeID, setActiveID] = useState<number | null>(null);
+// =========================================================================
+// SERVICES SECTION CONTENT
+// Preserves all six services, deliverables, icons and compact CTA
+// =========================================================================
+export const SERVICES_SECTION_DATA = {
+    eyebrow: "OUR SERVICES",
+    heading: {
+        prefix: "Digital solutions to",
+        build: "Build",
+        automate: "Automate",
+        grow: "Grow",
+        suffix: "your business.",
+    },
+    description:
+        "From websites and custom software to AI automation and digital marketing, we help businesses build and grow with practical technology.",
+    services: [
+        {
+            id: "web-dev",
+            title: "Website & Web Development",
+            outcome:
+                "High-performance, responsive websites engineered for speed, search visibility, and customer conversion.",
+            deliverables: "Business Websites · E-Commerce Stores · Landing Pages",
+            href: "/services",
+            icon: FiGlobe,
+            paperBg: "bg-gradient-to-b from-[#f2f8ff] via-[#e3effe] to-[#d4e7fc]", // Authentic Post-it Sky Blue
+            tiltClass: "-rotate-[1.4deg] lg:translate-y-1 sm:-rotate-[1.4deg] rotate-0",
+            curlType: "curl-right" as const,
+            attachment: "tape-top-center" as const,
+            clipPath: "polygon(0.3% 0.2%, 99.8% 0%, 100% 99.7%, 0% 100%)",
+        },
+        {
+            id: "web-app",
+            title: "Web Application Development",
+            outcome:
+                "Modern, responsive web applications and SaaS platforms built around real user workflows and secure data architecture.",
+            deliverables: "Custom Web Apps · SaaS Platforms · Client Portals",
+            href: "/services",
+            icon: FiGrid,
+            paperBg: "bg-gradient-to-b from-[#fffde6] via-[#fef9c3] to-[#fef08a]", // Iconic 3M Canary Yellow
+            tiltClass: "rotate-[1.6deg] lg:-translate-y-1 sm:rotate-[1.6deg] rotate-0",
+            curlType: "curl-left" as const,
+            attachment: "self-adhesive" as const, // self-adhesive without visible tape
+            clipPath: "polygon(0% 0%, 99.7% 0.3%, 100% 100%, 0.3% 99.7%)",
+        },
+        {
+            id: "custom-software",
+            title: "Custom Software Development",
+            outcome:
+                "Bespoke software systems designed to solve operational bottlenecks, integrate tools, and scale with your business.",
+            deliverables: "Internal Tools · CRM & ERP · Workflow Systems",
+            href: "/services",
+            icon: FiLayers,
+            paperBg: "bg-gradient-to-b from-[#fffbf4] via-[#fdf5e8] to-[#f8edd6]", // Warm Kraft Manila Cream
+            tiltClass: "-rotate-[1.1deg] lg:translate-y-1.5 sm:-rotate-[1.1deg] rotate-0",
+            curlType: "curl-right" as const,
+            attachment: "tape-top-right-angled" as const, // angled corner tape
+            clipPath: "polygon(0.2% 0%, 100% 0.3%, 99.7% 99.8%, 0% 99.9%)",
+        },
+        {
+            id: "ai-automation",
+            title: "AI Development & Automation",
+            outcome:
+                "Intelligent AI agents, conversational chatbots, and automated workflows that eliminate repetitive manual tasks.",
+            deliverables: "WhatsApp AI Bots · Workflow Automation · AI APIs",
+            href: "/services",
+            icon: FiCpu,
+            paperBg: "bg-gradient-to-b from-[#f6f7ff] via-[#edf1fe] to-[#dfe6fc]", // Pastel Periwinkle Post-it
+            tiltClass: "rotate-[1.7deg] lg:-translate-y-0.5 sm:rotate-[1.7deg] rotate-0",
+            curlType: "curl-both" as const,
+            attachment: "tape-top-left-angled" as const, // angled corner tape
+            clipPath: "polygon(0% 0.3%, 99.8% 0%, 100% 100%, 0.2% 99.6%)",
+        },
+        {
+            id: "digital-marketing",
+            title: "Digital Marketing & SEO",
+            outcome:
+                "Data-driven marketing and search optimization strategies that attract qualified prospects and grow your inbound pipeline.",
+            deliverables: "Technical SEO · Social Campaigns · Search & Meta Ads",
+            href: "/services",
+            icon: FiTrendingUp,
+            paperBg: "bg-gradient-to-b from-[#fffbeb] via-[#fef3c7] to-[#fde68a]", // Sunlight Warm Yellow Post-it
+            tiltClass: "-rotate-[1.5deg] lg:translate-y-1 sm:-rotate-[1.5deg] rotate-0",
+            curlType: "curl-right" as const,
+            attachment: "self-adhesive-curl" as const, // self-adhesive with delicate curled corner
+            clipPath: "polygon(0.2% 0%, 100% 0.2%, 99.8% 99.7%, 0% 100%)",
+        },
+        {
+            id: "cloud-devops",
+            title: "Cloud, DevOps & IT Support",
+            outcome:
+                "Reliable cloud deployment, CI/CD pipeline automation, and proactive IT support to ensure uptime, security, and scalability.",
+            deliverables: "Cloud Architecture · CI/CD Pipelines · Ongoing IT Support",
+            href: "/services",
+            icon: FiServer,
+            paperBg: "bg-gradient-to-b from-[#f3fbf7] via-[#e4f7ee] to-[#d3f1e2]", // Pastel Mint Sage Post-it
+            tiltClass: "rotate-[1.3deg] lg:-translate-y-1 sm:rotate-[1.3deg] rotate-0",
+            curlType: "curl-left" as const,
+            attachment: "tape-top-offset" as const, // slightly offset tape
+            clipPath: "polygon(0% 0.2%, 99.8% 0%, 100% 99.8%, 0.3% 100%)",
+        },
+    ],
+    cta: {
+        heading: "Have something in mind? Let's build it.",
+        supporting: "Tell us what you're working on and we'll help you find the right solution.",
+        buttonText: "Start a Project",
+        buttonHref: "/contact",
+    },
+} as const;
 
+// =========================================================================
+// REALISTIC MASKING & SCOTCH TAPE COMPONENT
+// Realistic semi-transparency, serrated torn edges, wrinkle lines, and contact shadow
+// =========================================================================
+function MaskingTape({ 
+    variant 
+}: { 
+    variant: "top-center" | "top-right-angled" | "top-left-angled" | "top-offset" 
+}) {
+    if (variant === "top-center") {
+        return (
+            <div
+                className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-20 h-6 pointer-events-none z-20 -rotate-1"
+                aria-hidden="true"
+            >
+                {/* Tape body with semi-transparency and subtle wrinkle lines */}
+                <div 
+                    className="w-full h-full bg-[#fbf6ed]/85 backdrop-blur-[0.5px] border-t border-b border-white/90 shadow-[0_2px_5px_rgba(0,12,36,0.12),0_0_1px_rgba(0,12,36,0.08)]"
+                    style={{
+                        clipPath: "polygon(0% 5%, 2% 0%, 98% 3%, 100% 8%, 99% 93%, 97% 99%, 3% 97%, 0% 91%)",
+                        backgroundImage: "linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.45) 27%, rgba(0,0,0,0.035) 29%, transparent 31%, transparent 68%, rgba(255,255,255,0.4) 70%, transparent 72%)",
+                    }}
+                />
+            </div>
+        );
+    }
+
+    if (variant === "top-right-angled") {
+        return (
+            <div
+                className="absolute -top-3 -right-3.5 w-18 h-5.5 pointer-events-none z-20 rotate-[38deg]"
+                aria-hidden="true"
+            >
+                <div 
+                    className="w-full h-full bg-[#fbf6ed]/85 backdrop-blur-[0.5px] border-t border-b border-white/90 shadow-[0_2px_5px_rgba(0,12,36,0.12),0_0_1px_rgba(0,12,36,0.08)]"
+                    style={{
+                        clipPath: "polygon(0% 5%, 3% 0%, 97% 2%, 100% 7%, 99% 94%, 96% 100%, 4% 97%, 0% 91%)",
+                        backgroundImage: "linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.45) 37%, rgba(0,0,0,0.03) 39%, transparent 41%)",
+                    }}
+                />
+            </div>
+        );
+    }
+
+    if (variant === "top-left-angled") {
+        return (
+            <div
+                className="absolute -top-3 -left-3.5 w-18 h-5.5 pointer-events-none z-20 -rotate-[36deg]"
+                aria-hidden="true"
+            >
+                <div 
+                    className="w-full h-full bg-[#fbf6ed]/85 backdrop-blur-[0.5px] border-t border-b border-white/90 shadow-[0_2px_5px_rgba(0,12,36,0.12),0_0_1px_rgba(0,12,36,0.08)]"
+                    style={{
+                        clipPath: "polygon(0% 6%, 3% 0%, 97% 3%, 100% 6%, 98% 95%, 96% 99%, 4% 96%, 0% 93%)",
+                        backgroundImage: "linear-gradient(100deg, transparent 40%, rgba(255,255,255,0.5) 42%, rgba(0,0,0,0.035) 44%, transparent 46%)",
+                    }}
+                />
+            </div>
+        );
+    }
+
+    if (variant === "top-offset") {
+        return (
+            <div
+                className="absolute -top-3.5 left-[40%] -translate-x-1/2 w-18 h-6 pointer-events-none z-20 rotate-[2deg]"
+                aria-hidden="true"
+            >
+                <div 
+                    className="w-full h-full bg-[#fbf6ed]/85 backdrop-blur-[0.5px] border-t border-b border-white/90 shadow-[0_2px_5px_rgba(0,12,36,0.12),0_0_1px_rgba(0,12,36,0.08)]"
+                    style={{
+                        clipPath: "polygon(0% 5%, 2% 0%, 98% 4%, 100% 7%, 99% 93%, 97% 99%, 3% 96%, 0% 91%)",
+                        backgroundImage: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.45) 32%, transparent 34%, transparent 65%, rgba(255,255,255,0.35) 67%, transparent 69%)",
+                    }}
+                />
+            </div>
+        );
+    }
+
+    return null;
+}
+
+// =========================================================================
+// REALISTIC PHYSICAL SHADOW & UNDERLAY CURL
+// Creates true contact pressure at top and physical corner lift at bottom
+// =========================================================================
+function PhysicalPaperShadow({ type }: { type: "curl-right" | "curl-left" | "curl-both" }) {
     return (
-        <section 
-            className="relative py-24 md:py-32 bg-white overflow-hidden cursor-default"
-            id="services"
+        <div className="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+            {/* Top flat contact shadow where glue/tape firmly presses paper to board */}
+            <div className="absolute top-0 inset-x-2 h-3 bg-black/[0.04] blur-[1px]" />
+
+            {/* Bottom-right lifted paper corner shadow */}
+            {(type === "curl-right" || type === "curl-both") && (
+                <div 
+                    className="absolute -bottom-1.5 right-2 w-3/4 h-5 bg-slate-900/18 blur-[6px] rounded-[50%] transform rotate-[3.5deg] origin-bottom-right transition-all duration-300 group-hover:blur-[8px] group-hover:bg-slate-900/25 group-hover:h-6" 
+                />
+            )}
+
+            {/* Bottom-left lifted paper corner shadow */}
+            {(type === "curl-left" || type === "curl-both") && (
+                <div 
+                    className="absolute -bottom-1.5 left-2 w-3/4 h-5 bg-slate-900/18 blur-[6px] rounded-[50%] transform -rotate-[3.5deg] origin-bottom-left transition-all duration-300 group-hover:blur-[8px] group-hover:bg-slate-900/25 group-hover:h-6" 
+                />
+            )}
+
+            {/* Soft physical drop shadow beneath sheet */}
+            <div className="absolute inset-x-3 bottom-0 h-12 shadow-[0_10px_20px_-6px_rgba(0,12,36,0.09)] transition-shadow duration-300 group-hover:shadow-[0_18px_32px_-6px_rgba(0,12,36,0.16)]" />
+        </div>
+    );
+}
+
+// Subtle top adhesive glue band (for self-adhesive notes)
+function GlueBand() {
+    return (
+        <div
+            className="absolute top-0 inset-x-0 h-7 bg-black/[0.025] border-b border-black/[0.04] pointer-events-none"
+            aria-hidden="true"
+        />
+    );
+}
+
+// Authentic 3D dog-ear paper curl fold with realistic underside shadow
+function CornerCurlFold({ type = "right" }: { type?: "right" | "left" }) {
+    if (type === "right") {
+        return (
+            <div 
+                className="absolute bottom-0 right-0 w-6 h-6 pointer-events-none z-20 overflow-hidden"
+                aria-hidden="true"
+            >
+                {/* Triangular shadow cast by the curl onto the paper */}
+                <div className="absolute bottom-0 right-0 w-0 h-0 border-b-[20px] border-b-black/15 border-l-[20px] border-l-transparent" />
+                {/* The turned-up corner flap with paper tint */}
+                <div className="absolute bottom-0 right-0 w-0 h-0 border-t-[19px] border-t-white/95 border-r-[19px] border-r-transparent filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]" />
+            </div>
+        );
+    }
+    return (
+        <div 
+            className="absolute bottom-0 left-0 w-6 h-6 pointer-events-none z-20 overflow-hidden"
+            aria-hidden="true"
         >
-            <div className="max-w-7xl mx-auto px-4 relative z-10">
-                {/* Header */}
-                <div className="flex flex-col items-center text-center mb-20">
-                    <div className="max-w-3xl">
-                        <motion.span
-                            className="text-xs font-mono uppercase tracking-[0.25em] text-blue-600 block mb-4 select-none"
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            [ Specialized Expertise ]
-                        </motion.span>
-                        <motion.h2
-                            className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.1]"
-                            style={{ 
-                                fontFamily: "var(--font-display)", 
-                            }}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            High-Scale Systems. <br className="hidden sm:inline" />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-                                Engineered for Growth.
+            <div className="absolute bottom-0 left-0 w-0 h-0 border-b-[20px] border-b-black/15 border-r-[20px] border-r-transparent" />
+            <div className="absolute bottom-0 left-0 w-0 h-0 border-t-[19px] border-t-white/90 border-l-[19px] border-l-transparent filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]" />
+        </div>
+    );
+}
+
+// =========================================================================
+// MAIN SERVICES SECTION
+// =========================================================================
+export default function ServicesSection() {
+    return (
+        <section
+            id="services"
+            className="relative w-full overflow-x-clip bg-white py-18 sm:py-22 lg:py-26"
+        >
+            {/* Responsive Container */}
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-14">
+
+                {/* ========================================================
+                    TOP ROW: TWO-COLUMN INTRO (Text Left + Developer Illustration Right)
+                ======================================================== */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+                    
+                    {/* Left Column: Eyebrow with Radar Ping, Headline, Supporting Description */}
+                    <div className="lg:col-span-7 xl:col-span-8 space-y-3.5">
+                        {/* Eyebrow Label: OUR SERVICES with Live Pulse Indicator */}
+                        <div className="inline-flex items-center gap-2.5">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0057fe] opacity-75" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0057fe]" />
                             </span>
-                        </motion.h2>
+                            <span className="w-5 h-[2px] bg-[#0057fe]/60" aria-hidden="true" />
+                            <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#000c24] uppercase">
+                                {SERVICES_SECTION_DATA.eyebrow}
+                            </span>
+                        </div>
+
+                        {/* Main Headline: Bold Nisschay font with Caveat highlights for Build, Automate, Grow */}
+                        <h2 className="text-3xl sm:text-4xl md:text-[42px] lg:text-[44px] font-black text-[#000c24] tracking-tight leading-[1.18]">
+                            {SERVICES_SECTION_DATA.heading.prefix}{" "}
+                            <span className={`${caveat.className} text-[#0057fe] font-bold text-[1.2em] tracking-normal inline-block`}>
+                                {SERVICES_SECTION_DATA.heading.build}
+                            </span>
+                            ,{" "}
+                            <span className={`${caveat.className} text-[#0057fe] font-bold text-[1.2em] tracking-normal inline-block`}>
+                                {SERVICES_SECTION_DATA.heading.automate}
+                            </span>{" "}
+                            and{" "}
+                            <span className={`${caveat.className} text-[#0057fe] font-bold text-[1.2em] tracking-normal inline-block`}>
+                                {SERVICES_SECTION_DATA.heading.grow}
+                            </span>{" "}
+                            {SERVICES_SECTION_DATA.heading.suffix}
+                        </h2>
+
+                        {/* Supporting Description */}
+                        <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal max-w-2xl">
+                            {SERVICES_SECTION_DATA.description}
+                        </p>
                     </div>
+
+                    {/* Right Column: Developer Illustration with subtle ambient backlight */}
+                    <div className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end relative">
+                        {/* Soft ambient blue backlight glow behind illustration */}
+                        <div
+                            className="absolute right-6 top-1/2 -translate-y-1/2 w-64 h-64 bg-blue-100/60 rounded-full blur-3xl -z-10 pointer-events-none animate-pulse"
+                            style={{ animationDuration: "7s" }}
+                            aria-hidden="true"
+                        />
+                        <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[380px] xl:max-w-[400px]">
+                            <Image
+                                src="/Nisschay-Developer-Transparent.webp"
+                                alt="Nisschay developer working on a laptop with technology, automation and business growth elements."
+                                width={1536}
+                                height={1024}
+                                priority
+                                className="w-full h-auto object-contain select-none pointer-events-none"
+                            />
+                        </div>
+                    </div>
+
                 </div>
 
-                {/* Interactive Service Accordions */}
-                <div className="relative space-y-4">
-                    {keyServices.map((service, index) => {
-                        const isExpanded = activeID === service.id;
+                {/* ========================================================
+                    SIX AUTHENTIC PHYSICAL STICKY NOTES
+                    (Fine grain inside notes, imperfect paper edges, organic tape & curls)
+                ======================================================== */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+                    {SERVICES_SECTION_DATA.services.map((service) => {
+                        const Icon = service.icon;
                         return (
-                            <motion.div
+                            <div
                                 key={service.id}
-                                initial={{ opacity: 0, y: 40, x: -25 }}
-                                whileInView={{ opacity: 1, y: 0, x: 0 }}
-                                viewport={{ once: true, margin: "-80px" }}
-                                transition={{ 
-                                    duration: 0.8, 
-                                    ease: [0.16, 1, 0.3, 1], // easeOutExpo
-                                    delay: index * 0.08 // Elegant stagger wave
-                                }}
+                                className={`group relative h-full transform ${service.tiltClass} transition-all duration-300 ease-out hover:rotate-0 hover:-translate-y-2.5 focus-within:rotate-0 focus-within:-translate-y-2.5 origin-top`}
                             >
-                                <div
-                                    onClick={() => setActiveID(isExpanded ? null : service.id)}
-                                    className="group relative border-b border-gray-100 last:border-0 py-8 md:py-10 transition-colors duration-500 hover:border-gray-300 block cursor-pointer"
+                                {/* Physical 3D bottom curl shadow underneath paper */}
+                                <PhysicalPaperShadow type={service.curlType} />
+
+                                {/* Selective Masking Tape Attachments */}
+                                {service.attachment === "tape-top-center" && (
+                                    <MaskingTape variant="top-center" />
+                                )}
+                                {service.attachment === "tape-top-right-angled" && (
+                                    <MaskingTape variant="top-right-angled" />
+                                )}
+                                {service.attachment === "tape-top-left-angled" && (
+                                    <MaskingTape variant="top-left-angled" />
+                                )}
+                                {service.attachment === "tape-top-offset" && (
+                                    <MaskingTape variant="top-offset" />
+                                )}
+
+                                {/* Sticky Note Paper Sheet */}
+                                <Link
+                                    href={service.href}
+                                    aria-label={`${service.title}. ${service.outcome}`}
+                                    className={`group relative flex flex-col justify-between h-full min-h-[305px] sm:min-h-[325px] ${service.paperBg} rounded-[2px] p-6 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057fe] focus-visible:ring-offset-2 transition-all duration-300 cursor-pointer overflow-hidden select-none shadow-[0_1px_3px_rgba(0,12,36,0.06),0_6px_16px_rgba(0,12,36,0.05)] group-hover:shadow-[0_20px_35px_-8px_rgba(0,12,36,0.16)]`}
+                                    style={{
+                                        clipPath: service.clipPath,
+                                        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -2px 4px rgba(0,0,0,0.03)",
+                                    }}
                                 >
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-baseline gap-4 md:gap-8 overflow-hidden">
-                                            <span className="text-gray-300 text-sm md:text-xl font-light font-mono leading-none">
-                                                0{index + 1}
-                                            </span>
-                                            <h3 
-                                                className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light text-gray-900 group-hover:text-blue-600 transition-colors duration-300 origin-left`}
-                                                style={{ fontFamily: "var(--font-display)" }}
-                                            >
-                                                {service.title}
-                                            </h3>
-                                            <div className="hidden md:flex items-center gap-2 opacity-60">
-                                                <div className={`w-2 h-2 rounded-full ${service.accent}`} />
-                                                <span className="text-xs uppercase tracking-widest text-gray-400 font-medium whitespace-nowrap">
-                                                    {service.category}
-                                                </span>
-                                            </div>
+                                    {/* Internal Fine Paper Grain & Fibers (Adds physical matte paper realism) */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.035] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noteNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noteNoise)'/%3E%3Cpath d='M10 20 Q25 22 40 21' stroke='%23000' stroke-width='0.5' opacity='0.25'/%3E%3Cpath d='M85 95 Q100 99 115 96' stroke='%23000' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* Self-Adhesive top glue band (when without visible tape) */}
+                                    {(service.attachment === "self-adhesive" || service.attachment === "self-adhesive-curl") && (
+                                        <GlueBand />
+                                    )}
+
+                                    {/* Real 3D corner curl dog-ear peel */}
+                                    <CornerCurlFold type={service.curlType === "curl-left" ? "left" : "right"} />
+                                    {service.curlType === "curl-both" && (
+                                        <CornerCurlFold type="left" />
+                                    )}
+
+                                    {/* Paper Content Top */}
+                                    <div className="relative z-10">
+                                        {/* Minimal Category Icon directly on paper */}
+                                        <div className="flex items-center justify-between mb-4">
+                                            <Icon className="w-5 h-5 text-[#0057fe] group-hover:scale-115 transition-transform duration-300" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-slate-400/50 group-hover:bg-[#0057fe] transition-colors" />
                                         </div>
-                                        
-                                        <motion.div 
-                                            className="w-10 h-10 md:w-16 md:h-16 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-gray-900 group-hover:border-gray-900 transition-all duration-300"
-                                            animate={{ rotate: isExpanded ? 90 : 0 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            <FiArrowRight className="w-5 h-5 md:w-8 md:h-8 text-gray-400 group-hover:text-white transition-colors duration-300" />
-                                        </motion.div>
+
+                                        {/* Service Title */}
+                                        <h3 className="text-lg sm:text-[19px] font-bold text-[#000c24] tracking-tight leading-snug group-hover:text-[#0057fe] transition-colors mb-2.5">
+                                            {service.title}
+                                        </h3>
+
+                                        {/* Outcome-Focused Note Description */}
+                                        <p className="text-slate-700 text-sm leading-relaxed font-normal mb-5">
+                                            {service.outcome}
+                                        </p>
                                     </div>
 
-                                    {/* Expanded Capabilities & Tech Badges Drawer */}
-                                    <AnimatePresence initial={false}>
-                                        {isExpanded && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: "auto", opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                                                className="overflow-hidden"
-                                                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking drawer content
-                                            >
-                                                <div className="pt-8 pb-4 pl-4 md:pl-16 pr-4 grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-slate-100/60 mt-6 select-none cursor-default">
-                                                    {/* Capabilities Checklist */}
-                                                    <div className="md:col-span-7 space-y-4">
-                                                        <p className="text-xs uppercase tracking-widest text-slate-400 font-mono font-semibold">Core Capabilities</p>
-                                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                                                            {service.capabilities.map((cap, idx) => (
-                                                                <div key={idx} className="flex items-center gap-3 text-slate-600 text-sm">
-                                                                    <div className="w-5 h-5 rounded-full bg-blue-50/80 border border-blue-100/30 flex items-center justify-center text-blue-600 font-bold select-none">
-                                                                        <FiCheck className="w-3.5 h-3.5" />
-                                                                    </div>
-                                                                    <span className="font-light">{cap}</span>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
+                                    {/* Paper Footer: Studio Notes & Directional Link (no heavy dividers) */}
+                                    <div className="relative z-10 space-y-3 pt-2">
+                                        {/* Deliverables as studio annotations */}
+                                        <p className="text-[11.5px] text-slate-500 font-medium tracking-wide">
+                                            {service.deliverables}
+                                        </p>
 
-                                                    {/* Tech Stack Badges */}
-                                                    <div className="md:col-span-5 space-y-4">
-                                                        <p className="text-xs uppercase tracking-widest text-slate-400 font-mono font-semibold">Build Stack</p>
-                                                        <div className="flex flex-wrap gap-2.5">
-                                                            {service.tech.map((t, idx) => (
-                                                                <div 
-                                                                    key={idx} 
-                                                                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200/55 text-xs text-slate-600 font-medium font-mono"
-                                                                >
-                                                                    <t.icon className="w-3.5 h-3.5 text-slate-500" />
-                                                                    <span>{t.name}</span>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
+                                        {/* Clean Learn More link */}
+                                        <div className="flex items-center justify-between pt-1">
+                                            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0057fe] tracking-wider uppercase group-hover:text-[#0047d6] transition-colors">
+                                                <span>Learn More</span>
+                                                <FiArrowRight
+                                                    size={12}
+                                                    className="transform group-hover:translate-x-1.5 transition-transform duration-300"
+                                                    aria-hidden="true"
+                                                />
+                                            </span>
+                                        </div>
+                                    </div>
 
-                                                    {/* CTA Link to Specs */}
-                                                    <div className="md:col-span-12 pt-4 flex justify-start">
-                                                        <Link 
-                                                            href={`/services?service=${service.slug}#service-breakdown`}
-                                                            className="inline-flex items-center gap-2.5 text-sm font-semibold text-blue-600 hover:text-indigo-600 transition-colors group/link"
-                                                        >
-                                                            <span>Learn More</span>
-                                                            <FiArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            </motion.div>
+                                    {/* Subtle paper bottom curl shadow gradient on surface */}
+                                    <div 
+                                        className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-black/[0.04] to-transparent pointer-events-none z-10" 
+                                        aria-hidden="true" 
+                                    />
+                                </Link>
+                            </div>
                         );
                     })}
                 </div>
 
-                {/* Final CTA */}
-                <div className="mt-24 md:mt-32 flex flex-col items-center text-center">
-                    <p className="text-gray-500 text-sm md:text-base font-light mb-6 max-w-md">
-                        Have a unique project in mind? Partner with our expert team to build reliable, high-scale applications.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                        <Link href="/contact" className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-md hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:scale-105 active:scale-95">
-                            <span>Get in Touch</span>
-                            <FiArrowRight className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                        </Link>
-                        <Link href="/services" className="group/btn inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gray-200 bg-white text-gray-700 font-medium hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 active:scale-95">
-                            <span>Explore All Services</span>
-                            <FiArrowRight className="w-4 h-4 text-gray-400 group-hover/btn:text-gray-600 transition-colors" />
-                        </Link>
+                {/* ========================================================
+                    COMPACT STUDIO MEMO CTA (Pinned Centered Note, Not a Wide Banner)
+                ======================================================== */}
+                <div className="pt-2">
+                    <div className="relative max-w-xl mx-auto rounded-[2px] bg-gradient-to-b from-[#fffefc] to-[#fbf8f0] border border-[#e5dfd3] shadow-[0_6px_20px_rgba(0,12,36,0.07),0_1px_3px_rgba(0,12,36,0.04)] px-6 py-4.5 sm:px-7 sm:py-5 -rotate-[0.35deg] hover:rotate-0 transition-transform duration-300">
+                        
+                        {/* Washi Tape Pinning Memo to Board */}
+                        <div 
+                            className="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-5 bg-[#fbf6ed]/85 backdrop-blur-[0.5px] border-t border-b border-white/90 shadow-[0_1px_3px_rgba(0,12,36,0.08)] -rotate-1 pointer-events-none" 
+                            style={{
+                                clipPath: "polygon(0% 6%, 2% 0%, 98% 3%, 100% 7%, 99% 93%, 97% 99%, 3% 97%, 0% 92%)",
+                            }}
+                            aria-hidden="true" 
+                        />
+
+                        {/* Balanced Horizontal Memo Content */}
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-3.5 sm:gap-6 text-center sm:text-left">
+                            <div className="space-y-0.5">
+                                <h3 className="text-sm sm:text-[15px] font-bold text-[#000c24] tracking-tight">
+                                    {SERVICES_SECTION_DATA.cta.heading}
+                                </h3>
+                                <p className="text-xs text-slate-500 font-normal">
+                                    {SERVICES_SECTION_DATA.cta.supporting}
+                                </p>
+                            </div>
+
+                            {/* Single Prominent Button with Luxury Glow Aura & Shimmer */}
+                            <div className="relative group/cta shrink-0 w-full sm:w-auto">
+                                <div
+                                    className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#0057fe] to-[#38bdf8] opacity-35 blur-sm group-hover/cta:opacity-70 transition duration-300 -z-0"
+                                    aria-hidden="true"
+                                />
+                                <Link
+                                    href={SERVICES_SECTION_DATA.cta.buttonHref}
+                                    className="relative w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#0057fe] hover:bg-[#0047d6] text-white text-xs sm:text-sm font-bold font-outfit rounded-full transition-all duration-300 shadow-[0_4px_14px_rgba(0,87,254,0.35)] hover:shadow-[0_6px_25px_rgba(0,87,254,0.5)] overflow-hidden active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0057fe] select-none z-10"
+                                >
+                                    <span
+                                        className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+                                        aria-hidden="true"
+                                    />
+                                    <span
+                                        className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none animate-shimmer-sweep"
+                                        aria-hidden="true"
+                                    />
+                                    <span className="relative z-10">{SERVICES_SECTION_DATA.cta.buttonText}</span>
+                                    <FiArrowRight size={13} className="relative z-10 transition-transform duration-300 group-hover/cta:translate-x-1" />
+                                </Link>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </section>
     );
