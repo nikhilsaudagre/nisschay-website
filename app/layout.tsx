@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Outfit, Inter, Caveat, Geist } from "next/font/google";
 import "./globals.css";
+import "lenis/dist/lenis.css";
 
 // Premium Typography System - Option 1
 // Display Headings (H1) - Elegant Serif
@@ -63,10 +64,11 @@ export const metadata: Metadata = {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollProgress from "@/components/ScrollProgress";
+import SmoothScroll from "@/components/SmoothScroll";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 export default function RootLayout({
   children,
@@ -78,10 +80,13 @@ export default function RootLayout({
       <body
         className={`${playfairDisplay.variable} ${outfit.variable} ${inter.variable} ${caveat.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
-        <ScrollToTop />
+        <SmoothScroll>
+          <ScrollProgress />
+          <Navbar />
+          {children}
+          <Footer />
+          <ScrollToTop />
+        </SmoothScroll>
       </body>
     </html>
   );

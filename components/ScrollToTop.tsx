@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { FiArrowUp } from "react-icons/fi";
 
 export default function ScrollToTop() {
     const [isVisible, setIsVisible] = useState(false);
+    const lenis = useLenis();
     const { scrollY, scrollYProgress } = useScroll();
 
     // Smooth scroll progress value
@@ -31,10 +33,14 @@ export default function ScrollToTop() {
     }, []);
 
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
+        if (lenis) {
+            lenis.scrollTo(0, { duration: 1.2 });
+        } else {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
     };
 
     return (

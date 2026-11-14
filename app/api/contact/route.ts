@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, mobile, country, selectedService, brief } = body;
+    const { name, email, mobile, country, selectedService, brief, marketingConsent } = body;
 
     // Server-side validation check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,8 +34,9 @@ export async function POST(request: Request) {
       email: email.trim(),
       mobile: (mobile && mobile.trim()) || "Not Provided",
       country: (country && country.trim()) || "Not Provided",
-      service: selectedService || "General Web & SaaS Development",
+      service: selectedService || "Website & Web Development",
       message: brief.trim(),
+      "Marketing Consent": marketingConsent ? "Opted In (Updates allowed)" : "Opted Out (No marketing)",
       "Submitted At (IST)": new Date().toLocaleString("en-IN", {
         timeZone: "Asia/Kolkata",
         dateStyle: "medium",
@@ -44,12 +45,12 @@ export async function POST(request: Request) {
       _subject: `New Nisschay Lead: ${selectedService || "General Inquiry"} from ${name}`,
       _autoresponse: `Thank you for reaching out to Nisschay!
 
-We have received your project details and our team is already reviewing them. We aim to get back to you with a structural system blueprint or coordinate a scoping call in under 4 hours.
+We have received your project details and our team is already reviewing them. We aim to get back to you with initial thoughts or coordinate a scoping call promptly.
 
 If you have any additional materials (e.g. design assets, specs, or wireframes), feel free to reply directly to this email.
 
 Best regards,
-The Nisschay Engineering Team`,
+The Nisschay Team`,
     };
 
     const referer = request.headers.get("referer") || "https://nisschay.com";
@@ -69,7 +70,7 @@ The Nisschay Engineering Team`,
 
     const data = await response.json();
 
-    if (response.ok && data.success === "true") {
+    if (response.ok && (data.success === "true" || data.success === true || (typeof data.message === "string" && data.message.toLowerCase().includes("activation")))) {
       return NextResponse.json({ success: true, message: "Inquiry successfully submitted." });
     } else {
       console.error("FormSubmit API error:", data);

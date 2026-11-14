@@ -1,484 +1,484 @@
 "use client";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
-import { siteConfig, getStudioLocation } from "@/lib/siteConfig";
-import { IconType } from "react-icons";
+
+import React, { useState } from "react";
+import Link from "next/link";
 import { 
-    FaEnvelope, 
-    FaPhoneAlt, 
-    FaLinkedin, 
-    FaTwitter, 
-    FaGithub, 
-    FaPaperPlane, 
-    FaCheckCircle 
-} from "react-icons/fa";
-import { 
-    FiUser, 
-    FiMail, 
-    FiPhone, 
-    FiGlobe, 
+    FiCheck, 
+    FiArrowRight, 
     FiShield, 
-    FiAward, 
-    FiZap,
-    FiMapPin
+    FiMail, 
+    FiClock, 
+    FiChevronDown 
 } from "react-icons/fi";
 
-type ServiceType = "Web & SaaS Development" | "Mobile App Development" | "AI Integration & Automation" | "Custom Software Development" | "UI/UX & Product Design" | "Cloud & DevOps Services" | "IT Consulting";
+const serviceOptions = [
+    "Website & Web Development",
+    "Web Application Development",
+    "Custom Software Development",
+    "AI Development & Automation",
+    "Digital Marketing & SEO",
+    "Cloud, DevOps & IT Support",
+    "Not sure yet",
+];
 
 export default function ContactSection() {
-    const { scrollY } = useScroll();
-    const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
-
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        const previous = scrollY.getPrevious() ?? 0;
-        const diff = latest - previous;
-        if (Math.abs(diff) > 2) {
-            setScrollDirection(diff > 0 ? "down" : "up");
-        }
-    });
-
-    const leftColVariants = {
-        hidden: (direction: "up" | "down") => ({
-            opacity: 0,
-            x: -40,
-            y: direction === "down" ? 30 : -30
-        }),
-        visible: {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            transition: { type: "spring" as const, stiffness: 50, damping: 15 }
-        }
-    };
-
-    const rightColVariants = {
-        hidden: (direction: "up" | "down") => ({
-            opacity: 0,
-            x: 40,
-            y: direction === "down" ? 30 : -30
-        }),
-        visible: {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            transition: { type: "spring" as const, stiffness: 50, damping: 15, delay: 0.08 }
-        }
-    };
-    
-    // Form States
+    // Form fields
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [mobile, setMobile] = useState("");
-    const [country, setCountry] = useState("");
-    const [selectedService, setSelectedService] = useState<ServiceType>("Web & SaaS Development");
-    const [brief, setBrief] = useState("");
-    
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [emailTouched, setEmailTouched] = useState(false);
-    const [nameTouched, setNameTouched] = useState(false);
-    const [briefTouched, setBriefTouched] = useState(false);
+    const [phone, setPhone] = useState("");
+    const [service, setService] = useState("Website & Web Development");
+    const [description, setDescription] = useState("");
+    const [marketingConsent, setMarketingConsent] = useState(false);
 
-    const validateEmail = (emailStr: string) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(emailStr.trim());
+    // Validation & submission states
+    const [nameTouched, setNameTouched] = useState(false);
+    const [emailTouched, setEmailTouched] = useState(false);
+    const [descriptionTouched, setDescriptionTouched] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const validateEmail = (val: string) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(val.trim());
     };
 
-    const isFormValid = name.trim() !== "" && validateEmail(email) && brief.trim() !== "";
+    const isFormValid = name.trim() !== "" && validateEmail(email) && description.trim() !== "";
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setNameTouched(true);
         setEmailTouched(true);
-        setBriefTouched(true);
+        setDescriptionTouched(true);
 
-        if (!isFormValid) return;
+        if (!isFormValid) {
+            return;
+        }
 
         setIsLoading(true);
         setErrorMessage("");
 
         try {
-            const res = await fetch("/api/contact", {
+            const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name,
-                    email,
-                    mobile,
-                    country,
-                    selectedService,
-                    brief,
+                    name: name.trim(),
+                    email: email.trim(),
+                    mobile: phone.trim() || undefined,
+                    selectedService: service,
+                    brief: description.trim(),
+                    marketingConsent,
                 }),
             });
 
-            const data = await res.json();
+            const data = await response.json();
 
-            if (res.ok && data.success) {
+            if (response.ok && data.success) {
                 setIsSubmitted(true);
-                // Reset form values
-                setName("");
-                setEmail("");
-                setMobile("");
-                setCountry("");
-                setSelectedService("Web & SaaS Development");
-                setBrief("");
-                setNameTouched(false);
-                setEmailTouched(false);
-                setBriefTouched(false);
-
-                // Auto hide success overlay after 8 seconds
-                setTimeout(() => {
-                    setIsSubmitted(false);
-                }, 8000);
             } else {
-                setErrorMessage(data.error || "Failed to submit inquiry. Please try again.");
+                setErrorMessage(data.error || "Failed to send inquiry. Please try again or email us directly.");
             }
-        } catch {
-            setErrorMessage("Network error. Please verify your internet connection and try again.");
+        } catch (error) {
+            setErrorMessage("A network error occurred. Please check your connection or contact us directly at hello@nisschay.com.");
         } finally {
             setIsLoading(false);
         }
     };
 
-    const servicesList: ServiceType[] = [
-        "Web & SaaS Development",
-        "Mobile App Development",
-        "AI Integration & Automation",
-        "Custom Software Development",
-        "UI/UX & Product Design",
-        "Cloud & DevOps Services",
-        "IT Consulting"
-    ];
-
     return (
-        <section className="relative py-16 sm:py-20 md:py-24 px-4 overflow-hidden bg-white" id="contact">
-            {/* Drifting soft background glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[260px] bg-gradient-to-tr from-blue-100/10 to-purple-100/5 rounded-full blur-[120px] pointer-events-none" />
+        <section
+            id="contact"
+            className="relative w-full py-20 sm:py-24 lg:py-28 bg-gradient-to-b from-white via-[#f7faff] to-white overflow-hidden"
+        >
+            {/* Subtle TrueCraft-inspired dotted background texture */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-30"
+                style={{
+                    backgroundImage: "radial-gradient(#0057fe 1px, transparent 1px)",
+                    backgroundSize: "22px 22px",
+                }}
+                aria-hidden="true"
+            />
 
-            <div className="max-w-6xl mx-auto rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-slate-100 bg-slate-50/30 backdrop-blur-sm">
-                
-                <div className="relative z-10 p-6 sm:p-8 md:p-12 lg:p-14">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Soft Ambient Radial Accents */}
+            <div
+                className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none"
+                aria-hidden="true"
+            />
+            <div
+                className="absolute bottom-10 -right-32 w-96 h-96 bg-sky-100/30 rounded-full blur-3xl pointer-events-none"
+                aria-hidden="true"
+            />
 
-                        {/* Left Column: Copy & SLA Commitments */}
-                        <motion.div 
-                            className="lg:col-span-5 flex flex-col items-start text-left justify-center z-10"
-                            custom={scrollDirection}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-120px" }}
-                            variants={leftColVariants}
-                        >
-                            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-600/10 border border-blue-600/20 text-blue-700 text-xs font-semibold mb-5 tracking-wide uppercase font-mono">
-                                [ GET IN TOUCH ]
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start w-full">
+                    {/* ============================================================
+                        LEFT COLUMN: Introduction & Why work with Nisschay
+                    ============================================================ */}
+                    <div className="lg:col-span-5 flex flex-col items-start text-left w-full min-w-0">
+                        {/* Section Eyebrow - Matching Nisschay Design Language */}
+                        <div className="inline-flex items-center gap-2 mb-4">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0057fe] opacity-75" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0057fe]" />
                             </span>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 text-gray-900 leading-[1.15]"
-                                style={{
-                                    fontFamily: "var(--font-display)",
-                                    letterSpacing: "-0.015em"
-                                }}
+                            <span className="w-5 h-[2px] bg-[#0057fe]" aria-hidden="true" />
+                            <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
+                                LET&apos;S CONNECT
+                            </span>
+                        </div>
+
+                        {/* Headline */}
+                        <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#000c24] tracking-tight leading-[1.18] font-display mb-5">
+                            Let&apos;s talk about what you want to build.
+                        </h2>
+
+                        {/* Description */}
+                        <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8 max-w-xl font-normal">
+                            Have an idea, a business challenge or a project in mind? Tell us what you need. We&apos;ll understand your goals and discuss how Nisschay can help.
+                        </p>
+
+                        {/* Subsection: Why work with Nisschay? */}
+                        <div className="pt-6 border-t border-slate-200/80 mb-8 w-full">
+                            <h3 className="text-sm font-semibold tracking-wide text-[#000c24] uppercase mb-4 font-mono">
+                                Why work with Nisschay?
+                            </h3>
+                            <ul className="space-y-3.5">
+                                {[
+                                    "Solutions built around your needs.",
+                                    "Direct communication with the people doing the work.",
+                                    "Clear project scope and practical guidance.",
+                                ].map((point, idx) => (
+                                    <li key={idx} className="flex items-start gap-3">
+                                        <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#0057fe] border border-blue-200/70">
+                                            <FiCheck className="h-2.5 w-2.5 stroke-[3]" />
+                                        </span>
+                                        <span className="text-sm text-slate-700 font-medium leading-relaxed">
+                                            {point}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Quick Direct Contact Info */}
+                        <div className="space-y-3 w-full max-w-md">
+                            <a
+                                href="mailto:hello@nisschay.com"
+                                className="group flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/90 border border-slate-200/80 hover:border-[#0057fe]/40 hover:shadow-xs transition-all text-slate-700"
                             >
-                                <span className="text-gray-900">Let&apos;s Build the </span>
-                                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                    Future Together.
-                                </span>
-                            </h2>
-                            <p className="text-gray-550 text-sm sm:text-base mb-8 leading-relaxed font-light">
-                                Have a project in mind? We&apos;d love to hear about it. Fill out our scoping form, and our architects will reach out with a blueprint.
-                            </p>
+                                <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0057fe] flex items-center justify-center shrink-0 group-hover:bg-[#0057fe] group-hover:text-white transition-colors">
+                                    <FiMail className="w-4 h-4" />
+                                </div>
+                                <div>
+                                    <p className="text-xs text-slate-400 font-medium">Direct Inquiries</p>
+                                    <p className="text-sm font-semibold text-slate-800 group-hover:text-[#0057fe] transition-colors">
+                                        hello@nisschay.com
+                                    </p>
+                                </div>
+                            </a>
 
-                            {/* Trust SLA badges */}
-                            <div className="space-y-4 mb-8 w-full border-t border-slate-100 pt-6">
-                                <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-700">
-                                    <div className="w-8 h-8 rounded-full bg-blue-100/60 border border-blue-200/50 flex items-center justify-center text-blue-600 shrink-0">
-                                        <FiShield className="w-4 h-4" />
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold text-slate-900">100% IP & NDA Protected</p>
-                                        <p className="text-[10px] sm:text-xs text-slate-500">Mutual NDAs pre-signed prior to any structural design call.</p>
-                                    </div>
+                            <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/90 border border-slate-200/80 text-slate-700">
+                                <div className="w-10 h-10 rounded-xl bg-slate-50 text-[#0057fe] flex items-center justify-center shrink-0">
+                                    <FiClock className="w-4 h-4" />
                                 </div>
-                                <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-700">
-                                    <div className="w-8 h-8 rounded-full bg-emerald-100/60 border border-emerald-200/50 flex items-center justify-center text-emerald-600 shrink-0">
-                                        <FiAward className="w-4 h-4" />
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold text-slate-900">Elite Engineering Guarantee</p>
-                                        <p className="text-[10px] sm:text-xs text-slate-500">Zero outsourcing. Your systems are built by local, vetted engineers.</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-700">
-                                    <div className="w-8 h-8 rounded-full bg-purple-100/60 border border-purple-200/50 flex items-center justify-center text-purple-600 shrink-0">
-                                        <FiZap className="w-4 h-4" />
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold text-slate-900">Dynamic Response SLA</p>
-                                        <p className="text-[10px] sm:text-xs text-slate-500">We analyze scoping blueprints and respond under 4 hours.</p>
-                                    </div>
+                                <div>
+                                    <p className="text-xs text-slate-400 font-medium">Response Time</p>
+                                    <p className="text-sm font-semibold text-slate-800">
+                                        Prompt responses within 24 business hours
+                                    </p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            {/* Contact Links */}
-                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-3 text-sm text-slate-650 w-full font-mono">
-                                <a href="mailto:hello@nisschay.com" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                                    <FaEnvelope className="text-blue-500 text-xs" />
-                                    <span>{siteConfig.email}</span>
-                                </a>
-                                <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                                    <FaPhoneAlt className="text-blue-500 text-xs" />
-                                    <span>{siteConfig.phone}</span>
-                                </a>
-                            </div>
-                            <div className="flex items-center gap-2 text-xs font-mono text-slate-600 mb-6">
-                                <FiMapPin className="text-[#0057fe] text-xs shrink-0" />
-                                <span>Studio: {getStudioLocation()}</span>
+                    {/* ============================================================
+                        RIGHT COLUMN: Inquiry Form Card
+                    ============================================================ */}
+                    <div className="lg:col-span-7 w-full min-w-0">
+                        <div className="bg-white rounded-[28px] sm:rounded-3xl border border-slate-200/90 p-6 sm:p-8 md:p-10 shadow-[0_12px_40px_-15px_rgba(15,23,42,0.06)] relative overflow-hidden">
+                            {/* Card Header */}
+                            <div className="mb-6 sm:mb-8">
+                                <h3 className="text-2xl sm:text-[26px] font-bold text-[#000c24] font-display tracking-tight">
+                                    Tell us about your project
+                                </h3>
+                                <p className="text-slate-500 text-sm mt-1.5">
+                                    A few details will help us understand your requirements.
+                                </p>
                             </div>
 
-                            <div className="flex gap-3.5">
-                                <SocialLink icon={FaLinkedin} href="#" />
-                                <SocialLink icon={FaTwitter} href="#" />
-                                <SocialLink icon={FaGithub} href="#" />
-                            </div>
-                        </motion.div>
-
-                        {/* Right Column: Single-Pane Scoping Deck Form */}
-                        <motion.div 
-                            className="lg:col-span-7 w-full relative z-10"
-                            custom={scrollDirection}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-120px" }}
-                            variants={rightColVariants}
-                        >
-                            <div className="bg-white p-6 sm:p-8 md:p-10 rounded-[2rem] border border-slate-100 shadow-2xl relative flex flex-col overflow-hidden">
-                                
-                                {/* Header Tracker */}
-                                <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-6 select-none">
-                                    <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">
-                                        SPECIFICATION MATRIX
-                                    </span>
-                                    <div className="flex items-center gap-1.5 font-mono text-[9px] font-bold text-blue-600">
-                                        <span>PROJECT BRIEF</span>
+                            {/* Submission Feedback or Form */}
+                            {isSubmitted ? (
+                                <div className="py-10 px-4 flex flex-col items-center text-center">
+                                    <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mb-4">
+                                        <FiCheck className="w-7 h-7 stroke-[2.5]" />
                                     </div>
+                                    <h4 className="text-2xl font-bold text-[#000c24] font-display mb-2">
+                                        Inquiry Received
+                                    </h4>
+                                    <p className="text-slate-600 text-sm max-w-md mb-6 leading-relaxed">
+                                        Thank you for reaching out, <span className="font-semibold text-slate-800">{name}</span>. We have received your project details and our team will get in touch with you shortly.
+                                    </p>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setIsSubmitted(false);
+                                            setName("");
+                                            setEmail("");
+                                            setPhone("");
+                                            setDescription("");
+                                            setService("Website & Web Development");
+                                            setNameTouched(false);
+                                            setEmailTouched(false);
+                                            setDescriptionTouched(false);
+                                        }}
+                                        className="text-xs font-semibold text-[#0057fe] hover:underline cursor-pointer"
+                                    >
+                                        Send another project inquiry
+                                    </button>
                                 </div>
-
-                                {/* Success Scoping Receipt Overlay */}
-                                <AnimatePresence>
-                                    {isSubmitted && (
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.95 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.95 }}
-                                            className="absolute inset-0 bg-white/98 flex flex-col items-center justify-center z-20 p-8 text-center"
-                                        >
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-                                                className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500 mb-6 shadow-sm"
-                                            >
-                                                <FaCheckCircle className="text-3xl animate-pulse" />
-                                            </motion.div>
-                                            
-                                            <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight font-display">
-                                                Thank You for Reaching Out!
-                                            </h3>
-                                            
-                                            <p className="text-slate-600 text-sm font-light max-w-sm leading-relaxed mb-8">
-                                                We have received your submission. Our team will review your project parameters and contact you shortly to begin mapping out your structural blueprint.
-                                            </p>
-
-                                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200/60 text-[10px] font-mono font-bold text-slate-500 select-none">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                                <span>RESPONSE SLA // &lt; 4 HOURS</span>
-                                            </div>
-
-                                            <button
-                                                type="button"
-                                                onClick={() => setIsSubmitted(false)}
-                                                className="mt-6 text-xs font-mono font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider underline cursor-pointer"
-                                            >
-                                                Send another request
-                                            </button>
-                                        </motion.div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                                    {/* Error Banner */}
+                                    {errorMessage && (
+                                        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs leading-relaxed">
+                                            {errorMessage}
+                                        </div>
                                     )}
-                                </AnimatePresence>
 
-                                <form className="space-y-5 flex flex-col" onSubmit={handleSubmit}>
-                                    
-                                    {/* 1. Identification Fields */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                required
-                                                value={name}
-                                                onChange={(e) => setName(e.target.value)}
-                                                onBlur={() => setNameTouched(true)}
-                                                className={`w-full px-4 py-3.5 pl-10 rounded-xl bg-slate-50/50 border transition-all outline-none text-slate-800 text-xs sm:text-sm font-semibold peer ${
-                                                    nameTouched && name.trim() === ""
-                                                        ? "border-rose-500 focus:border-rose-500 focus:bg-rose-50/5"
-                                                        : "border-slate-200 focus:border-blue-500 focus:bg-blue-50/10"
-                                                }`}
-                                                placeholder="Full Name"
-                                            />
-                                            <FiUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs peer-focus:text-blue-500 transition-colors" />
-                                            {nameTouched && name.trim() === "" && (
-                                                <p className="text-[9px] text-rose-500 font-mono mt-1 pl-1 select-none">
-                                                    * Name is required.
-                                                </p>
-                                            )}
-                                        </div>
-
-                                        <div className="relative">
-                                            <input
-                                                type="email"
-                                                required
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                                onBlur={() => setEmailTouched(true)}
-                                                className={`w-full px-4 py-3.5 pl-10 rounded-xl bg-slate-50/50 border transition-all outline-none text-slate-800 text-xs sm:text-sm font-semibold peer ${
-                                                    emailTouched && !validateEmail(email)
-                                                        ? "border-rose-500 focus:border-rose-500 focus:bg-rose-50/5"
-                                                        : "border-slate-200 focus:border-blue-500 focus:bg-blue-50/10"
-                                                }`}
-                                                placeholder="Email Address"
-                                            />
-                                            <FiMail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs peer-focus:text-blue-500 transition-colors" />
-                                            {emailTouched && email.trim() === "" && (
-                                                <p className="text-[9px] text-rose-500 font-mono mt-1 pl-1 select-none">
-                                                    * Email is required.
-                                                </p>
-                                            )}
-                                            {emailTouched && !validateEmail(email) && email.trim() !== "" && (
-                                                <p className="text-[9px] text-rose-500 font-mono mt-1 pl-1 select-none">
-                                                    * Enter a valid email.
-                                                </p>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    {/* 2. Optional Demographics */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div className="relative">
-                                            <input
-                                                type="tel"
-                                                value={mobile}
-                                                onChange={(e) => setMobile(e.target.value)}
-                                                className="w-full px-4 py-3.5 pl-10 rounded-xl bg-slate-50/50 border border-slate-200 focus:border-blue-500 focus:bg-blue-50/10 transition-all outline-none text-slate-800 text-xs sm:text-sm font-semibold peer"
-                                                placeholder="Mobile (optional)"
-                                            />
-                                            <FiPhone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs peer-focus:text-blue-500 transition-colors" />
-                                        </div>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                value={country}
-                                                onChange={(e) => setCountry(e.target.value)}
-                                                className="w-full px-4 py-3.5 pl-10 rounded-xl bg-slate-50/50 border border-slate-200 focus:border-blue-500 focus:bg-blue-50/10 transition-all outline-none text-slate-800 text-xs sm:text-sm font-semibold peer"
-                                                placeholder="Country (optional)"
-                                            />
-                                            <FiGlobe className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs peer-focus:text-blue-500 transition-colors" />
-                                        </div>
-                                    </div>
-
-                                    {/* 3. Service Selection */}
+                                    {/* 1. Full Name (Required) */}
                                     <div>
-                                        <label className="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-2 select-none">
-                                            Select Service Layer
+                                        <label
+                                            htmlFor="contact-name"
+                                            className="block text-xs font-semibold text-slate-800 uppercase tracking-wider mb-1.5"
+                                        >
+                                            Full name <span className="text-[#0057fe]">*</span>
                                         </label>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {servicesList.map((service) => {
-                                                const isActive = selectedService === service;
-                                                return (
-                                                    <button
-                                                        type="button"
-                                                        key={service}
-                                                        onClick={() => setSelectedService(service)}
-                                                        className={`px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium border transition-all active:scale-[0.97] ${
-                                                            isActive
-                                                                ? "border-blue-600 bg-blue-50 text-blue-700 shadow-sm font-semibold"
-                                                                : "border-slate-200 bg-slate-50/20 text-slate-600 hover:border-slate-300"
-                                                        }`}
-                                                    >
-                                                        {service}
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-
-                                    {/* 4. Project Brief */}
-                                    <div>
-                                        <label className="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-2 select-none">
-                                            Project Brief
-                                        </label>
-                                        <textarea
-                                            rows={4}
+                                        <input
+                                            id="contact-name"
+                                            type="text"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            onBlur={() => setNameTouched(true)}
+                                            placeholder="John Doe"
                                             required
-                                            value={brief}
-                                            onChange={(e) => setBrief(e.target.value)}
-                                            onBlur={() => setBriefTouched(true)}
-                                            placeholder="Describe your scaling, architecture, or integrations requirements here..."
-                                            className={`w-full px-4 py-3 rounded-xl bg-slate-50/50 border focus:border-blue-500 focus:bg-blue-50/10 transition-all outline-none resize-none text-slate-800 text-xs sm:text-sm font-light leading-relaxed ${
-                                                briefTouched && brief.trim() === ""
-                                                    ? "border-rose-500 focus:border-rose-500 focus:bg-rose-50/5"
-                                                    : "border-slate-200 focus:border-blue-500 focus:bg-blue-50/10"
+                                            className={`w-full h-11 sm:h-12 px-4 rounded-xl border bg-slate-50/60 hover:bg-white focus:bg-white text-slate-900 text-sm outline-none transition-all placeholder:text-slate-400 ${
+                                                nameTouched && !name.trim()
+                                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                                                    : "border-slate-200 focus:border-[#0057fe] focus:ring-2 focus:ring-blue-100"
                                             }`}
                                         />
-                                        {briefTouched && brief.trim() === "" && (
-                                            <p className="text-[9px] text-rose-500 font-mono mt-1 pl-1 select-none">
-                                                * Project brief is required.
+                                        {nameTouched && !name.trim() && (
+                                            <p className="text-xs text-red-500 mt-1">
+                                                Please enter your full name.
                                             </p>
                                         )}
                                     </div>
 
-                                    {/* Error Message */}
-                                    {errorMessage && (
-                                        <div className="text-[11px] font-mono text-rose-500 bg-rose-50 border border-rose-100 rounded-xl p-3 text-left">
-                                            [ERROR] {errorMessage}
+                                    {/* 2 & 3. Email Address (Required) + Phone Number (Optional) */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-4">
+                                        {/* Email Address */}
+                                        <div>
+                                            <label
+                                                htmlFor="contact-email"
+                                                className="block text-xs font-semibold text-slate-800 uppercase tracking-wider mb-1.5"
+                                            >
+                                                Email address <span className="text-[#0057fe]">*</span>
+                                            </label>
+                                            <input
+                                                id="contact-email"
+                                                type="email"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                onBlur={() => setEmailTouched(true)}
+                                                placeholder="john@example.com"
+                                                required
+                                                className={`w-full h-11 sm:h-12 px-4 rounded-xl border bg-slate-50/60 hover:bg-white focus:bg-white text-slate-900 text-sm outline-none transition-all placeholder:text-slate-400 ${
+                                                    emailTouched && (!email.trim() || !validateEmail(email))
+                                                        ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                                                        : "border-slate-200 focus:border-[#0057fe] focus:ring-2 focus:ring-blue-100"
+                                                }`}
+                                            />
+                                            {emailTouched && !email.trim() && (
+                                                <p className="text-xs text-red-500 mt-1">
+                                                    Please enter your email address.
+                                                </p>
+                                            )}
+                                            {emailTouched && email.trim() && !validateEmail(email) && (
+                                                <p className="text-xs text-red-500 mt-1">
+                                                    Please enter a valid email address.
+                                                </p>
+                                            )}
                                         </div>
-                                    )}
+
+                                        {/* Phone Number */}
+                                        <div>
+                                            <label
+                                                htmlFor="contact-phone"
+                                                className="block text-xs font-semibold text-slate-800 uppercase tracking-wider mb-1.5"
+                                            >
+                                                Phone number{" "}
+                                                <span className="text-slate-400 font-normal lowercase tracking-normal">
+                                                    (optional)
+                                                </span>
+                                            </label>
+                                            <input
+                                                id="contact-phone"
+                                                type="tel"
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
+                                                placeholder="+91 98765 43210"
+                                                className="w-full h-11 sm:h-12 px-4 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-white focus:bg-white text-slate-900 text-sm outline-none transition-all placeholder:text-slate-400 focus:border-[#0057fe] focus:ring-2 focus:ring-blue-100"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* 4. What do you need help with? (Required Dropdown) */}
+                                    <div>
+                                        <label
+                                            htmlFor="contact-service"
+                                            className="block text-xs font-semibold text-slate-800 uppercase tracking-wider mb-1.5"
+                                        >
+                                            What do you need help with? <span className="text-[#0057fe]">*</span>
+                                        </label>
+                                        <div className="relative">
+                                            <select
+                                                id="contact-service"
+                                                value={service}
+                                                onChange={(e) => setService(e.target.value)}
+                                                className="w-full h-11 sm:h-12 px-4 pr-10 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-white focus:bg-white text-slate-900 text-sm outline-none transition-all focus:border-[#0057fe] focus:ring-2 focus:ring-blue-100 appearance-none cursor-pointer"
+                                            >
+                                                {serviceOptions.map((opt) => (
+                                                    <option key={opt} value={opt}>
+                                                        {opt}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                                <FiChevronDown className="w-4 h-4" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* 5. Project Description (Required Textarea) */}
+                                    <div>
+                                        <label
+                                            htmlFor="contact-description"
+                                            className="block text-xs font-semibold text-slate-800 uppercase tracking-wider mb-1.5"
+                                        >
+                                            Project description <span className="text-[#0057fe]">*</span>
+                                        </label>
+                                        <textarea
+                                            id="contact-description"
+                                            rows={3}
+                                            value={description}
+                                            onChange={(e) => setDescription(e.target.value)}
+                                            onBlur={() => setDescriptionTouched(true)}
+                                            placeholder="Tell us what you're planning to build, target audience, timeline, or key technical challenges..."
+                                            required
+                                            className={`w-full p-3.5 sm:p-4 rounded-xl border bg-slate-50/60 hover:bg-white focus:bg-white text-slate-900 text-sm outline-none transition-all placeholder:text-slate-400 resize-y min-h-[95px] ${
+                                                descriptionTouched && !description.trim()
+                                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                                                    : "border-slate-200 focus:border-[#0057fe] focus:ring-2 focus:ring-blue-100"
+                                            }`}
+                                        />
+                                        {descriptionTouched && !description.trim() && (
+                                            <p className="text-xs text-red-500 mt-1">
+                                                Please share a brief summary of your project.
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* Marketing Consent (Separate, Optional, Unchecked by default) */}
+                                    <div className="pt-0.5">
+                                        <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                                            <input
+                                                type="checkbox"
+                                                checked={marketingConsent}
+                                                onChange={(e) => setMarketingConsent(e.target.checked)}
+                                                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0057fe] focus:ring-[#0057fe] cursor-pointer shrink-0"
+                                            />
+                                            <span className="text-xs text-slate-600 leading-relaxed">
+                                                Keep me updated with occasional technology insights and engineering articles from Nisschay.{" "}
+                                                <span className="text-slate-400 font-normal">(Optional)</span>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    {/* Point of Data Collection DPDP Notice */}
+                                    <div className="rounded-xl p-3 bg-slate-50/90 border border-slate-200/80 text-[11px] leading-relaxed text-slate-500 space-y-1">
+                                        <div className="flex items-center gap-1.5 font-semibold text-slate-700">
+                                            <FiShield className="w-3.5 h-3.5 text-[#0057fe]" />
+                                            <span>Data Protection & Privacy Notice</span>
+                                        </div>
+                                        <p>
+                                            <strong className="text-slate-600">Information collected:</strong> Your name, email, phone (if provided), and project requirements.
+                                        </p>
+                                        <p>
+                                            <strong className="text-slate-600">Why it is collected:</strong> To evaluate project requirements, prepare practical technical guidance, and respond to your inquiry. We retain inquiry records only as long as active discussions continue and never sell or rent your information.
+                                        </p>
+                                        <p>
+                                            <strong className="text-slate-600">Your rights:</strong> You can contact us anytime at{" "}
+                                            <a
+                                                href="mailto:hello@nisschay.com"
+                                                className="text-[#0057fe] hover:underline font-medium"
+                                            >
+                                                hello@nisschay.com
+                                            </a>{" "}
+                                            to request access, correction, or deletion of your information. Learn more in our{" "}
+                                            <Link
+                                                href="/privacy"
+                                                className="text-[#0057fe] hover:underline font-medium"
+                                            >
+                                                Privacy Policy
+                                            </Link>
+                                            .
+                                        </p>
+                                    </div>
 
                                     {/* Submit Button */}
-                                    <div className="pt-2">
-                                        <button
-                                            type="submit"
-                                            disabled={isLoading}
-                                            className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-lg hover:shadow-blue-500/25 text-white font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-wider disabled:opacity-40"
-                                        >
-                                            {isLoading ? (
-                                                <>
-                                                    <span>Sending Request...</span>
-                                                    <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <span>Send Message</span>
-                                                    <FaPaperPlane className="text-[10px]" />
-                                                </>
-                                            )}
-                                        </button>
-                                    </div>
-                                    
+                                    <button
+                                        type="submit"
+                                        disabled={isLoading}
+                                        className="group w-full h-12 rounded-xl bg-[#0057fe] hover:bg-[#0047d6] text-white font-medium text-sm flex items-center justify-center gap-2 transition-all shadow-xs hover:shadow active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                                    >
+                                        {isLoading ? (
+                                            <>
+                                                <svg
+                                                    className="animate-spin h-4 w-4 text-white"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                >
+                                                    <circle
+                                                        className="opacity-25"
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                        stroke="currentColor"
+                                                        strokeWidth="4"
+                                                    />
+                                                    <path
+                                                        className="opacity-75"
+                                                        fill="currentColor"
+                                                        d="M4 12a8 8 0 018-8v8H4z"
+                                                    />
+                                                </svg>
+                                                <span>Sending Inquiry...</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>Send Project Inquiry</span>
+                                                <FiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                                            </>
+                                        )}
+                                    </button>
                                 </form>
-                            </div>
-                        </motion.div>
-
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-    );
-}
-
-function SocialLink({ icon: Icon, href }: { icon: IconType; href: string }) {
-    return (
-        <a href={href} className="w-10 h-10 rounded-full bg-blue-50 hover:bg-blue-600 hover:text-white hover:scale-110 transition-all duration-300 border border-blue-100/40 flex items-center justify-center text-blue-600">
-            <Icon className="text-base" />
-        </a>
     );
 }
