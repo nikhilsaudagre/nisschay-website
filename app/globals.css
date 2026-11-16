@@ -42,6 +42,9 @@
   --brand-blue-hover: #0047d6;
   --brand-navy: #000c24;
 
+  /* Global Site Background - Crisp Icy White */
+  --site-bg: #F4F7FB;
+
   /* Sticky Note Tints (Services Section) */
   --note-blue-tint-1: #eff6ff;
   --note-blue-tint-2: #e0edfe;
@@ -177,6 +180,8 @@ p {
 /* Force Light Mode - Disable Dark Mode Detection */
 
 body {
+  background-color: var(--site-bg);
+  color: var(--color-brand-navy, #000c24);
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   overflow-x: clip;
   max-width: 100%;

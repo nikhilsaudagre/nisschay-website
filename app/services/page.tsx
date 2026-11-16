@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function ServicesPage() {
     return (
-        <main className="relative bg-white min-h-screen pt-28">
+        <main className="relative bg-[var(--site-bg)] min-h-screen pt-28">
             <ServicesBentoGrid />
             <ServiceBreakdownSection />
             <IndustrySolutionsSection />

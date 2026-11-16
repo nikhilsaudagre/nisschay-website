@@ -128,7 +128,7 @@ export default function WhyChooseUsSection() {
     return (
         <section
             id="why-choose-us"
-            className="relative w-full py-20 sm:py-24 lg:py-28 bg-white overflow-hidden"
+            className="relative w-full py-20 sm:py-24 lg:py-28 bg-transparent overflow-hidden"
         >
             <div className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header: Centered Eyebrow, Editorial Headline with Underline, and Supporting Text */}

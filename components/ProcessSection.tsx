@@ -425,7 +425,7 @@ export default function ProcessSection() {
     };
 
     return (
-        <section className="relative w-full bg-white" id="process">
+        <section className="relative w-full bg-transparent" id="process">
             {/* ============================================================
                 DESKTOP VIEW: Desk Calendar 3D Page-Roll Two-Column Interaction
             ============================================================ */}

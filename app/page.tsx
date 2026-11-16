@@ -9,7 +9,7 @@ import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
   return (
-    <main className="relative bg-white min-h-screen">
+    <main className="relative bg-[var(--site-bg)] min-h-screen">
       <HeroSection />
       <QuoteSection />
       <MeetNisschaySection />

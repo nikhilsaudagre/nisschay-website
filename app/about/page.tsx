@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function AboutPage() {
     return (
-        <main className="relative bg-white min-h-screen pt-24 sm:pt-28">
+        <main className="relative bg-[#FAF9F5] min-h-screen pt-14 sm:pt-16 lg:pt-20">
             <AboutSection isStandalone={true} />
         </main>
     );

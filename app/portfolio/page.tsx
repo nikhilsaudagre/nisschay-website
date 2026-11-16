@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function PortfolioPage() {
     return (
-        <main className="relative bg-white min-h-screen pt-28">
+        <main className="relative bg-[var(--site-bg)] min-h-screen pt-28">
             {/* Clean white background - no grid pattern */}
 
             <WorkSection />

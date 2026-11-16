@@ -89,7 +89,7 @@ export default function ContactSection() {
     return (
         <section
             id="contact"
-            className="relative w-full py-20 sm:py-24 lg:py-28 bg-gradient-to-b from-white via-[#f7faff] to-white overflow-hidden"
+            className="relative w-full py-20 sm:py-24 lg:py-28 bg-gradient-to-b from-transparent via-blue-50/25 to-transparent overflow-hidden"
         >
             {/* Subtle TrueCraft-inspired dotted background texture */}
             <div

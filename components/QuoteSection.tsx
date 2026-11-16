@@ -12,7 +12,7 @@ export default function QuoteSection() {
     const shouldReduceMotion = useReducedMotion();
 
     return (
-        <section className="relative py-10 sm:py-12 md:py-14 bg-white overflow-hidden flex items-center justify-center">
+        <section className="relative py-10 sm:py-12 md:py-14 bg-transparent overflow-hidden flex items-center justify-center">
             {/* Background decorative soft glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-gradient-to-tr from-blue-100/20 to-indigo-100/10 rounded-full blur-[100px] pointer-events-none" />
 

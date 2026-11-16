@@ -284,7 +284,7 @@ export default function ServicesSection() {
     return (
         <section
             id="services"
-            className="relative w-full overflow-x-clip bg-white py-18 sm:py-22 lg:py-26"
+            className="relative w-full overflow-x-clip bg-transparent py-18 sm:py-22 lg:py-26"
         >
             {/* Responsive Container */}
             <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-14">

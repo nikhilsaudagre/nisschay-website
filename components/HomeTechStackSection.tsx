@@ -169,7 +169,7 @@ export default function HomeTechStackSection() {
     return (
         <section
             id="technology"
-            className="relative w-full bg-white py-16 sm:py-20 lg:py-26 overflow-hidden select-none"
+            className="relative w-full bg-transparent py-16 sm:py-20 lg:py-26 overflow-hidden select-none"
         >
             {/* Embedded Keyframes for Seamless Vertical Stripe Marquee */}
             <style>{`

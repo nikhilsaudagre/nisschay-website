@@ -61,7 +61,7 @@ export default function MeetNisschaySection() {
             {/* ========================================================
                 CHAPTER 1: WHITE EDITORIAL INTRODUCTION
             ======================================================== */}
-            <div className="relative w-full bg-white pt-14 sm:pt-18 lg:pt-24 pb-4 sm:pb-6 lg:pb-0">
+            <div className="relative w-full bg-transparent pt-14 sm:pt-18 lg:pt-24 pb-4 sm:pb-6 lg:pb-0">
                 <div className="w-full max-w-7xl mx-auto pl-6 pr-5 sm:pl-12 sm:pr-8 lg:pl-14 lg:pr-12">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-end">
                         

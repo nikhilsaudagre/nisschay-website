@@ -20,7 +20,7 @@ export default function HeroSection() {
     return (
         <section 
             id="home" 
-            className="relative min-h-[620px] lg:h-[710px] lg:min-h-[680px] lg:max-h-[740px] flex items-center justify-center overflow-hidden pt-20 sm:pt-24 lg:pt-16 pb-8 sm:pb-10 lg:pb-6 bg-white"
+            className="relative min-h-[620px] lg:h-[710px] lg:min-h-[680px] lg:max-h-[740px] flex items-center justify-center overflow-hidden pt-20 sm:pt-24 lg:pt-16 pb-8 sm:pb-10 lg:pb-6 bg-transparent"
         >
             {/* Delicate Tech Dot-Matrix Background Texture (Softly fades at borders) */}
             <div 
