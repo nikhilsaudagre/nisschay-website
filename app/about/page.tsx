@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <main className="relative bg-[#F8F9FC] min-h-screen pt-14 sm:pt-16 lg:pt-20">
+        <main className="relative bg-[#F8F9FC] min-h-screen pt-24 sm:pt-28 lg:pt-32">
             <AboutSection isStandalone={true} />
         </main>
     );

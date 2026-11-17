@@ -192,7 +192,7 @@ function HeroDualCornerTapes() {
         <>
             {/* Top-Left Corner Washi Tape */}
             <div
-                className="absolute -top-4 -left-3 sm:-top-5 sm:-left-4 w-32 sm:w-40 h-7 sm:h-8 pointer-events-none z-30 -rotate-[32deg]"
+                className="absolute -top-2.5 -left-2.5 xs:-top-3 xs:-left-3 sm:-top-5 sm:-left-4 w-20 xs:w-24 sm:w-36 lg:w-40 h-5 sm:h-7 lg:h-8 pointer-events-none z-30 -rotate-[18deg] xs:-rotate-[22deg] sm:-rotate-[28deg] lg:-rotate-[32deg]"
                 aria-hidden="true"
             >
                 <div
@@ -206,7 +206,7 @@ function HeroDualCornerTapes() {
 
             {/* Top-Right Corner Washi Tape */}
             <div
-                className="absolute -top-4 -right-3 sm:-top-5 sm:-right-4 w-32 sm:w-40 h-7 sm:h-8 pointer-events-none z-30 rotate-[32deg]"
+                className="absolute -top-2.5 -right-2.5 xs:-top-3 xs:-right-3 sm:-top-5 sm:-right-4 w-20 xs:w-24 sm:w-36 lg:w-40 h-5 sm:h-7 lg:h-8 pointer-events-none z-30 rotate-[18deg] xs:rotate-[22deg] sm:rotate-[28deg] lg:rotate-[32deg]"
                 aria-hidden="true"
             >
                 <div
@@ -294,7 +294,7 @@ export default function AboutSection({
     return (
         <section
             id="about"
-            className={`relative w-full overflow-x-clip bg-transparent text-[#07142F] ${
+            className={`relative w-full overflow-x-clip bg-transparent text-[#07142F] scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32 ${
                 isStandalone ? "pt-2 sm:pt-3 lg:pt-4 pb-20 sm:pb-28 lg:pb-36" : "py-20 sm:py-28 lg:py-36"
             }`}
         >
@@ -334,7 +334,7 @@ export default function AboutSection({
 
                         {/* Physical Cream Stationery Letter Sheet with Torn Left & Right Edges */}
                         <div
-                            className="relative z-10 bg-gradient-to-b from-[#FAF7F0] via-[#F6F0E2] to-[#EFE7D5] border-y border-[#dfceb0]/90 px-6 sm:px-12 md:px-16 lg:px-20 py-8 sm:py-11 md:py-13 lg:py-15 text-center overflow-hidden"
+                            className="relative z-10 bg-gradient-to-b from-[#FAF7F0] via-[#F6F0E2] to-[#EFE7D5] border-y border-[#dfceb0]/90 px-5 xs:px-6 sm:px-12 md:px-16 lg:px-20 py-7 xs:py-8 sm:py-11 md:py-13 lg:py-15 text-center overflow-hidden"
                             style={{
                                 clipPath: "polygon(0.8% 0%, 99.2% 0.2%, 99.7% 3%, 99.4% 8%, 100% 15%, 99.6% 25%, 99.9% 38%, 99.5% 50%, 100% 62%, 99.6% 75%, 99.9% 88%, 99.3% 97%, 98.8% 100%, 0.9% 99.8%, 0.3% 97%, 0.6% 88%, 0% 75%, 0.4% 62%, 0% 50%, 0.5% 38%, 0.1% 25%, 0.5% 15%, 0% 7%, 0.6% 2%)",
                                 boxShadow: "inset 0 1px 1px rgba(255,255,255,0.95), inset 0 -2px 6px rgba(110,80,25,0.06), inset 3px 0 6px rgba(255,255,255,0.7), inset -3px 0 6px rgba(255,255,255,0.7)",
@@ -352,9 +352,11 @@ export default function AboutSection({
                                 aria-hidden="true"
                             >
                                 <Image 
-                                    src="/logo-mark.png" 
+                                    src="/logo-mark.webp" 
                                     alt="" 
                                     fill 
+                                    priority
+                                    sizes="(max-width: 640px) 192px, (max-width: 1024px) 320px, 384px"
                                     className="object-contain filter grayscale contrast-150" 
                                 />
                             </div>
@@ -362,13 +364,13 @@ export default function AboutSection({
                             {/* Letter Content */}
                             <div className="relative z-20 flex flex-col items-center justify-center max-w-4xl mx-auto">
                                 {/* Tasteful Stationery Letterhead Detail */}
-                                <div className="w-full flex items-center justify-between pb-4 sm:pb-5 mb-5 sm:mb-6 border-b border-[#07142F]/10 text-slate-500 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] uppercase select-none">
-                                    <span>NISSCHAY STUDIO · DIGITAL SOLUTIONS</span>
-                                    <span className="font-bold text-[#07142F]">ESTABLISHED · 2026</span>
+                                <div className="w-full flex flex-col xs:flex-row items-center justify-between gap-1 xs:gap-2 pb-3.5 sm:pb-5 mb-4 sm:mb-6 border-b border-[#07142F]/10 text-slate-500 font-mono text-[8.5px] sm:text-[10px] tracking-[0.14em] sm:tracking-[0.22em] uppercase select-none">
+                                    <span className="text-center xs:text-left">NISSCHAY STUDIO · DIGITAL SOLUTIONS</span>
+                                    <span className="font-bold text-[#07142F] text-center xs:text-right shrink-0">ESTABLISHED · 2026</span>
                                 </div>
 
                                 {/* Heading */}
-                                <h1 className={`${caveat.className} text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[84px] font-bold text-[#075BFA] tracking-normal leading-[1.1] inline-block py-1 filter drop-shadow-[0_1px_1px_rgba(7,91,250,0.18)]`}>
+                                <h1 className={`${caveat.className} text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[84px] font-bold text-[#075BFA] tracking-normal leading-[1.1] inline-block py-1 filter drop-shadow-[0_1px_1px_rgba(7,91,250,0.18)]`}>
                                     What is Nisschay?
                                 </h1>
 

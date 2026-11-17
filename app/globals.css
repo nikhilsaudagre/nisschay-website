@@ -42,8 +42,8 @@
   --brand-blue-hover: #0047d6;
   --brand-navy: #000c24;
 
-  /* Global Site Background - Crisp Icy White */
-  --site-bg: #F4F7FB;
+  /* Global Site Background - Soft Off-White matching About page & Hero */
+  --site-bg: #F8F9FC;
 
   /* Sticky Note Tints (Services Section) */
   --note-blue-tint-1: #eff6ff;
@@ -546,4 +546,33 @@ section[id], div[id] {
 
 .animate-sparkle {
   animation: sparkle-twinkle 3s ease-in-out infinite;
+}
+
+/* Restrained Slow Shimmer Animation for CTA Buttons (4–6s cycle) */
+@keyframes shimmer-slow {
+  0% {
+    transform: translateX(-180%) skewX(-20deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  28% {
+    transform: translateX(280%) skewX(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(280%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+.animate-shimmer-slow {
+  animation: shimmer-slow 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer-slow {
+    animation: none !important;
+  }
 }

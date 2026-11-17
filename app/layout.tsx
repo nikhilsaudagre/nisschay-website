@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Outfit, Inter, Caveat, Geist } from "next/font/google";
+import { getSiteUrl } from "@/lib/siteConfig";
 import "./globals.css";
 import "lenis/dist/lenis.css";
 
@@ -36,8 +37,10 @@ const caveat = Caveat({
   display: "swap",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nisschay.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Nisschay - High-Performance Software Engineering",
     template: "%s | Nisschay",
@@ -45,19 +48,31 @@ export const metadata: Metadata = {
   description: "Nisschay is the best IT company in Amravati, engineering custom software, SaaS products, mobile applications, and AI integrations designed for enterprise scale and startup velocity.",
   keywords: ["SaaS Development", "Custom Software Development", "AI Solutions", "WhatsApp Business Automation", "Mobile App Development", "IT Solutions", "best IT company in Amravati", "IT company in Amravati", "software development in Amravati"],
   authors: [{ name: "Nisschay Team" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Nisschay - High-Performance Software Engineering",
     description: "Bespoke system architecture and premium visual designs. From secure SaaS platforms to agentic AI workflows—we build the code that runs your business.",
-    url: "https://nisschay.com",
+    url: siteUrl,
     siteName: "Nisschay",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/Nisschay_Blue_Arch_Logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nisschay - High-Performance Software Engineering",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nisschay - High-Performance Software Engineering",
     description: "Bespoke system architecture and premium visual designs. From secure SaaS platforms to agentic AI workflows.",
     creator: "@nisschay",
+    images: ["/Nisschay_Blue_Arch_Logo.png"],
   },
 };
 
@@ -66,6 +81,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import SmoothScroll from "@/components/SmoothScroll";
+import JsonLd from "@/components/JsonLd";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
@@ -80,6 +96,7 @@ export default function RootLayout({
       <body
         className={`${playfairDisplay.variable} ${outfit.variable} ${inter.variable} ${caveat.variable} antialiased`}
       >
+        <JsonLd />
         <SmoothScroll>
           <ScrollProgress />
           <Navbar />

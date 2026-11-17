@@ -11,58 +11,28 @@ export default function MeetNisschaySection() {
             title: "Build with care",
             description: "We create reliable solutions that are easy to use and built to last.",
             icon: FiCode,
-            accentBorder: "border-[#0057fe]",
-            topAccentBg: "bg-[#0057fe]",
-            backingBg: "bg-[#e5effd]",
-            backingBorder: "border-blue-200/70",
-            iconBg: "bg-[#eef5ff]",
-            iconBorder: "border-blue-100",
-            iconColor: "text-[#0057fe]",
-            iconGlow: "group-hover:shadow-[0_4px_16px_rgba(0,87,254,0.22)]",
-            numColor: "text-blue-300/90 group-hover:text-[#0057fe]",
-            tilt: "lg:-rotate-[0.5deg]",
         },
         {
             number: "02",
             title: "Work closely with you",
             description: "You speak directly with the people building your project. No unnecessary middlemen.",
             icon: FiUsers,
-            accentBorder: "border-amber-500",
-            topAccentBg: "bg-amber-500",
-            backingBg: "bg-[#fef1e3]",
-            backingBorder: "border-amber-200/70",
-            iconBg: "bg-[#fff7ed]",
-            iconBorder: "border-amber-100",
-            iconColor: "text-amber-500",
-            iconGlow: "group-hover:shadow-[0_4px_16px_rgba(245,158,11,0.25)]",
-            numColor: "text-amber-300/90 group-hover:text-amber-500",
-            tilt: "lg:rotate-0",
         },
         {
             number: "03",
             title: "Focus on what matters",
             description: "We solve real problems and help your business move forward.",
             icon: FiTrendingUp,
-            accentBorder: "border-emerald-500",
-            topAccentBg: "bg-emerald-500",
-            backingBg: "bg-[#e6f8ee]",
-            backingBorder: "border-emerald-200/70",
-            iconBg: "bg-[#ecfdf5]",
-            iconBorder: "border-emerald-100",
-            iconColor: "text-emerald-500",
-            iconGlow: "group-hover:shadow-[0_4px_16px_rgba(16,185,129,0.25)]",
-            numColor: "text-emerald-300/90 group-hover:text-emerald-500",
-            tilt: "lg:rotate-[0.5deg]",
         },
     ];
 
     return (
-        <section id="meet-nisschay" className="relative w-full overflow-x-clip">
+        <section id="meet-nisschay" className="relative w-full overflow-x-clip bg-transparent">
             {/* ========================================================
                 CHAPTER 1: WHITE EDITORIAL INTRODUCTION
             ======================================================== */}
             <div className="relative w-full bg-transparent pt-14 sm:pt-18 lg:pt-24 pb-4 sm:pb-6 lg:pb-0">
-                <div className="w-full max-w-7xl mx-auto pl-6 pr-5 sm:pl-12 sm:pr-8 lg:pl-14 lg:pr-12">
+                <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-14">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-end">
                         
                         {/* Left Column: Eyebrow, Large Editorial Headline & Intro (UNTOUCHED TYPOGRAPHY) */}
@@ -147,28 +117,13 @@ export default function MeetNisschaySection() {
                 </div>
             </div>
 
-            {/* Seamless wavy organic divider between Chapter 1 and Chapter 2 */}
-            <div className="w-full overflow-hidden leading-none -mb-px">
-                <svg
-                    viewBox="0 0 1440 60"
-                    fill="none"
-                    className="w-full h-7 sm:h-10 lg:h-14 text-[#eef6ff] block preserve-3d"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M0,28 C360,54 720,14 1080,36 C1260,48 1380,26 1440,28 L1440,60 L0,60 Z"
-                        fill="currentColor"
-                    />
-                </svg>
-            </div>
-
             {/* ========================================================
-                CHAPTER 2: BRAND IDENTITY & PHILOSOPHY (Pale Blue)
+                CHAPTER 2: BRAND IDENTITY & PHILOSOPHY ("How We Work")
+                Unified soft off-white background matching Hero & site theme
             ======================================================== */}
-            <div className="relative w-full bg-[#eef6ff] text-[#000c24] pt-8 sm:pt-10 lg:pt-12 pb-20 sm:pb-24 lg:pb-28">
+            <div className="relative w-full bg-transparent text-[#000c24] pt-10 sm:pt-14 lg:pt-18 pb-20 sm:pb-24 lg:pb-28">
                 
-                <div className="relative z-10 w-full max-w-7xl mx-auto pl-6 pr-5 sm:pl-12 sm:pr-8 lg:pl-14 lg:pr-12 space-y-10 sm:space-y-12 lg:space-y-14">
+                <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-14 space-y-10 sm:space-y-12 lg:space-y-14">
 
                     {/* Top Row: Brand Mark + Divider + How we work */}
                     <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
@@ -194,7 +149,7 @@ export default function MeetNisschaySection() {
                         </div>
 
                         {/* Thin Vertical Divider (Desktop) */}
-                        <div className="hidden lg:block w-px h-14 bg-blue-200/80 shrink-0" aria-hidden="true" />
+                        <div className="hidden lg:block w-px h-12 bg-blue-200/70 shrink-0" aria-hidden="true" />
 
                         {/* Right: How we work + Description */}
                         <div className="space-y-2 max-w-2xl">
@@ -225,61 +180,57 @@ export default function MeetNisschaySection() {
                         </div>
                     </div>
 
-                    {/* Creative Philosophy Cards (Tactile Layered Depth & Directional Shadows) */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7 items-stretch">
+                    {/* Approved Minimal Numbered Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 items-stretch">
                         {cards.map((card) => {
                             const IconComponent = card.icon;
                             return (
                                 <div
                                     key={card.number}
-                                    className={`relative group ${card.tilt}`}
+                                    className="group relative h-full bg-white rounded-2xl p-4.5 sm:p-6 lg:p-7 border border-slate-200/80 hover:border-blue-200/90 shadow-[0_2px_8px_rgba(0,12,36,0.03),0_6px_20px_-4px_rgba(0,87,254,0.06)] hover:shadow-[0_8px_24px_rgba(0,87,254,0.12),0_4px_10px_rgba(0,12,36,0.05)] transition-all duration-300 ease-out hover:-translate-y-1.5 active:translate-y-0 active:scale-[0.99] flex flex-col justify-between overflow-hidden"
                                 >
-                                    {/* Subtle layered backing surface, slightly offset behind the main card */}
-                                    <div
-                                        className={`absolute inset-0 translate-x-1.5 translate-y-1.5 sm:translate-x-2 sm:translate-y-2 rounded-2xl ${card.backingBg} border ${card.backingBorder} -z-10 transition-transform duration-300 ease-out group-hover:translate-x-3 group-hover:translate-y-3 group-hover:rotate-[0.5deg]`}
-                                        aria-hidden="true"
+                                    {/* Restrained blue accent along the bottom edge */}
+                                    <div 
+                                        className="absolute bottom-0 inset-x-0 h-[2.5px] bg-[#0057fe]/35 group-hover:bg-[#0057fe] transition-colors duration-300 rounded-b-2xl pointer-events-none" 
+                                        aria-hidden="true" 
                                     />
 
-                                    {/* Main Front Card Surface with refined tonal variation and realistic soft directional shadow */}
-                                    <div
-                                        className="relative z-10 h-full bg-gradient-to-b from-white via-white to-[#f9fbff] rounded-2xl p-6 sm:p-7 border border-blue-100/80 hover:border-blue-200/90 shadow-[0_4px_6px_-1px_rgba(0,12,36,0.03),0_12px_24px_-4px_rgba(0,40,120,0.07)] group-hover:shadow-[0_8px_14px_-2px_rgba(0,12,36,0.05),0_18px_30px_-6px_rgba(0,40,120,0.11)] transition-all duration-300 ease-out group-hover:-translate-y-1.5 flex flex-col justify-between"
-                                    >
-                                        {/* Subtle top accent edge */}
-                                        <div
-                                            className={`absolute top-0 left-7 right-7 h-[2.5px] ${card.topAccentBg} rounded-full`}
-                                            aria-hidden="true"
-                                        />
-
-                                        {/* Top-left organic accent curve */}
-                                        <div className="absolute top-0 left-0 w-11 h-11 pointer-events-none rounded-tl-2xl overflow-hidden">
-                                            <div className={`absolute top-0 left-0 w-9 h-9 border-t-[3px] border-l-[3px] ${card.accentBorder} rounded-tl-2xl`} />
+                                    <div className="flex items-center gap-3.5 sm:gap-5 lg:gap-6 w-full h-full">
+                                        {/* Large, elegant navy number */}
+                                        <div className="shrink-0 flex items-center justify-center">
+                                            <span
+                                                className="text-[32px] sm:text-[40px] lg:text-[46px] xl:text-[48px] font-bold text-[#000c24] select-none tracking-tight leading-none"
+                                                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+                                            >
+                                                {card.number}
+                                            </span>
                                         </div>
 
-                                        {/* Number in top right */}
-                                        <span
-                                            className={`absolute top-5 right-5 sm:top-6 sm:right-6 font-bold text-2xl tracking-tight select-none transition-all duration-300 group-hover:scale-105 ${card.numColor}`}
-                                        >
-                                            {card.number}
-                                        </span>
+                                        {/* Thin vertical blue divider */}
+                                        <div 
+                                            className="w-[1.5px] self-stretch my-1 sm:my-2 bg-[#0057fe]/25 group-hover:bg-[#0057fe]/45 transition-colors duration-300 shrink-0 rounded-full" 
+                                            aria-hidden="true" 
+                                        />
 
-                                        {/* Card Body */}
-                                        <div className="flex items-start gap-4">
-                                            {/* Icon Box */}
-                                            <div
-                                                className={`w-12 h-12 sm:w-13 sm:h-13 rounded-2xl ${card.iconBg} ${card.iconBorder} border flex items-center justify-center shrink-0 shadow-2xs transition-all duration-300 ${card.iconGlow}`}
-                                            >
-                                                <IconComponent className={`w-5 h-5 sm:w-6 sm:h-6 ${card.iconColor} transition-transform duration-300 group-hover:scale-110`} />
+                                        {/* Content area: Icon + Bold navy heading + Clean description */}
+                                        <div className="flex-1 min-w-0 flex flex-col justify-center">
+                                            {/* Small, simple Nisschay-blue line icon */}
+                                            <div className="mb-1.5 sm:mb-2.5">
+                                                <IconComponent 
+                                                    className="w-4.5 h-4.5 sm:w-5 sm:h-5 lg:w-5.5 lg:h-5.5 text-[#0057fe] transition-transform duration-300 group-hover:scale-110" 
+                                                    strokeWidth={2.2}
+                                                />
                                             </div>
 
-                                            {/* Content */}
-                                            <div className="flex-1 min-w-0 pr-6 sm:pr-8">
-                                                <h4 className="text-base sm:text-lg font-bold text-[#000c24] tracking-tight leading-snug">
-                                                    {card.title}
-                                                </h4>
-                                                <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed mt-1.5">
-                                                    {card.description}
-                                                </p>
-                                            </div>
+                                            {/* Bold navy heading */}
+                                            <h4 className="text-[15px] sm:text-base lg:text-[18px] font-bold text-[#000c24] tracking-tight leading-snug">
+                                                {card.title}
+                                            </h4>
+
+                                            {/* Clean, readable description */}
+                                            <p className="text-[11.5px] sm:text-xs lg:text-[13.5px] text-slate-600 font-normal leading-relaxed mt-1 sm:mt-1.5">
+                                                {card.description}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -319,7 +270,7 @@ export default function MeetNisschaySection() {
 
                 {/* Overlapping Blue Statement Strip (Pill Shape with subtle shadow & shimmer) */}
                 <div className="absolute left-0 bottom-0 translate-y-1/2 z-20 w-full pointer-events-none">
-                    <div className="w-full max-w-7xl mx-auto pl-6 pr-5 sm:pl-12 sm:pr-8 lg:pl-14 lg:pr-12 flex justify-center">
+                    <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-14 flex justify-center">
                         <div className="relative overflow-hidden pointer-events-auto inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 bg-[#0057fe] text-white rounded-full text-xs sm:text-sm font-medium tracking-wide shadow-[0_8px_25px_rgba(0,87,254,0.28)] border border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,87,254,0.38)] transition-all duration-300 select-none">
                             {/* Delicate shimmer sweep across statement pill */}
                             <span

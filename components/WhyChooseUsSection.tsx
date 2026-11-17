@@ -310,61 +310,111 @@ export default function WhyChooseUsSection() {
                     })}
                 </div>
 
-                {/* Bottom CTA Banner with Centered Alignment & Consistent Width */}
+                {/* Bottom CTA Banner — Wide, Premium Closing Banner matching Approved Reference */}
                 <div className="mt-14 sm:mt-18 lg:mt-20 w-full">
-                    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#000c24] via-[#001744] to-[#003ea8] p-7 sm:p-9 md:p-10 shadow-lg border border-blue-900/30">
-                        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8">
-                            {/* Left Text & Reassurance Commitments */}
-                            <div className="max-w-xl space-y-2">
-                                <span className="text-[11px] font-mono font-bold tracking-[0.22em] text-[#38bdf8] uppercase block">
+                    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white via-[#f8fafd] to-[#edf4fe] border border-blue-100/90 shadow-[0_4px_24px_-4px_rgba(0,12,36,0.04),0_8px_32px_-8px_rgba(0,87,254,0.06)] p-7 sm:p-9 md:p-12 lg:p-14">
+                        
+                        {/* Right Side: Subtle Nisschay Arch Watermark & Pale-Blue Flowing Shape */}
+                        <div 
+                            className="absolute right-0 top-0 bottom-0 w-full md:w-3/5 lg:w-1/2 pointer-events-none overflow-hidden select-none -z-0"
+                            aria-hidden="true"
+                        >
+                            {/* Very subtle pale-blue flowing shape near the bottom of the banner */}
+                            <svg
+                                className="absolute bottom-0 right-0 w-full h-32 sm:h-40 md:h-48 text-[#0057fe]"
+                                viewBox="0 0 600 200"
+                                fill="none"
+                                preserveAspectRatio="none"
+                            >
+                                <path
+                                    d="M0,130 C160,80 340,160 480,110 C540,90 575,100 600,105 L600,200 L0,200 Z"
+                                    fill="currentColor"
+                                    opacity="0.04"
+                                />
+                                <path
+                                    d="M60,160 C200,120 380,180 510,140 C550,130 585,135 600,138 L600,200 L60,200 Z"
+                                    fill="currentColor"
+                                    opacity="0.03"
+                                />
+                            </svg>
+
+                            {/* Large, Very Subtle Nisschay Arch Watermark */}
+                            <svg
+                                className="absolute -right-8 sm:-right-4 md:right-4 lg:right-10 -top-8 sm:-top-6 md:-top-4 w-[280px] sm:w-[350px] md:w-[420px] lg:w-[460px] h-[360px] sm:h-[420px] md:h-[500px] lg:h-[540px] text-[#0057fe]"
+                                viewBox="0 0 340 420"
+                                fill="none"
+                            >
+                                <path
+                                    d="M 55,420 L 55,170 A 115,115 0 0,1 285,170 L 285,420"
+                                    stroke="currentColor"
+                                    strokeWidth="75"
+                                    strokeLinecap="butt"
+                                    opacity="0.075"
+                                />
+                            </svg>
+                        </div>
+
+                        {/* Content Area (Left-aligned, spacious & uncluttered) */}
+                        <div className="relative z-10 max-w-2xl space-y-4 sm:space-y-5">
+                            {/* Section Label: THE NEXT STEP with thin horizontal divider line */}
+                            <div className="inline-flex items-center gap-3">
+                                <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
                                     THE NEXT STEP
                                 </span>
-                                <h3 className="text-xl sm:text-2xl md:text-[26px] font-bold text-white font-display tracking-tight leading-snug">
-                                    Your business deserves technology that works.
-                                </h3>
-                                <p className="text-slate-300 text-sm sm:text-[15px] font-normal leading-relaxed">
-                                    Let&apos;s understand what you need and find a practical way forward.
-                                </p>
-
-                                {/* Micro-Trust Signals / Reassurance Points */}
-                                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2.5 text-[11px] sm:text-xs font-mono text-slate-300">
-                                    <span className="inline-flex items-center gap-1.5">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                                        <span>No long sales pitches</span>
-                                    </span>
-                                    <span className="inline-flex items-center gap-1.5">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
-                                        <span>Direct discussion with builders</span>
-                                    </span>
-                                    <span className="inline-flex items-center gap-1.5">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0" />
-                                        <span>Transparent pricing upfront</span>
-                                    </span>
-                                </div>
+                                <span className="w-10 sm:w-14 h-[1.5px] bg-[#0057fe]/35 rounded-full" aria-hidden="true" />
                             </div>
 
-                            {/* Right Actions: Primary Start Project Button + Secondary Exploratory Link */}
-                            <div className="shrink-0 flex flex-col items-start md:items-end gap-2.5">
+                            {/* Headline: Deep Navy with signature blue curved underline under 'works.' */}
+                            <h3 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[38px] font-black text-[#000c24] font-display tracking-tight leading-[1.16]">
+                                <span className="block">Your business deserves</span>
+                                <span className="block mt-1 sm:mt-1.5">
+                                    technology that{" "}
+                                    <span className="relative inline-block whitespace-nowrap">
+                                        works.
+                                        {/* Signature organic hand-drawn curved blue underline */}
+                                        <svg
+                                            className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-[6px] sm:h-[8px] text-[#0057fe]"
+                                            viewBox="0 0 100 8"
+                                            fill="none"
+                                            preserveAspectRatio="none"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M2 5.5C30 2 70 2 98 5.5"
+                                                stroke="currentColor"
+                                                strokeWidth="3.2"
+                                                strokeLinecap="round"
+                                            />
+                                        </svg>
+                                    </span>
+                                </span>
+                            </h3>
+
+                            {/* Supporting Description */}
+                            <p className="text-slate-600 text-sm sm:text-base lg:text-[16.5px] font-normal leading-relaxed pt-0.5">
+                                Let&apos;s understand what you need and find a practical way forward.
+                            </p>
+
+                            {/* Primary CTA Button with Restrained Shimmer */}
+                            <div className="pt-2 sm:pt-3">
                                 <Link
                                     href="/contact"
-                                    className="relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-white hover:bg-slate-50 text-[#0057fe] font-bold text-sm sm:text-[15px] font-outfit rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.18)] hover:shadow-[0_6px_22px_rgba(0,87,254,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-200 group/btn select-none"
+                                    className="relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#0057fe] hover:bg-[#0047d6] text-white font-bold text-sm sm:text-base font-outfit rounded-full shadow-[0_4px_16px_rgba(0,87,254,0.32)] hover:shadow-[0_6px_24px_rgba(0,87,254,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 group/btn select-none overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0057fe]"
                                 >
-                                    <span>Start a Project</span>
+                                    {/* Restrained semi-transparent white highlight shimmer (every ~5s) */}
+                                    <span
+                                        className="absolute inset-y-0 w-14 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none animate-shimmer-slow"
+                                        aria-hidden="true"
+                                    />
+                                    <span className="relative z-10">Start a Project</span>
                                     <FiArrowRight
-                                        className="w-4 h-4 transition-transform duration-200 ease-out group-hover/btn:translate-x-1"
+                                        className="w-4 h-4 relative z-10 transition-transform duration-200 ease-out group-hover/btn:translate-x-1"
                                         aria-hidden="true"
                                     />
                                 </Link>
-
-                                <Link
-                                    href="/services"
-                                    className="inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white font-medium transition-colors duration-200 pl-1 md:pl-0"
-                                >
-                                    <span>Or explore our services</span>
-                                    <span aria-hidden="true">→</span>
-                                </Link>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
