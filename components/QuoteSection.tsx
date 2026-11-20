@@ -1,5 +1,6 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import React from "react";
+import Image from "next/image";
 import { Caveat } from "next/font/google";
 
 const caveat = Caveat({
@@ -9,36 +10,82 @@ const caveat = Caveat({
 });
 
 export default function QuoteSection() {
-    const shouldReduceMotion = useReducedMotion();
-
     return (
-        <section className="relative py-10 sm:py-12 md:py-14 bg-transparent overflow-hidden flex items-center justify-center">
-            {/* Background decorative soft glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-gradient-to-tr from-blue-100/20 to-indigo-100/10 rounded-full blur-[100px] pointer-events-none" />
+        <section 
+            id="quote" 
+            className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-transparent overflow-hidden flex items-center justify-center"
+        >
+            {/* Container: Spans up to 1140px, keeping native off-white background */}
+            <div className="w-full max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 relative z-10 flex flex-col items-center justify-center">
+                
+                {/* Photorealistic Wide Torn-Paper Banner with Increased Height */}
+                <div className="w-full sm:w-[94%] lg:w-[92%] max-w-[1140px] mx-auto relative group flex items-center justify-center">
+                    
+                    {/* 1. Photorealistic Handmade Paper Canvas (Deckled Edges, Tape, Curled 3D Corner) */}
+                    <div 
+                        className="w-full relative select-none pointer-events-none"
+                        style={{
+                            filter: "drop-shadow(0 16px 28px rgba(7, 20, 47, 0.09)) drop-shadow(0 4px 10px rgba(7, 20, 47, 0.05))",
+                        }}
+                    >
+                        <Image
+                            src="/images/torn_paper_canvas.webp"
+                            alt="Handmade torn paper banner canvas"
+                            width={1966}
+                            height={540}
+                            priority
+                            quality={100}
+                            className="w-full h-auto object-contain block"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 94vw, 1140px"
+                        />
+                    </div>
 
-            <div className="max-w-4xl mx-auto px-5 sm:px-6 md:px-8 text-center relative z-10">
-                <motion.div
-                    initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, ease: "easeOut" }}
-                    className="flex flex-col items-center justify-center gap-4 sm:gap-5"
-                >
-                    <h2 className="text-balance font-light text-[#000c24] tracking-tight leading-[1.2] text-[clamp(1.65rem,1.8vw+0.8rem,2.65rem)] max-w-3xl">
-                        <span className="block">A good idea needs someone to build it.</span>
-                        <span className={`${caveat.className} text-[#0057fe] text-[clamp(2.1rem,2.5vw+0.9rem,3.25rem)] block rotate-[-1.5deg] font-bold py-1 px-3 relative mt-1`}>
-                            and someone to help people find it.
-                            {/* Brush Underline Effect */}
-                            <svg className="absolute -bottom-0.5 left-0 w-full h-3 text-[#0057fe]/25 -z-10 pointer-events-none" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                <path d="M0,6 Q50,11 100,6" stroke="currentColor" strokeWidth="6" fill="none" strokeLinecap="round" />
-                            </svg>
-                        </span>
-                    </h2>
+                    {/* 2. Pin-Sharp 100% Vector HTML/SVG Typography Overlay (Zero Blur on any display) */}
+                    <div className="absolute inset-0 z-10 flex flex-col items-center justify-between px-6 xs:px-8 sm:px-14 md:px-20 lg:px-24 pt-7 xs:pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-5 xs:pb-6 sm:pb-8 md:pb-10 pointer-events-none select-none">
+                        
+                        {/* Stationery Header Rule */}
+                        <div className="w-full flex items-center justify-between text-[#07142F]/65 font-mono text-[8px] xs:text-[9.5px] sm:text-[11px] md:text-[12px] tracking-[0.22em] uppercase">
+                            <span className="font-semibold whitespace-nowrap">NISSCHAY NOTE · 01</span>
+                            <div className="h-[1px] bg-[#07142F]/20 mx-2 sm:mx-4 flex-1" />
+                            <span className="font-bold tracking-[0.24em] whitespace-nowrap">PHILOSOPHY</span>
+                        </div>
 
-                    <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-[580px] mx-auto text-balance font-normal">
-                        We design and build your website, app or automation, then help the right customers discover it.
-                    </p>
-                </motion.div>
+                        {/* Central Statement */}
+                        <div className="flex flex-col items-center justify-center my-auto py-1 sm:py-2 text-center w-full">
+                            {/* Line 1: Modern Geometric Bold Sans */}
+                            <h2 className="font-bold text-[#08183A] tracking-[-0.02em] leading-[1.18] text-[15px] xs:text-[18px] sm:text-[25px] md:text-[30px] lg:text-[34px] max-w-4xl">
+                                A good idea needs someone to build it.
+                            </h2>
+
+                            {/* Line 2: Handwritten Script in Nisschay Electric Blue with Tapered Brush Stroke */}
+                            <div className="mt-0.5 sm:mt-1 relative inline-block">
+                                <span className={`${caveat.className} text-[#0057FE] text-[20px] xs:text-[25px] sm:text-[34px] md:text-[42px] lg:text-[47px] font-bold leading-tight block px-2 relative z-10`}>
+                                    and someone to help people find it.
+                                </span>
+                                {/* Crisp Vector Tapered Underline */}
+                                <svg 
+                                    className="w-[92%] sm:w-[96%] h-2 sm:h-3 text-[#0057FE] mx-auto -mt-1 sm:-mt-1.5 opacity-90" 
+                                    viewBox="0 0 300 10" 
+                                    preserveAspectRatio="none"
+                                    aria-hidden="true"
+                                >
+                                    <path 
+                                        d="M3,5 C80,9 220,9 297,4" 
+                                        stroke="currentColor" 
+                                        strokeWidth="2.8" 
+                                        strokeLinecap="round" 
+                                        fill="none" 
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+
+                        {/* Bottom Spacer to balance with the top rule */}
+                        <div className="w-full h-[6px] sm:h-[10px]" />
+
+                    </div>
+
+                </div>
             </div>
         </section>
     );

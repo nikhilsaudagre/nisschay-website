@@ -1,126 +1,57 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { FiArrowRight } from "react-icons/fi";
+import Image from "next/image";
+import {
+    FiUsers,
+    FiLayers,
+    FiCalendar,
+    FiCode,
+    FiHeadphones,
+} from "react-icons/fi";
 
-interface WhyChooseItem {
+interface BenefitCardItem {
     number: string;
     title: string;
     description: string;
-    benefit: string;
-    icon: React.ReactNode;
+    icon: React.ComponentType<{ size?: number; className?: string }>;
 }
 
-const items: WhyChooseItem[] = [
+const BENEFIT_CARDS: BenefitCardItem[] = [
     {
         number: "01",
-        title: "Direct access. No middlemen.",
-        description: "Work directly with the people planning and building your solution.",
-        benefit: "You always know who is handling your project.",
-        icon: (
-            <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-slate-800 transition-colors duration-300 group-hover:text-[#0057fe]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-            >
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
-        ),
+        title: "Work Directly with Your Development Team",
+        description:
+            "Collaborate with the people who plan, design and build your solution.",
+        icon: FiUsers,
     },
     {
         number: "02",
-        title: "Built for your business, not a template.",
-        description: "We understand your goals and recommend what you actually need.",
-        benefit: "A solution that fits your needs and budget.",
-        icon: (
-            <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-slate-800 transition-colors duration-300 group-hover:text-[#0057fe]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-            >
-                <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                <polyline points="2 17 12 22 22 17" />
-                <polyline points="2 12 12 17 22 12" />
-            </svg>
-        ),
+        title: "Custom Software Built Around Your Business",
+        description:
+            "Solutions designed for your unique workflows, goals and long-term growth.",
+        icon: FiLayers,
     },
     {
         number: "03",
-        title: "Clear expectations from day one.",
-        description: "Understand the scope, costs, timeline and deliverables before we start.",
-        benefit: "Fewer surprises and better decisions.",
-        icon: (
-            <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-slate-800 transition-colors duration-300 group-hover:text-[#0057fe]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-            >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-                <path d="m9 16 2 2 4-4" />
-            </svg>
-        ),
+        title: "Transparent Scope, Pricing & Timelines",
+        description:
+            "Know what's being built, how much it costs and when it will be delivered from day one.",
+        icon: FiCalendar,
     },
     {
         number: "04",
-        title: "Technology that makes sense.",
-        description: "We choose practical tools and build solutions that are easier to use and maintain.",
-        benefit: "Less complexity. More useful technology.",
-        icon: (
-            <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-slate-800 transition-colors duration-300 group-hover:text-[#0057fe]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-            >
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-                <line x1="14" y1="4" x2="10" y2="20" />
-            </svg>
-        ),
+        title: "Practical Web, Software & AI Solutions",
+        description:
+            "The right mix of modern technologies to solve real business problems.",
+        icon: FiCode,
     },
     {
         number: "05",
-        title: "Support doesn't end at launch.",
-        description: "Get help with updates, improvements and ongoing technical needs.",
-        benefit: "A partner to turn to as your business grows.",
-        icon: (
-            <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-slate-800 transition-colors duration-300 group-hover:text-[#0057fe]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-            >
-                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
-                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
-            </svg>
-        ),
+        title: "Ongoing Technical Support & Improvements",
+        description:
+            "Get reliable support, updates and continuous enhancements as your business grows.",
+        icon: FiHeadphones,
     },
 ];
 
@@ -128,297 +59,155 @@ export default function WhyChooseUsSection() {
     return (
         <section
             id="why-choose-us"
-            className="relative w-full py-20 sm:py-24 lg:py-28 bg-transparent overflow-hidden"
+            className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent overflow-hidden"
+            aria-label="Why Businesses Choose Nisschay"
         >
-            <div className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header: Centered Eyebrow, Editorial Headline with Underline, and Supporting Text */}
-                <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
-                    {/* Eyebrow */}
-                    <div className="inline-flex items-center justify-center gap-2.5 mb-4 sm:mb-5">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0057fe] opacity-75" />
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0057fe]" />
-                        </span>
-                        <span className="w-6 h-[2px] bg-[#0057fe]/60" aria-hidden="true" />
-                        <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
-                            WHY CHOOSE NISSCHAY
-                        </span>
-                    </div>
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Master Grid: Left Column (Intro + Building) & Right Column (5 Benefit Cards) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-stretch">
+                    
+                    {/* LEFT COLUMN: Eyebrow, Editorial Heading, Paragraph & Architectural Building */}
+                    <div className="lg:col-span-5 flex flex-col justify-between">
+                        <div>
+                            {/* Eyebrow Label */}
+                            <div className="inline-flex items-center gap-2 mb-3.5 sm:mb-4">
+                                <span className="w-5 h-[2px] bg-[#0057fe]" aria-hidden="true" />
+                                <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#000c24] uppercase">
+                                    WHY BUSINESSES CHOOSE NISSCHAY
+                                </span>
+                            </div>
 
-                    {/* Headline */}
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-black text-[#000c24] tracking-tight leading-[1.14] font-display">
-                        A{" "}
-                        <span className="relative inline-block text-[#0057fe]">
-                            better way
-                            <svg
-                                className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-[6px] sm:h-[7px] text-[#93c5fd] pointer-events-none"
-                                viewBox="0 0 200 8"
-                                fill="none"
-                                preserveAspectRatio="none"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    d="M 2 5.5 C 50 1.5, 150 1.5, 198 6.5"
-                                    stroke="currentColor"
-                                    strokeWidth="3.2"
-                                    strokeLinecap="round"
-                                />
-                            </svg>
-                        </span>{" "}
-                        to build your digital business.
-                    </h2>
-
-                    {/* Supporting Text */}
-                    <p className="text-slate-600 text-base sm:text-lg lg:text-[18px] leading-relaxed font-normal mt-4 sm:mt-5 max-w-2xl mx-auto">
-                        We believe good technology starts with understanding your business, making clear decisions and building solutions that work in the real world.
-                    </p>
-                </div>
-
-                {/* Desktop & Tablet Timeline (sm and up) */}
-                <div className="hidden sm:block relative w-full">
-                    <div className="space-y-8 sm:space-y-10 lg:space-y-11">
-                        {items.map((item, index) => {
-                            const isFirst = index === 0;
-                            const isLast = index === items.length - 1;
-                            return (
-                                <div
-                                    key={item.number}
-                                    className="group relative flex items-start gap-5 lg:gap-6 cursor-default"
-                                >
-                                    {/* Numbered Circle & Connecting Line Column */}
-                                    <div className="relative shrink-0 w-12 flex items-center justify-center pt-1 self-stretch">
-                                        {/* Vertical line segment to next item (terminates at last item 05) */}
-                                        {!isLast && (
-                                            <div
-                                                className="absolute top-6 bottom-[-2.25rem] sm:bottom-[-2.75rem] lg:bottom-[-3rem] left-1/2 -translate-x-1/2 w-[2px] bg-blue-100/90 pointer-events-none -z-0"
-                                                aria-hidden="true"
-                                            />
-                                        )}
-
-                                        {/* Numbered Circle */}
-                                        <div
-                                            className={`relative z-10 w-11 h-11 rounded-full flex items-center justify-center select-none transition-all duration-300 ${
-                                                isFirst
-                                                    ? "bg-[#0057fe] text-white shadow-[0_2px_10px_rgba(0,87,254,0.35)] group-hover:shadow-[0_4px_14px_rgba(0,87,254,0.45)] group-hover:-translate-y-0.5"
-                                                    : "bg-[#eff6ff] border border-blue-200/90 text-[#0057fe] shadow-2xs group-hover:bg-[#0057fe] group-hover:text-white group-hover:border-[#0057fe] group-hover:shadow-[0_4px_12px_rgba(0,87,254,0.3)] group-hover:-translate-y-0.5"
-                                            }`}
-                                        >
-                                            <span
-                                                className={`font-mono font-bold text-sm tracking-tight transition-colors duration-300 ${
-                                                    isFirst ? "text-white" : "text-[#0057fe] group-hover:text-white"
-                                                }`}
-                                            >
-                                                {item.number}
-                                            </span>
-                                        </div>
-
-                                        {/* Connector ring halfway to next item with interactive highlight */}
-                                        {!isLast && (
-                                            <div
-                                                className="absolute -bottom-4 sm:-bottom-5 lg:-bottom-5.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full border-2 border-blue-300 bg-white z-10 transition-all duration-300 group-hover:border-[#0057fe] group-hover:scale-125 group-hover:shadow-[0_0_8px_rgba(0,87,254,0.4)]"
-                                                aria-hidden="true"
-                                            />
-                                        )}
-                                    </div>
-
-                                    {/* Line Icon Box with tactile lift & refined border glow */}
-                                    <div className="shrink-0 w-13 h-13 rounded-2xl bg-white border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex items-center justify-center transition-all duration-300 group-hover:border-[#0057fe]/40 group-hover:bg-[#fafcff] group-hover:shadow-[0_8px_20px_rgba(0,87,254,0.12)] group-hover:-translate-y-1 group-hover:scale-[1.04]">
-                                        <div className="transition-transform duration-300 group-hover:scale-110">
-                                            {item.icon}
-                                        </div>
-                                    </div>
-
-                                    {/* Content Block */}
-                                    <div className="flex-1 pt-0.5">
-                                        <h3 className="text-lg sm:text-[19px] lg:text-xl font-bold text-[#000c24] font-display tracking-tight leading-snug transition-colors duration-200 group-hover:text-[#0057fe]">
-                                            {item.title}
-                                        </h3>
-
-                                        <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed font-normal mt-1 mb-2.5">
-                                            {item.description}
-                                        </p>
-
-                                        {/* Customer Benefit Strip with clean scannable label and text */}
-                                        <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-[#f0f6ff] border border-blue-100/90 shadow-2xs transition-all duration-300 group-hover:bg-[#e8f2ff] group-hover:border-blue-200/90 group-hover:shadow-xs">
-                                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#0057fe]/10 text-[#0057fe] font-mono font-bold text-[10px] tracking-wider uppercase shrink-0 select-none group-hover:bg-[#0057fe] group-hover:text-white transition-colors duration-300">
-                                                <span className="text-[10px] leading-none" aria-hidden="true">✦</span>
-                                                <span>WHAT THIS MEANS FOR YOU:</span>
-                                            </span>
-                                            <span className="text-xs sm:text-[13px] text-slate-800 font-semibold group-hover:text-slate-900 transition-colors duration-300">
-                                                {item.benefit}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Mobile Stacked Layout (below sm) with Clean Spacing & Subtle Dividers */}
-                <div className="block sm:hidden space-y-6">
-                    {items.map((item, index) => {
-                        const isFirst = index === 0;
-                        return (
-                            <div
-                                key={item.number}
-                                className="relative flex items-start gap-3.5 pb-6 border-b border-slate-100 last:border-b-0 last:pb-0"
-                            >
-                                {/* Numbered Circle */}
-                                <div className="shrink-0 pt-0.5">
-                                    <div
-                                        className={`w-9 h-9 rounded-full flex items-center justify-center select-none ${
-                                            isFirst
-                                                ? "bg-[#0057fe] text-white shadow-xs"
-                                                : "bg-[#eff6ff] border border-blue-200/90 text-[#0057fe]"
-                                        }`}
+                            {/* Main Heading with Signature Nisschay Blue Highlight, Rays & Curved Underline */}
+                            <h2 className="text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-[#000c24] tracking-tight leading-[1.14] text-balance mb-4 sm:mb-5">
+                                A Technology<br />
+                                Partner for<br />
+                                <span className="relative inline-block text-[#0057fe] whitespace-nowrap">
+                                    Real Business
+                                    {/* 3 Playful Rays at top right */}
+                                    <svg
+                                        className="absolute -top-3.5 -right-4 w-6 h-6 text-[#0057fe] pointer-events-none"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        aria-hidden="true"
                                     >
-                                        <span className="font-mono font-bold text-xs">
-                                            {item.number}
-                                        </span>
-                                    </div>
-                                </div>
+                                        <path d="M12 4 L14 1" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                                        <path d="M18 7 L22 4" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                                        <path d="M19 14 L23 14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                                    </svg>
+                                    {/* Curved Underline Brush Stroke */}
+                                    <svg
+                                        className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-full h-2.5 sm:h-3 text-[#0057fe] pointer-events-none"
+                                        viewBox="0 0 160 12"
+                                        fill="none"
+                                        preserveAspectRatio="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M2 9C40 2 120 2 158 9"
+                                            stroke="currentColor"
+                                            strokeWidth="3.6"
+                                            strokeLinecap="round"
+                                        />
+                                    </svg>
+                                </span>{" "}
+                                Growth.
+                            </h2>
 
-                                {/* Content Block */}
-                                <div className="flex-1 space-y-2">
-                                    <div className="flex items-center gap-2.5">
-                                        <div className="shrink-0 w-8 h-8 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-center">
-                                            {item.icon}
-                                        </div>
-                                        <h3 className="text-[16px] font-bold text-[#000c24] font-display tracking-tight leading-snug">
-                                            {item.title}
-                                        </h3>
-                                    </div>
-
-                                    <p className="text-slate-600 text-sm leading-relaxed font-normal">
-                                        {item.description}
-                                    </p>
-
-                                    {/* Customer Benefit Strip */}
-                                    <div className="w-full rounded-xl bg-[#f0f6ff] border border-blue-100/90 p-2.5 flex flex-col gap-1">
-                                        <span className="inline-flex items-center gap-1 self-start px-2 py-0.5 rounded-full bg-[#0057fe]/10 text-[#0057fe] font-mono font-bold text-[9px] tracking-wider uppercase select-none">
-                                            <span className="text-[9px] leading-none" aria-hidden="true">✦</span>
-                                            <span>WHAT THIS MEANS FOR YOU:</span>
-                                        </span>
-                                        <span className="text-xs text-slate-800 font-semibold leading-relaxed">
-                                            {item.benefit}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Bottom CTA Banner — Wide, Premium Closing Banner matching Approved Reference */}
-                <div className="mt-14 sm:mt-18 lg:mt-20 w-full">
-                    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white via-[#f8fafd] to-[#edf4fe] border border-blue-100/90 shadow-[0_4px_24px_-4px_rgba(0,12,36,0.04),0_8px_32px_-8px_rgba(0,87,254,0.06)] p-7 sm:p-9 md:p-12 lg:p-14">
-                        
-                        {/* Right Side: Subtle Nisschay Arch Watermark & Pale-Blue Flowing Shape */}
-                        <div 
-                            className="absolute right-0 top-0 bottom-0 w-full md:w-3/5 lg:w-1/2 pointer-events-none overflow-hidden select-none -z-0"
-                            aria-hidden="true"
-                        >
-                            {/* Very subtle pale-blue flowing shape near the bottom of the banner */}
-                            <svg
-                                className="absolute bottom-0 right-0 w-full h-32 sm:h-40 md:h-48 text-[#0057fe]"
-                                viewBox="0 0 600 200"
-                                fill="none"
-                                preserveAspectRatio="none"
-                            >
-                                <path
-                                    d="M0,130 C160,80 340,160 480,110 C540,90 575,100 600,105 L600,200 L0,200 Z"
-                                    fill="currentColor"
-                                    opacity="0.04"
-                                />
-                                <path
-                                    d="M60,160 C200,120 380,180 510,140 C550,130 585,135 600,138 L600,200 L60,200 Z"
-                                    fill="currentColor"
-                                    opacity="0.03"
-                                />
-                            </svg>
-
-                            {/* Large, Very Subtle Nisschay Arch Watermark */}
-                            <svg
-                                className="absolute -right-8 sm:-right-4 md:right-4 lg:right-10 -top-8 sm:-top-6 md:-top-4 w-[280px] sm:w-[350px] md:w-[420px] lg:w-[460px] h-[360px] sm:h-[420px] md:h-[500px] lg:h-[540px] text-[#0057fe]"
-                                viewBox="0 0 340 420"
-                                fill="none"
-                            >
-                                <path
-                                    d="M 55,420 L 55,170 A 115,115 0 0,1 285,170 L 285,420"
-                                    stroke="currentColor"
-                                    strokeWidth="75"
-                                    strokeLinecap="butt"
-                                    opacity="0.075"
-                                />
-                            </svg>
+                            {/* Supporting Paragraph */}
+                            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-md mb-6 lg:mb-8">
+                                Nisschay combines web development, custom software engineering and AI-powered solutions with a practical, customer-focused approach.
+                            </p>
                         </div>
 
-                        {/* Content Area (Left-aligned, spacious & uncluttered) */}
-                        <div className="relative z-10 max-w-2xl space-y-4 sm:space-y-5">
-                            {/* Section Label: THE NEXT STEP with thin horizontal divider line */}
-                            <div className="inline-flex items-center gap-3">
-                                <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
-                                    THE NEXT STEP
-                                </span>
-                                <span className="w-10 sm:w-14 h-[1.5px] bg-[#0057fe]/35 rounded-full" aria-hidden="true" />
-                            </div>
-
-                            {/* Headline: Deep Navy with signature blue curved underline under 'works.' */}
-                            <h3 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[38px] font-black text-[#000c24] font-display tracking-tight leading-[1.16]">
-                                <span className="block">Your business deserves</span>
-                                <span className="block mt-1 sm:mt-1.5">
-                                    technology that{" "}
-                                    <span className="relative inline-block whitespace-nowrap">
-                                        works.
-                                        {/* Signature organic hand-drawn curved blue underline */}
-                                        <svg
-                                            className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-[6px] sm:h-[8px] text-[#0057fe]"
-                                            viewBox="0 0 100 8"
-                                            fill="none"
-                                            preserveAspectRatio="none"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M2 5.5C30 2 70 2 98 5.5"
-                                                stroke="currentColor"
-                                                strokeWidth="3.2"
-                                                strokeLinecap="round"
-                                            />
-                                        </svg>
-                                    </span>
-                                </span>
-                            </h3>
-
-                            {/* Supporting Description */}
-                            <p className="text-slate-600 text-sm sm:text-base lg:text-[16.5px] font-normal leading-relaxed pt-0.5">
-                                Let&apos;s understand what you need and find a practical way forward.
-                            </p>
-
-                            {/* Primary CTA Button with Restrained Shimmer */}
-                            <div className="pt-2 sm:pt-3">
-                                <Link
-                                    href="/contact"
-                                    className="relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#0057fe] hover:bg-[#0047d6] text-white font-bold text-sm sm:text-base font-outfit rounded-full shadow-[0_4px_16px_rgba(0,87,254,0.32)] hover:shadow-[0_6px_24px_rgba(0,87,254,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 group/btn select-none overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0057fe]"
+                        {/* Architectural Brand Illustration with Oversized N Monogram Arch */}
+                        <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-none mx-auto lg:mx-0 mt-4 lg:mt-auto pt-2 overflow-visible">
+                            {/* Subtle Oversized N-Monogram Arch behind building */}
+                            <div className="absolute -top-8 sm:-top-12 lg:-top-14 left-1/2 -translate-x-1/2 lg:left-10 lg:translate-x-0 w-52 sm:w-64 lg:w-72 h-48 sm:h-56 lg:h-64 pointer-events-none z-0">
+                                <svg
+                                    className="w-full h-full text-[#0057fe]"
+                                    viewBox="0 0 340 280"
+                                    fill="none"
+                                    aria-hidden="true"
                                 >
-                                    {/* Restrained semi-transparent white highlight shimmer (every ~5s) */}
-                                    <span
-                                        className="absolute inset-y-0 w-14 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none animate-shimmer-slow"
-                                        aria-hidden="true"
+                                    <path
+                                        d="M 55,270 L 55,170 A 115,115 0 0,1 285,170 L 285,270"
+                                        stroke="currentColor"
+                                        strokeWidth="70"
+                                        strokeLinecap="butt"
+                                        opacity="0.10"
                                     />
-                                    <span className="relative z-10">Start a Project</span>
-                                    <FiArrowRight
-                                        className="w-4 h-4 relative z-10 transition-transform duration-200 ease-out group-hover/btn:translate-x-1"
-                                        aria-hidden="true"
-                                    />
-                                </Link>
+                                </svg>
                             </div>
+
+                            {/* Clean Architectural Building Cutout (Unconstrained & Transparent) */}
+                            <div className="relative z-10 w-full">
+                                <Image
+                                    src="/nisschay-building-cutout.webp"
+                                    alt="Nisschay modern glass architectural building"
+                                    width={1774}
+                                    height={887}
+                                    className="w-full h-auto object-contain object-bottom select-none pointer-events-none drop-shadow-[0_10px_24px_rgba(7,20,47,0.06)]"
+                                    priority
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* RIGHT COLUMN: 5 Benefit Cards Arranged in 2-over-3 Balanced Layout */}
+                    <div className="lg:col-span-7 flex flex-col justify-between gap-5 sm:gap-6">
+                        
+                        {/* Top Row: 2 Cards (Card 01 & Card 02) */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                            {BENEFIT_CARDS.slice(0, 2).map((card) => (
+                                <BenefitCard key={card.number} card={card} />
+                            ))}
+                        </div>
+
+                        {/* Bottom Row: 3 Cards (Card 03, Card 04 & Card 05) */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                            {BENEFIT_CARDS.slice(2, 5).map((card) => (
+                                <BenefitCard key={card.number} card={card} />
+                            ))}
                         </div>
 
                     </div>
+
                 </div>
 
             </div>
         </section>
+    );
+}
+
+// =========================================================================
+// INDIVIDUAL BENEFIT CARD COMPONENT
+// Consistent warm-white card with soft natural shadow, subtle border, rounded corners
+// =========================================================================
+function BenefitCard({ card }: { card: BenefitCardItem }) {
+    const Icon = card.icon;
+
+    return (
+        <article className="group relative flex flex-col justify-between w-full h-full min-h-[200px] sm:min-h-[215px] rounded-[22px] sm:rounded-[26px] p-5 sm:p-6 bg-[#FAF8F5] border border-[#EAE4DC] shadow-[0_4px_20px_rgba(7,20,47,0.03),0_1px_3px_rgba(7,20,47,0.02)] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_-4px_rgba(0,87,254,0.10)] hover:border-[#0057fe]/30 transition-all duration-300">
+            {/* Top Row: Icon Container on Left, Number Badge on Right */}
+            <div className="relative z-10 flex items-center justify-between gap-3 mb-4 sm:mb-4.5">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-50/70 border border-blue-100/60 flex items-center justify-center text-[#0057fe] shrink-0 shadow-2xs group-hover:bg-[#0057fe] group-hover:text-white group-hover:scale-105 transition-all duration-300">
+                    <Icon size={22} aria-hidden="true" />
+                </div>
+                <span className="font-mono font-bold text-xs tracking-wider px-2.5 py-0.5 rounded-full bg-[#EBF5FE] text-[#0057fe] border border-blue-100/60 shrink-0 select-none">
+                    {card.number}
+                </span>
+            </div>
+
+            {/* Middle: Title & Description */}
+            <div className="relative z-10 flex-1">
+                <h3 className="text-base sm:text-lg font-bold text-[#000c24] tracking-tight leading-snug mb-2 group-hover:text-[#0057fe] transition-colors">
+                    {card.title}
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed font-normal">
+                    {card.description}
+                </p>
+            </div>
+        </article>
     );
 }

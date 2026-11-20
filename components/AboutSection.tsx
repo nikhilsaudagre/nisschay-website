@@ -20,6 +20,8 @@ import {
     FiClock,
     FiShield
 } from "react-icons/fi";
+import { LuCalendar } from "react-icons/lu";
+import AboutMeetNisschaySection from "@/components/AboutMeetNisschaySection";
 
 const caveat = Caveat({
     subsets: ["latin"],
@@ -62,6 +64,39 @@ function ScrapbookTape({
             }}
             aria-hidden="true"
         />
+    );
+}
+
+// Realistic Kraft Masking Tape (matching Services Section realistic sticky notes)
+function TopMaskingTape({ className = "", angle = -0.5 }: { className?: string; angle?: number }) {
+    return (
+        <div 
+            className={`absolute -top-3.5 left-1/2 -translate-x-1/2 w-24 sm:w-28 h-6 sm:h-7 pointer-events-none z-30 ${className}`}
+            style={{ transform: `translateX(-50%) rotate(${angle}deg)` }}
+            aria-hidden="true"
+        >
+            {/* Natural soft contact shadow underneath tape */}
+            <div 
+                className="absolute inset-x-1.5 bottom-0 h-2 bg-amber-950/15 blur-[1.5px] rounded-full" 
+            />
+            
+            {/* Kraft Tape body with torn serrated ends and crepe texture */}
+            <div 
+                className="w-full h-full border-t border-white/50 border-b border-[#c2af8a]/40 shadow-[0_1px_4px_rgba(7,20,47,0.08)] opacity-95"
+                style={{
+                    clipPath: "polygon(0% 20%, 1.2% 4%, 98.8% 5%, 100% 22%, 98.6% 40%, 100% 60%, 98.8% 78%, 100% 96%, 97% 95%, 3% 96%, 0% 80%, 1.2% 60%, 0% 40%)",
+                    background: "linear-gradient(108deg, rgba(235,220,188,0.85) 0%, rgba(246,238,220,0.92) 22%, rgba(255,255,255,0.65) 28%, rgba(232,216,182,0.88) 50%, rgba(244,234,212,0.92) 80%, rgba(228,210,175,0.86) 100%)",
+                }}
+            >
+                {/* Micro crepe stripes */}
+                <div 
+                    className="w-full h-full opacity-20"
+                    style={{
+                        backgroundImage: "repeating-linear-gradient(90deg, rgba(160,130,80,0.3) 0px, rgba(160,130,80,0.3) 1px, transparent 1px, transparent 4px)",
+                    }}
+                />
+            </div>
+        </div>
     );
 }
 
@@ -122,6 +157,41 @@ function RealisticPaperclip({ className = "" }: { className?: string }) {
                 />
             </g>
         </svg>
+    );
+}
+
+// Realistic 3D Organic Corner Curl component (matching Services sticky notes design)
+function RealisticCornerCurl({ undersideColor }: { undersideColor: string }) {
+    return (
+        <div 
+            className="absolute bottom-0 right-0 w-12 h-12 pointer-events-none z-20 overflow-hidden" 
+            aria-hidden="true"
+        >
+            {/* Soft curved contact shadow cast by the lifted paper curl on the surface */}
+            <div 
+                className="absolute bottom-0 right-0 w-11 h-11 bg-slate-900/18 blur-[3px] rounded-tl-[100%]"
+                style={{ transform: "translate(1.5px, 1.5px)" }}
+            />
+            
+            {/* Shaded cavity under the fold */}
+            <div 
+                className="absolute bottom-0 right-0 w-0 h-0 border-b-[40px] border-b-black/16 border-l-[40px] border-l-transparent" 
+            />
+            
+            {/* The rolled paper underside flap with subtle curved highlight */}
+            <div 
+                className="absolute bottom-0 right-0 w-0 h-0 border-t-[38px] border-r-[38px] border-r-transparent filter drop-shadow-[0_2px_4px_rgba(7,20,47,0.18)]"
+                style={{ 
+                    borderTopColor: undersideColor,
+                }}
+            />
+            
+            {/* Natural lighting rim along the curved roll edge */}
+            <div 
+                className="absolute bottom-0 right-0 w-0 h-0 border-t-[38px] border-t-white/50 border-r-[38px] border-r-transparent"
+                style={{ transform: "scale(0.95)" }}
+            />
+        </div>
     );
 }
 
@@ -312,142 +382,253 @@ export default function AboutSection({
             <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
 
                 {/* ========================================================
-                    OPENING — WHAT IS NISSCHAY? (Authentic Physical Letter)
+                    OPENING — WHAT IS NISSCHAY? (Authentic Handmade Paper Canvas)
                 ======================================================== */}
-                <div className="w-full flex flex-col items-center justify-center text-center select-none space-y-3 sm:space-y-4 mb-16 sm:mb-20 lg:mb-24">
-                    {/* Eyebrow Label */}
-                    <ChapterEyebrow label="THE MEANING BEHIND THE NAME" />
+                <div id="meaning-behind-the-name" className="w-full flex flex-col items-center justify-center text-center select-none mb-16 sm:mb-20 lg:mb-24">
+                    {/* Section Eyebrow (Placed cleanly above the paper sheet on website background) */}
+                    <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 mb-5 sm:mb-8 lg:mb-10 px-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#0057fe] shrink-0" aria-hidden="true" />
+                        <span className="w-3 sm:w-5 h-[1.5px] bg-[#0057fe] shrink-0" aria-hidden="true" />
+                        <span className="text-[9.5px] xs:text-[10.5px] sm:text-xs font-mono font-bold tracking-[0.14em] sm:tracking-[0.22em] text-[#0057fe] uppercase whitespace-nowrap">
+                            THE STORY BEHIND OUR NAME · EST. 2026
+                        </span>
+                        <span className="w-3 sm:w-5 h-[1.5px] bg-[#0057fe] shrink-0" aria-hidden="true" />
+                    </div>
 
-                    {/* Wide Handmade Editorial Paper Canvas */}
-                    <motion.div
-                        {...fadeInProps(0)}
-                        style={shouldReduceMotion ? {} : { rotateX: tiltRotateX, rotateY: tiltRotateY, transformStyle: "preserve-3d" }}
-                        onMouseMove={handlePaperMouseMove}
-                        onMouseLeave={handlePaperMouseLeave}
-                        className="group relative w-full max-w-4xl lg:max-w-5xl xl:max-w-[1100px] mx-auto mt-2.5 sm:mt-3.5 cursor-default [perspective:1200px]"
-                    >
-                        {/* 3D Paper Shadow */}
-                        <PaperContactShadow />
+                    {/* DESKTOP VIEW (lg+): Large Horizontal Handmade Deckled Paper Sheet */}
+                    <div className="hidden lg:block relative w-full max-w-[1020px] xl:max-w-[1080px] mx-auto">
+                        <div className="relative w-full aspect-[2048/1100] overflow-visible">
+                            {/* Background Paper Sheet Artwork with Deckled Edges, Natural Contact Shadow & Kraft Tapes */}
+                            <Image
+                                src="/images/about/brand_story_paper.webp"
+                                alt="The Story Behind Our Name - Nisschay"
+                                fill
+                                priority
+                                unoptimized
+                                className="object-contain pointer-events-none select-none"
+                            />
 
-                        {/* Dual Corner Washi Tapes */}
-                        <HeroDualCornerTapes />
+                            {/* Semantic Accessible HTML Content Layer */}
+                            <div className="absolute inset-0 z-10 flex flex-col justify-between pt-[13%] lg:pt-[14%] xl:pt-[15%] pb-[9%] lg:pb-[10%] xl:pb-[11%] px-10 lg:px-16 xl:px-20 text-center">
+                                {/* 1. Header Block: Main Heading with Rays + Handwritten Subline with Underline */}
+                                <div className="flex flex-col items-center">
+                                    {/* Main Heading H1 */}
+                                    <div className="inline-flex items-center justify-center gap-1.5 mb-1 lg:mb-1.5">
+                                        <h1 className="text-3xl lg:text-[40px] xl:text-[46px] font-black text-[#000c24] tracking-tight font-display leading-[1.12]">
+                                            What is Nisschay?
+                                        </h1>
+                                        {/* 3 Hand-Drawn Accent Rays */}
+                                        <svg
+                                            className="w-5 h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-[#0057fe] -mt-2 lg:-mt-3 shrink-0"
+                                            viewBox="0 0 32 32"
+                                            fill="none"
+                                            aria-hidden="true"
+                                        >
+                                            <path d="M 8 18 L 12 4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                            <path d="M 15 23 L 26 13" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                            <path d="M 20 30 L 30 26" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                        </svg>
+                                    </div>
 
-                        {/* Physical Cream Stationery Letter Sheet with Torn Left & Right Edges */}
-                        <div
-                            className="relative z-10 bg-gradient-to-b from-[#FAF7F0] via-[#F6F0E2] to-[#EFE7D5] border-y border-[#dfceb0]/90 px-5 xs:px-6 sm:px-12 md:px-16 lg:px-20 py-7 xs:py-8 sm:py-11 md:py-13 lg:py-15 text-center overflow-hidden"
-                            style={{
-                                clipPath: "polygon(0.8% 0%, 99.2% 0.2%, 99.7% 3%, 99.4% 8%, 100% 15%, 99.6% 25%, 99.9% 38%, 99.5% 50%, 100% 62%, 99.6% 75%, 99.9% 88%, 99.3% 97%, 98.8% 100%, 0.9% 99.8%, 0.3% 97%, 0.6% 88%, 0% 75%, 0.4% 62%, 0% 50%, 0.5% 38%, 0.1% 25%, 0.5% 15%, 0% 7%, 0.6% 2%)",
-                                boxShadow: "inset 0 1px 1px rgba(255,255,255,0.95), inset 0 -2px 6px rgba(110,80,25,0.06), inset 3px 0 6px rgba(255,255,255,0.7), inset -3px 0 6px rgba(255,255,255,0.7)",
-                            }}
-                        >
-                            {/* Gentle Physical Paper Folds (Horizontal Tri-Fold Creases) */}
-                            <div className="absolute inset-x-0 top-[34%] h-[1px] bg-gradient-to-r from-transparent via-amber-950/[0.06] to-transparent pointer-events-none z-10" />
-                            <div className="absolute inset-x-0 top-[34%] h-[1px] -translate-y-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-10" />
-                            <div className="absolute inset-x-0 top-[67%] h-[1px] bg-gradient-to-r from-transparent via-amber-950/[0.06] to-transparent pointer-events-none z-10" />
-                            <div className="absolute inset-x-0 top-[67%] h-[1px] -translate-y-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-10" />
-
-                            {/* Faint Oversized Nisschay Arch Watermark */}
-                            <div 
-                                className="absolute -right-4 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-80 lg:w-96 h-48 sm:h-64 md:h-80 lg:h-96 pointer-events-none opacity-[0.032] select-none mix-blend-multiply"
-                                aria-hidden="true"
-                            >
-                                <Image 
-                                    src="/logo-mark.webp" 
-                                    alt="" 
-                                    fill 
-                                    priority
-                                    sizes="(max-width: 640px) 192px, (max-width: 1024px) 320px, 384px"
-                                    className="object-contain filter grayscale contrast-150" 
-                                />
-                            </div>
-
-                            {/* Letter Content */}
-                            <div className="relative z-20 flex flex-col items-center justify-center max-w-4xl mx-auto">
-                                {/* Tasteful Stationery Letterhead Detail */}
-                                <div className="w-full flex flex-col xs:flex-row items-center justify-between gap-1 xs:gap-2 pb-3.5 sm:pb-5 mb-4 sm:mb-6 border-b border-[#07142F]/10 text-slate-500 font-mono text-[8.5px] sm:text-[10px] tracking-[0.14em] sm:tracking-[0.22em] uppercase select-none">
-                                    <span className="text-center xs:text-left">NISSCHAY STUDIO · DIGITAL SOLUTIONS</span>
-                                    <span className="font-bold text-[#07142F] text-center xs:text-right shrink-0">ESTABLISHED · 2026</span>
+                                    {/* Highlighted Handwritten Statement */}
+                                    <div className="flex flex-col items-center justify-center">
+                                        <p className={`${caveat.className} text-xl lg:text-[25px] xl:text-[29px] font-bold text-[#0057fe] tracking-normal leading-tight`}>
+                                            A decision to turn ideas into reality.
+                                        </p>
+                                        {/* Hand-drawn Curved Underline */}
+                                        <svg
+                                            className="w-56 lg:w-72 xl:w-[350px] h-2 lg:h-2.5 text-[#0057fe] mt-0.5 pointer-events-none"
+                                            viewBox="0 0 360 12"
+                                            fill="none"
+                                            preserveAspectRatio="none"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M 6 10 C 80 2, 260 2, 354 8"
+                                                stroke="currentColor"
+                                                strokeWidth="3.2"
+                                                strokeLinecap="round"
+                                            />
+                                        </svg>
+                                    </div>
                                 </div>
 
-                                {/* Heading */}
-                                <h1 className={`${caveat.className} text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[84px] font-bold text-[#075BFA] tracking-normal leading-[1.1] inline-block py-1 filter drop-shadow-[0_1px_1px_rgba(7,91,250,0.18)]`}>
-                                    What is Nisschay?
-                                </h1>
-
-                                {/* Subtle underline accent */}
-                                <div className="w-16 sm:w-24 h-[2px] bg-[#075BFA]/25 rounded-full my-3 sm:my-3.5" />
-
-                                {/* Subline */}
-                                <p className={`${caveat.className} text-2xl sm:text-3xl md:text-[34px] lg:text-4xl font-semibold text-[#07142F] tracking-normal leading-snug text-balance max-w-3xl`}>
-                                    A name rooted in determination. A belief in making ideas real.
-                                </p>
-
-                                {/* Bottom Stationery Sign-off with Establishment Detail */}
-                                <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 sm:pt-7 mt-6 sm:mt-8 border-t border-[#07142F]/10">
-                                    <div className="text-center sm:text-left">
-                                        <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-500 block mb-0.5">
-                                            BRAND RESOLVE
-                                        </span>
-                                        <span className={`${caveat.className} text-xl sm:text-2xl text-[#07142F] font-bold inline-block rotate-[-1deg]`}>
-                                            Nisschay — A decision to build better.
-                                        </span>
+                                {/* 2. Two Content Blocks Side-by-Side with Vertical Divider */}
+                                <div className="grid grid-cols-12 items-start gap-4 xl:gap-8 max-w-[880px] xl:max-w-[940px] mx-auto text-left w-full my-auto px-2">
+                                    {/* Content Block 1 — THE MEANING */}
+                                    <div className="col-span-5 flex flex-col justify-start">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="relative w-8 h-8 lg:w-8.5 lg:h-8.5 flex items-center justify-center shrink-0">
+                                                <div className="absolute inset-0 bg-[#dbeafe]/80 rounded-[40%_60%_70%_30%/40%_50%_60%_55%] rotate-[-6deg]" />
+                                                <FiFeather className="relative z-10 w-4 h-4 text-[#0057fe] stroke-[2.2]" />
+                                            </div>
+                                            <h2 className="text-[11.5px] lg:text-xs xl:text-[13px] font-mono font-bold tracking-[0.2em] text-[#0057fe] uppercase">
+                                                THE MEANING
+                                            </h2>
+                                        </div>
+                                        <p className="text-[11.5px] lg:text-xs xl:text-[13.5px] text-slate-700 leading-relaxed font-normal">
+                                            Nisschay represents determination — the decision to move forward with purpose. It reflects our belief that meaningful ideas deserve commitment, thoughtful planning and the right execution.
+                                        </p>
                                     </div>
-                                    <div className="text-center sm:text-right">
-                                        <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.22em] text-[#075BFA] font-bold uppercase block">
-                                            ESTABLISHED · 2026
-                                        </span>
-                                        <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
-                                            STUDIO CORRESPONDENCE
-                                        </span>
+
+                                    {/* Subtle Vertical Divider */}
+                                    <div className="col-span-2 flex justify-center self-center h-20 lg:h-22">
+                                        <div className="w-[1px] h-full bg-[#07142F]/15" />
+                                    </div>
+
+                                    {/* Content Block 2 — WHEN IT BEGAN */}
+                                    <div className="col-span-5 flex flex-col justify-start">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="relative w-8 h-8 lg:w-8.5 lg:h-8.5 flex items-center justify-center shrink-0">
+                                                <div className="absolute inset-0 bg-[#dbeafe]/80 rounded-[55%_45%_60%_40%/50%_65%_35%_50%] rotate-[12deg]" />
+                                                <LuCalendar className="relative z-10 w-4 h-4 text-[#0057fe] stroke-[2.2]" />
+                                            </div>
+                                            <h2 className="text-[11.5px] lg:text-xs xl:text-[13px] font-mono font-bold tracking-[0.2em] text-[#0057fe] uppercase">
+                                                WHEN IT BEGAN
+                                            </h2>
+                                        </div>
+                                        <p className="text-[11.5px] lg:text-xs xl:text-[13.5px] text-slate-700 leading-relaxed font-normal">
+                                            Established in 2026, Nisschay was built around a simple purpose: helping businesses move forward through thoughtful technology, custom software, AI-powered solutions and digital innovation.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* 3. Closing Brand Statement with Light Blue Highlighter */}
+                                <div className="flex justify-center">
+                                    <div className="bg-[#dbeafe]/85 px-5 lg:px-7 py-1.5 lg:py-2 rounded-[4px] border-y border-blue-200/50 inline-flex items-center justify-center gap-3 select-none shadow-2xs">
+                                        <span className="w-4 lg:w-5 h-[1.5px] bg-[#0057fe] shrink-0" aria-hidden="true" />
+                                        <p className="text-[9.5px] lg:text-[10.5px] xl:text-[11.5px] font-mono font-bold tracking-[0.22em] text-[#000c24] uppercase text-center">
+                                            NISSCHAY — BUILT WITH PURPOSE. DRIVEN BY DETERMINATION.
+                                        </p>
+                                        <span className="w-4 lg:w-5 h-[1.5px] bg-[#0057fe] shrink-0" aria-hidden="true" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
+
+                    {/* MOBILE & TABLET VIEW (<lg): Stacked Layout Preserving Paper Aesthetic */}
+                    <div className="lg:hidden relative w-full max-w-xl mx-auto px-2 sm:px-4">
+                        <div className="relative w-full rounded-[24px] sm:rounded-[32px] bg-[#FAF6F0] border border-[#EAE2D5] shadow-[0_4px_24px_rgba(7,20,47,0.06),0_1px_3px_rgba(7,20,47,0.02)] pt-11 pb-7 px-5 sm:px-9 sm:pt-14 sm:pb-9 overflow-visible text-center">
+                            {/* Subtle Paper Fiber Texture Overlay */}
+                            <div
+                                className="absolute inset-0 rounded-[24px] sm:rounded-[32px] pointer-events-none opacity-[0.08] mix-blend-multiply"
+                                style={{
+                                    backgroundImage: "url('/images/cta/paper_fiber_texture.webp')",
+                                    backgroundRepeat: "repeat",
+                                    backgroundSize: "280px 280px",
+                                }}
+                                aria-hidden="true"
+                            />
+
+                            {/* Realistic Translucent Masking Tape: Top-Left */}
+                            <div className="absolute -top-3.5 -left-3 sm:-top-4 sm:-left-4 w-20 sm:w-24 pointer-events-none z-20">
+                                <Image
+                                    src="/images/about/brand_story_tape_left.webp"
+                                    alt=""
+                                    width={120}
+                                    height={90}
+                                    className="w-full h-auto object-contain select-none"
+                                />
+                            </div>
+
+                            {/* Realistic Translucent Masking Tape: Top-Right */}
+                            <div className="absolute -top-3.5 -right-3 sm:-top-4 sm:-right-4 w-20 sm:w-24 pointer-events-none z-20">
+                                <Image
+                                    src="/images/about/brand_story_tape_right.webp"
+                                    alt=""
+                                    width={120}
+                                    height={90}
+                                    className="w-full h-auto object-contain select-none"
+                                />
+                            </div>
+
+                            {/* Content Container */}
+                            <div className="relative z-10 flex flex-col items-center">
+                                {/* Main Heading H1 */}
+                                <div className="inline-flex items-center justify-center gap-1 mb-1.5 pt-2">
+                                    <h1 className="text-2xl sm:text-3xl font-black text-[#000c24] tracking-tight font-display leading-tight">
+                                        What is Nisschay?
+                                    </h1>
+                                    <svg
+                                        className="w-5 h-5 text-[#0057fe] -mt-2 shrink-0"
+                                        viewBox="0 0 32 32"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M 8 18 L 12 4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                        <path d="M 15 23 L 26 13" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                        <path d="M 20 30 L 30 26" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                    </svg>
+                                </div>
+
+                                {/* Highlighted Handwritten Statement */}
+                                <div className="flex flex-col items-center justify-center mb-6">
+                                    <p className={`${caveat.className} text-xl sm:text-2xl font-bold text-[#0057fe] tracking-normal leading-tight`}>
+                                        A decision to turn ideas into reality.
+                                    </p>
+                                    <svg
+                                        className="w-56 sm:w-64 h-2 text-[#0057fe] mt-0.5 pointer-events-none"
+                                        viewBox="0 0 360 12"
+                                        fill="none"
+                                        preserveAspectRatio="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M 6 10 C 80 2, 260 2, 354 8"
+                                            stroke="currentColor"
+                                            strokeWidth="3.2"
+                                            strokeLinecap="round"
+                                        />
+                                    </svg>
+                                </div>
+
+                                {/* Block 1: The Meaning - Inked directly on paper */}
+                                <div className="w-full text-left mb-5 pb-5 border-b border-[#07142F]/10">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
+                                            <div className="absolute inset-0 bg-[#dbeafe]/80 rounded-[40%_60%_70%_30%/40%_50%_60%_55%] rotate-[-6deg]" />
+                                            <FiFeather className="relative z-10 w-3.5 h-3.5 text-[#0057fe] stroke-[2.2]" />
+                                        </div>
+                                        <h2 className="text-xs font-mono font-bold tracking-[0.18em] text-[#0057fe] uppercase">
+                                            THE MEANING
+                                        </h2>
+                                    </div>
+                                    <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-normal">
+                                        Nisschay represents determination — the decision to move forward with purpose. It reflects our belief that meaningful ideas deserve commitment, thoughtful planning and the right execution.
+                                    </p>
+                                </div>
+
+                                {/* Block 2: When It Began - Inked directly on paper */}
+                                <div className="w-full text-left mb-6">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
+                                            <div className="absolute inset-0 bg-[#dbeafe]/80 rounded-[55%_45%_60%_40%/50%_65%_35%_50%] rotate-[12deg]" />
+                                            <LuCalendar className="relative z-10 w-3.5 h-3.5 text-[#0057fe] stroke-[2.2]" />
+                                        </div>
+                                        <h2 className="text-xs font-mono font-bold tracking-[0.18em] text-[#0057fe] uppercase">
+                                            WHEN IT BEGAN
+                                        </h2>
+                                    </div>
+                                    <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-normal">
+                                        Established in 2026, Nisschay was built around a simple purpose: helping businesses move forward through thoughtful technology, custom software, AI-powered solutions and digital innovation.
+                                    </p>
+                                </div>
+
+                                {/* Closing Brand Statement */}
+                                <div className="w-full bg-[#dbeafe]/85 px-4 py-2.5 rounded-[4px] border-y border-blue-200/50 flex items-center justify-center gap-2 select-none">
+                                    <span className="w-3.5 h-[1.5px] bg-[#0057fe] shrink-0" aria-hidden="true" />
+                                    <p className="text-[9px] sm:text-[10px] font-mono font-bold tracking-[0.16em] text-[#000c24] uppercase text-center leading-tight">
+                                        NISSCHAY — BUILT WITH PURPOSE. DRIVEN BY DETERMINATION.
+                                    </p>
+                                    <span className="w-3.5 h-[1.5px] bg-[#0057fe] shrink-0" aria-hidden="true" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Chapter Quick-Jump Navigation Track (Visible on md+) */}
-                <div className="hidden md:flex items-center justify-center select-none -mt-6 sm:-mt-8 mb-4">
-                    <nav 
-                        aria-label="About page chapters"
-                        className="inline-flex items-center gap-1 p-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-[0_2px_12px_rgba(7,20,47,0.04)] text-xs font-mono font-medium text-slate-600"
-                    >
-                        <a 
-                            href="#why-we-exist" 
-                            className="px-3.5 py-1.5 rounded-full hover:text-[#075BFA] hover:bg-blue-50/80 transition-colors"
-                        >
-                            01 · Why We Exist
-                        </a>
-                        <span className="text-slate-300">/</span>
-                        <a 
-                            href="#how-we-help" 
-                            className="px-3.5 py-1.5 rounded-full hover:text-[#075BFA] hover:bg-blue-50/80 transition-colors"
-                        >
-                            02 · How We Help
-                        </a>
-                        <span className="text-slate-300">/</span>
-                        <a 
-                            href="#who-we-work-with" 
-                            className="px-3.5 py-1.5 rounded-full hover:text-[#075BFA] hover:bg-blue-50/80 transition-colors"
-                        >
-                            03 · Clients
-                        </a>
-                        <span className="text-slate-300">/</span>
-                        <a 
-                            href="#how-we-work" 
-                            className="px-3.5 py-1.5 rounded-full hover:text-[#075BFA] hover:bg-blue-50/80 transition-colors"
-                        >
-                            04 · Approach
-                        </a>
-                        <span className="text-slate-300">/</span>
-                        <a 
-                            href="#what-we-believe" 
-                            className="px-3.5 py-1.5 rounded-full hover:text-[#075BFA] hover:bg-blue-50/80 transition-colors"
-                        >
-                            05 · Manifesto
-                        </a>
-                    </nav>
-                </div>
+
 
                 {/* ========================================================
                     CHAPTERS STACK
@@ -455,127 +636,12 @@ export default function AboutSection({
                 <div className="space-y-28 sm:space-y-36 lg:space-y-44">
 
                     <div id="why-we-exist" className="scroll-mt-28" />
+                    <div id="meet-nisschay" className="scroll-mt-28" />
                     {/* ========================================================
-                        SECTION 01 — WHY WE EXIST
-                        (Exact Editorial Reference Layout)
+                        SECTION 01 — MEET NISSCHAY (Company Introduction)
                     ======================================================== */}
                     <div className="w-full">
-                        {/* Section Header: Eyebrow + Headline with Hand-Drawn Underline */}
-                        <div className="mb-10 sm:mb-12 lg:mb-14">
-                            {/* Eyebrow Label: Matching Reference Image (dot + horizontal line + uppercase tracking) */}
-                            <div className="inline-flex items-center gap-2.5 mb-4 sm:mb-5">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#075BFA]" />
-                                <span className="w-6 h-[2px] bg-[#075BFA]/70" aria-hidden="true" />
-                                <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#075BFA] uppercase">
-                                    SECTION 01 · WHY WE EXIST
-                                </span>
-                            </div>
-
-                            {/* Main Heading: 2 Lines with Blue Brush Underline Accent */}
-                            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[62px] font-black text-[#07142F] tracking-tight leading-[1.08] font-sans">
-                                Technology should<br />
-                                <span className="relative inline-block mt-1 sm:mt-2 pb-3 sm:pb-4">
-                                    make things easier.
-                                    {/* Hand-Drawn Blue Brush Underline */}
-                                    <svg
-                                        className="absolute bottom-0 left-0 w-full h-3 sm:h-4 text-[#075BFA] pointer-events-none translate-y-2 sm:translate-y-3"
-                                        viewBox="0 0 280 14"
-                                        fill="none"
-                                        preserveAspectRatio="none"
-                                        aria-hidden="true"
-                                    >
-                                        <motion.path
-                                            d="M 3 10 C 80 4, 200 4, 277 9"
-                                            stroke="currentColor"
-                                            strokeWidth="4"
-                                            strokeLinecap="round"
-                                            initial={shouldReduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
-                                            whileInView={{ pathLength: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.85, delay: 0.2, ease: "easeOut" }}
-                                        />
-                                    </svg>
-                                </span>
-                            </h2>
-                        </div>
-
-                        {/* Two-Column Editorial Spread */}
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-start pt-2">
-                            
-                            {/* Left Column: Why Nisschay Exists */}
-                            <div className="lg:col-span-5 xl:col-span-4 lg:pr-10 xl:pr-12 space-y-4 sm:space-y-5">
-                                <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
-                                    <span className="w-1.5 h-5 bg-[#075BFA] rounded-full shrink-0" aria-hidden="true" />
-                                    <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#07142F] uppercase">
-                                        WHY NISSCHAY EXISTS
-                                    </span>
-                                </div>
-
-                                <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-sans">
-                                    Nisschay helps businesses find and build practical digital solutions — from websites and software to AI, automation and digital marketing.
-                                </p>
-                                <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-sans">
-                                    Our goal is simple: use technology to solve real business problems and help you move forward.
-                                </p>
-                            </div>
-
-                            {/* Vertical Divider on lg+ & Right Column: 4 Numbered Rows */}
-                            <div className="lg:col-span-7 xl:col-span-8 lg:border-l lg:border-t-0 border-t border-slate-300/80 pt-8 lg:pt-0 lg:pl-10 xl:pl-14">
-                                <div className="space-y-3 sm:space-y-3.5">
-                                    {[
-                                        {
-                                            num: "01",
-                                            title: "Understand the business",
-                                            desc: "Learn about your goals, challenges and what you want to achieve.",
-                                        },
-                                        {
-                                            num: "02",
-                                            title: "Find the right solution",
-                                            desc: "Suggest practical, simple and effective options for your needs.",
-                                        },
-                                        {
-                                            num: "03",
-                                            title: "Build with clear goals",
-                                            desc: "Design and develop the solution with transparent communication.",
-                                        },
-                                        {
-                                            num: "04",
-                                            title: "Support and improve",
-                                            desc: "Help you keep things running and make improvements when agreed.",
-                                        },
-                                    ].map((step) => (
-                                        <motion.div
-                                            key={step.num}
-                                            whileHover={{ y: -2 }}
-                                            whileTap={{ y: 2 }}
-                                            transition={{ type: "spring", stiffness: 450, damping: 26 }}
-                                            className="group relative w-full text-left p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 border-b-[3px] border-b-slate-300/90 shadow-[0_2px_0_rgba(15,23,42,0.03),0_3px_8px_rgba(15,23,42,0.02)] hover:bg-[#F2F6FE] hover:border-blue-200/90 hover:border-b-[3px] hover:border-b-blue-300/80 hover:shadow-[0_3px_0_rgba(7,91,250,0.08),0_8px_20px_rgba(7,20,47,0.04)] transition-all duration-200 cursor-pointer select-none"
-                                        >
-                                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6">
-                                                <div className="flex items-center gap-3.5 sm:gap-5 shrink-0">
-                                                    {/* Keycap numeral badge */}
-                                                    <span className="w-10 h-10 rounded-xl bg-slate-100/90 border border-slate-200/80 border-b-2 border-b-slate-300/80 font-mono font-bold text-sm sm:text-base text-slate-700 group-hover:bg-white group-hover:border-blue-200 group-hover:border-b-2 group-hover:border-b-blue-300 group-hover:text-[#075BFA] flex items-center justify-center transition-colors duration-200 shrink-0 shadow-sm">
-                                                        {step.num}
-                                                    </span>
-                                                    <span className="font-bold text-[#07142F] group-hover:text-[#075BFA] text-base sm:text-lg font-sans w-auto sm:w-52 lg:w-56 shrink-0 transition-colors duration-200">
-                                                        {step.title}
-                                                    </span>
-                                                </div>
-                                                <p className="text-slate-600 group-hover:text-slate-700 text-sm sm:text-[15px] leading-relaxed font-sans flex-1 pl-[50px] sm:pl-0 transition-colors duration-200">
-                                                    {step.desc}
-                                                </p>
-                                                <div className="hidden sm:flex items-center pl-2 shrink-0">
-                                                    <span className="w-7 h-7 rounded-full bg-transparent group-hover:bg-white flex items-center justify-center text-slate-300 group-hover:text-[#075BFA] group-hover:translate-x-0.5 transition-all duration-200 shadow-none group-hover:shadow-xs">
-                                                        <FiArrowRight className="w-4 h-4" />
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-
-                        </div>
+                        <AboutMeetNisschaySection isEmbedded={true} />
                     </div>
 
 <div id="how-we-help" className="scroll-mt-28" />
@@ -740,114 +806,285 @@ export default function AboutSection({
                             </motion.h2>
                         </div>
 
-                        {/* 3 Editorial Paper Compositions */}
+                        {/* 3 Editorial Paper Compositions (Matching Services Section Realistic Pastel Sticky Notes) */}
                         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 items-stretch">
 
-                            {/* Audience 1: Startups and new businesses */}
+                            {/* Audience 1: Startups and new businesses (Pastel Soft Blue) */}
                             <motion.div
                                 {...fadeInProps(0.1)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[14px_11px_15px_12px] p-6 sm:p-8 flex flex-col justify-between shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform -rotate-[0.8deg] hover:rotate-0 transition-transform duration-200 select-none"
+                                className="group relative w-full h-full transform -rotate-[1deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrain1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrain1)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow beneath note */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Translucent Kraft Masking Tape */}
-                                <ScrapbookTape className="absolute -top-3.5 left-8 w-28 sm:w-32 h-6" angle={-2} />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={-0.8} />
 
-                                <div className="relative z-10">
-                                    <span className="text-[10px] font-mono tracking-widest text-[#075BFA] font-bold uppercase block mb-2">
-                                        STARTING POINT 01
-                                    </span>
-                                    <h3 className="text-xl font-bold text-[#07142F] mb-3 font-sans">
-                                        Startups and new businesses
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
-                                        Building a new idea? We help you create the digital foundation to get started.
-                                    </p>
-                                </div>
-                                <div className="relative z-10 mt-6 pt-4 border-t border-[#E5DFD4]/80">
-                                    <span className={`${caveat.className} text-base sm:text-[17px] text-[#075BFA] font-bold block`}>
-                                        * Clean foundation from day one
-                                    </span>
+                                {/* Main Sticky Note Sheet (Pastel Soft Blue) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[340px] bg-gradient-to-br from-[#EEF6FF] via-[#E0EFFE] to-[#CFE5FD] border border-[#B8DCFE] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* 1. Paper Grain Texture Overlay */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.07] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stickyGrainAbout1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23stickyGrainAbout1)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* 2. Organic Paper Wrinkles & Soft Lighting Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+
+
+                                    {/* 4. Playful Ray Burst Doodled in Top Right */}
+                                    <svg 
+                                        className="absolute top-3.5 right-4 w-4 h-4 text-[#0057fe] pointer-events-none opacity-70 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 5. 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#BCDDFC" />
+
+                                    <div className="relative z-10">
+                                        <span className="text-[10px] font-mono tracking-widest text-[#0057fe] font-bold uppercase block mb-2">
+                                            STARTING POINT 01
+                                        </span>
+                                        <h3 className="text-xl font-bold text-[#000c24] mb-1 font-sans">
+                                            Startups and new businesses
+                                        </h3>
+
+                                        {/* Direct Paper Artwork Integration */}
+                                        <div className="relative w-full h-[125px] sm:h-[135px] my-3 flex items-center justify-center">
+                                            <div className="absolute bottom-2 w-32 h-6 bg-[#001c44]/15 rounded-full blur-md" />
+                                            <div className="relative w-[130px] h-[130px] group-hover:scale-105 transition-transform duration-300">
+                                                <Image
+                                                    src="/images/industries/startups_light.webp"
+                                                    alt="3D Startup Rocket"
+                                                    width={140}
+                                                    height={140}
+                                                    className="w-full h-full object-contain filter drop-shadow-[0_8px_12px_rgba(7,20,47,0.16)]"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed font-sans">
+                                            Building a new idea? We help you create the digital foundation to get started.
+                                        </p>
+                                    </div>
+
+                                    {/* Handwritten Note Bottom */}
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#B8DCFE]/90">
+                                        <span className={`${caveat.className} text-base sm:text-[17px] text-[#0057fe] font-bold block`}>
+                                            * Clean foundation from day one
+                                        </span>
+                                    </div>
                                 </div>
                             </motion.div>
 
-                            {/* Audience 2: Small businesses */}
+                            {/* Audience 2: Small businesses (Pastel Warm Canary Yellow) */}
                             <motion.div
                                 {...fadeInProps(0.2)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[11px_15px_12px_14px] p-6 sm:p-8 flex flex-col justify-between shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform rotate-[0.6deg] hover:rotate-0 transition-transform duration-200 select-none"
+                                className="group relative w-full h-full transform rotate-[0.6deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrain2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrain2)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow beneath note */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Silver Metal Paperclip */}
-                                <RealisticPaperclip className="absolute -top-4.5 right-8 z-20" />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={0.6} />
 
-                                <div className="relative z-10">
-                                    <span className="text-[10px] font-mono tracking-widest text-[#075BFA] font-bold uppercase block mb-2">
-                                        STARTING POINT 02
-                                    </span>
-                                    <h3 className="text-xl font-bold text-[#07142F] mb-3 font-sans">
-                                        Small businesses
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
-                                        Looking to improve your online presence or make daily work easier? We help identify practical solutions.
-                                    </p>
-                                </div>
-                                <div className="relative z-10 mt-6 pt-4 border-t border-[#E5DFD4]/80">
-                                    <span className={`${caveat.className} text-base sm:text-[17px] text-[#075BFA] font-bold block`}>
-                                        * Pragmatic upgrades that save time
-                                    </span>
+                                {/* Main Sticky Note Sheet (Pastel Warm Canary Yellow) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[340px] bg-gradient-to-br from-[#FFFEEA] via-[#FFF6C8] to-[#FEEA9A] border border-[#F8E285] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* 1. Paper Grain Texture Overlay */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.07] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stickyGrainAbout2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23stickyGrainAbout2)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* 2. Organic Paper Wrinkles & Soft Lighting Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+
+
+                                    {/* 4. Playful Ray Burst Doodled in Top Left */}
+                                    <svg 
+                                        className="absolute top-3.5 left-4 w-4 h-4 text-[#b45309] pointer-events-none opacity-60 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 5. 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#F7DF7C" />
+
+                                    <div className="relative z-10">
+                                        <span className="text-[10px] font-mono tracking-widest text-[#b45309] font-bold uppercase block mb-2">
+                                            STARTING POINT 02
+                                        </span>
+                                        <h3 className="text-xl font-bold text-[#000c24] mb-1 font-sans">
+                                            Small businesses
+                                        </h3>
+
+                                        {/* Direct Paper Artwork Integration */}
+                                        <div className="relative w-full h-[125px] sm:h-[135px] my-3 flex items-center justify-center">
+                                            <div className="absolute bottom-2 w-32 h-6 bg-[#3a2800]/15 rounded-full blur-md" />
+                                            <div className="relative w-[130px] h-[130px] group-hover:scale-105 transition-transform duration-300">
+                                                <Image
+                                                    src="/images/industries/retail_light.webp"
+                                                    alt="3D Commerce Cart"
+                                                    width={140}
+                                                    height={140}
+                                                    className="w-full h-full object-contain filter drop-shadow-[0_8px_12px_rgba(40,25,0,0.16)]"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed font-sans">
+                                            Looking to improve your online presence or make daily work easier? We help identify practical solutions.
+                                        </p>
+                                    </div>
+
+                                    {/* Handwritten Note Bottom (Blue Ink on Canary Yellow) */}
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#F8E285]/90">
+                                        <span className={`${caveat.className} text-base sm:text-[17px] text-[#0057fe] font-bold block`}>
+                                            * Pragmatic upgrades that save time
+                                        </span>
+                                    </div>
                                 </div>
                             </motion.div>
 
-                            {/* Audience 3: Growing businesses */}
+                            {/* Audience 3: Growing businesses (Pastel Soft Peach / Warm Coral) */}
                             <motion.div
                                 {...fadeInProps(0.3)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[15px_12px_14px_11px] p-6 sm:p-8 flex flex-col justify-between shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform -rotate-[0.5deg] hover:rotate-0 transition-transform duration-200 select-none"
+                                className="group relative w-full h-full transform -rotate-[0.8deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrain3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrain3)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow beneath note */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Translucent Kraft Masking Tape */}
-                                <ScrapbookTape className="absolute -top-3.5 right-8 w-28 sm:w-32 h-6" angle={2.2} />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={-0.5} />
 
-                                <div className="relative z-10">
-                                    <span className="text-[10px] font-mono tracking-widest text-[#075BFA] font-bold uppercase block mb-2">
-                                        STARTING POINT 03
-                                    </span>
-                                    <h3 className="text-xl font-bold text-[#07142F] mb-3 font-sans">
-                                        Growing businesses
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
-                                        Need better software, automation or digital systems? We help you plan and build for your next stage.
-                                    </p>
-                                </div>
-                                <div className="relative z-10 mt-6 pt-4 border-t border-[#E5DFD4]/80">
-                                    <span className={`${caveat.className} text-base sm:text-[17px] text-[#075BFA] font-bold block`}>
-                                        * Robust architectures ready to scale
-                                    </span>
+                                {/* Main Sticky Note Sheet (Pastel Soft Peach) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[340px] bg-gradient-to-br from-[#FFF2EB] via-[#FEDDCB] to-[#FECBBA] border border-[#F9BAA5] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* 1. Paper Grain Texture Overlay */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.07] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stickyGrainAbout3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23stickyGrainAbout3)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* 2. Organic Paper Wrinkles & Soft Lighting Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+
+
+                                    {/* 4. Playful Ray Burst Doodled in Top Right */}
+                                    <svg 
+                                        className="absolute top-3.5 right-4 w-4 h-4 text-[#ea580c] pointer-events-none opacity-60 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 5. 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#F7B59E" />
+
+                                    <div className="relative z-10">
+                                        <span className="text-[10px] font-mono tracking-widest text-[#ea580c] font-bold uppercase block mb-2">
+                                            STARTING POINT 03
+                                        </span>
+                                        <h3 className="text-xl font-bold text-[#000c24] mb-1 font-sans">
+                                            Growing businesses
+                                        </h3>
+
+                                        {/* Direct Paper Artwork Integration */}
+                                        <div className="relative w-full h-[125px] sm:h-[135px] my-3 flex items-center justify-center">
+                                            <div className="absolute bottom-2 w-32 h-6 bg-[#3a1500]/15 rounded-full blur-md" />
+                                            <div className="relative w-[130px] h-[130px] group-hover:scale-105 transition-transform duration-300">
+                                                <Image
+                                                    src="/images/industries/professional_services_light.webp"
+                                                    alt="3D Growth Chart"
+                                                    width={140}
+                                                    height={140}
+                                                    className="w-full h-full object-contain filter drop-shadow-[0_8px_12px_rgba(40,15,0,0.16)]"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed font-sans">
+                                            Need better software, automation or digital systems? We help you plan and build for your next stage.
+                                        </p>
+                                    </div>
+
+                                    {/* Handwritten Note Bottom */}
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#F9BAA5]/90">
+                                        <span className={`${caveat.className} text-base sm:text-[17px] text-[#0057fe] font-bold block`}>
+                                            * Robust architectures ready to scale
+                                        </span>
+                                    </div>
                                 </div>
                             </motion.div>
 
@@ -1033,201 +1270,393 @@ export default function AboutSection({
                             </motion.h2>
                         </div>
 
-                        {/* Staggered Studio Manifesto Notes */}
+                        {/* Staggered Studio Manifesto Notes (Realistic Pastel Sticky Notes) */}
                         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-start">
 
-                            {/* Principle 01: Understand before building */}
+                            {/* Principle 01: Understand before building (Pastel Soft Blue) */}
                             <motion.div
                                 {...fadeInProps(0.1)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[14px_11px_15px_12px] p-6 sm:p-7 shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform -rotate-[0.9deg] hover:rotate-0 transition-transform duration-200 select-none"
+                                className="group relative w-full h-full transform -rotate-[0.9deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB1)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Translucent Kraft Masking Tape */}
-                                <ScrapbookTape className="absolute -top-3.5 left-8 w-28 sm:w-32 h-6" angle={-2.5} />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={-0.8} />
 
-                                <div className="relative z-10">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-xs font-mono font-bold tracking-widest text-[#075BFA] uppercase">
-                                            PRINCIPLE 01
-                                        </span>
-                                        <FiCompass className="text-[#075BFA]" size={18} />
+                                {/* Sticky Note Sheet (Pastel Soft Blue) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[250px] bg-gradient-to-br from-[#EEF6FF] via-[#E0EFFE] to-[#CFE5FD] border border-[#B8DCFE] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* Paper Grain Texture */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB1)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true"
+                                    />
+
+                                    {/* Organic Paper Wrinkles & Soft Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* Playful Doodled Ray Burst in Top Right */}
+                                    <svg 
+                                        className="absolute top-3.5 right-4 w-4 h-4 text-[#0057fe] pointer-events-none opacity-70 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none" 
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#BCDDFC" />
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-xs font-mono font-bold tracking-widest text-[#0057fe] uppercase">
+                                                PRINCIPLE 01
+                                            </span>
+                                            <FiCompass className="text-[#0057fe]" size={18} />
+                                        </div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-[#000c24] mb-2 font-sans">
+                                            Understand before building
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed font-sans">
+                                            Good solutions begin with listening and asking the right questions.
+                                        </p>
                                     </div>
-                                    <h3 className="text-lg sm:text-xl font-bold text-[#07142F] mb-2 font-sans">
-                                        Understand before building
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
-                                        Good solutions begin with listening and asking the right questions.
-                                    </p>
-                                    <div className="mt-5 pt-3 border-t border-[#E5DFD4]/80 flex items-center justify-between">
-                                        <span className={`${caveat.className} text-base text-[#075BFA] font-bold`}>
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#B8DCFE]/90 flex items-center justify-between">
+                                        <span className={`${caveat.className} text-base text-[#0057fe] font-bold`}>
                                             * Listen first, design second
                                         </span>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Principle 02: Keep things simple */}
+                            {/* Principle 02: Keep things simple (Pastel Warm Canary Yellow) */}
                             <motion.div
                                 {...fadeInProps(0.2)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[11px_15px_12px_14px] p-6 sm:p-7 shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform rotate-[0.8deg] hover:rotate-0 transition-transform duration-200 select-none"
+                                className="group relative w-full h-full transform rotate-[0.8deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB2)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Silver Metal Paperclip */}
-                                <RealisticPaperclip className="absolute -top-4.5 right-8 z-20" />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={0.6} />
 
-                                <div className="relative z-10">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-xs font-mono font-bold tracking-widest text-[#07142F] uppercase">
-                                            PRINCIPLE 02
-                                        </span>
-                                        <FiFeather className="text-[#07142F]" size={18} />
+                                {/* Sticky Note Sheet (Pastel Warm Canary Yellow) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[250px] bg-gradient-to-br from-[#FFFEEA] via-[#FFF6C8] to-[#FEEA9A] border border-[#F8E285] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* Paper Grain Texture */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB2)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true"
+                                    />
+
+                                    {/* Organic Paper Wrinkles & Soft Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+
+
+                                    {/* Playful Doodled Ray Burst in Top Right */}
+                                    <svg 
+                                        className="absolute top-3.5 right-4 w-4 h-4 text-[#b45309] pointer-events-none opacity-60 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none" 
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#F7DF7C" />
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-xs font-mono font-bold tracking-widest text-[#b45309] uppercase">
+                                                PRINCIPLE 02
+                                            </span>
+                                            <FiFeather className="text-[#b45309]" size={18} />
+                                        </div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-[#000c24] mb-2 font-sans">
+                                            Keep things simple
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed font-sans">
+                                            Technology should make life easier, not more complicated.
+                                        </p>
                                     </div>
-                                    <h3 className="text-lg sm:text-xl font-bold text-[#07142F] mb-2 font-sans">
-                                        Keep things simple
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
-                                        Technology should make life easier, not more complicated.
-                                    </p>
-                                    <div className="mt-5 pt-3 border-t border-[#E5DFD4]/80 flex items-center justify-between">
-                                        <span className={`${caveat.className} text-base text-[#075BFA] font-bold`}>
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#F8E285]/90 flex items-center justify-between">
+                                        <span className={`${caveat.className} text-base text-[#0057fe] font-bold`}>
                                             * Clarity over complexity
                                         </span>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Principle 03: Be honest and clear */}
+                            {/* Principle 03: Be honest and clear (Pastel Soft Peach / Warm Coral) */}
                             <motion.div
                                 {...fadeInProps(0.3)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[15px_12px_14px_11px] p-6 sm:p-7 shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform -rotate-[0.6deg] hover:rotate-0 transition-transform duration-200 select-none"
+                                className="group relative w-full h-full transform -rotate-[0.6deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB3)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Translucent Kraft Masking Tape */}
-                                <ScrapbookTape className="absolute -top-3.5 right-8 w-28 sm:w-32 h-6" angle={2.2} />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={-0.5} />
 
-                                <div className="relative z-10">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-xs font-mono font-bold tracking-widest text-[#075BFA] uppercase">
-                                            PRINCIPLE 03
-                                        </span>
-                                        <FiCheckCircle className="text-[#075BFA]" size={18} />
+                                {/* Sticky Note Sheet (Pastel Soft Peach) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[250px] bg-gradient-to-br from-[#FFF2EB] via-[#FEDDCB] to-[#FECBBA] border border-[#F9BAA5] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* Paper Grain Texture */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB3)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true"
+                                    />
+
+                                    {/* Organic Paper Wrinkles & Soft Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0.48) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* Playful Doodled Ray Burst in Top Right */}
+                                    <svg 
+                                        className="absolute top-3.5 right-4 w-4 h-4 text-[#ea580c] pointer-events-none opacity-60 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none" 
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#F7B59E" />
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-xs font-mono font-bold tracking-widest text-[#ea580c] uppercase">
+                                                PRINCIPLE 03
+                                            </span>
+                                            <FiCheckCircle className="text-[#ea580c]" size={18} />
+                                        </div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-[#000c24] mb-2 font-sans">
+                                            Be honest and clear
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed font-sans">
+                                            Clear communication and realistic expectations matter.
+                                        </p>
                                     </div>
-                                    <h3 className="text-lg sm:text-xl font-bold text-[#07142F] mb-2 font-sans">
-                                        Be honest and clear
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
-                                        Clear communication and realistic expectations matter.
-                                    </p>
-                                    <div className="mt-5 pt-3 border-t border-[#E5DFD4]/80 flex items-center justify-between">
-                                        <span className={`${caveat.className} text-base text-[#075BFA] font-bold`}>
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#F9BAA5]/90 flex items-center justify-between">
+                                        <span className={`${caveat.className} text-base text-[#0057fe] font-bold`}>
                                             * Realistic commitments
                                         </span>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Principle 04: Build with purpose */}
+                            {/* Principle 04: Build with purpose (Pastel Light Lavender) */}
                             <motion.div
                                 {...fadeInProps(0.4)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[13px_15px_11px_14px] p-6 sm:p-7 shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform rotate-[0.7deg] hover:rotate-0 transition-transform duration-200 select-none md:col-span-1 lg:col-span-1"
+                                className="group relative w-full h-full transform rotate-[0.7deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none md:col-span-1 lg:col-span-1"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB4'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB4)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Translucent Kraft Masking Tape */}
-                                <ScrapbookTape className="absolute -top-3.5 left-10 w-28 sm:w-32 h-6" angle={-1.8} />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={0.7} />
 
-                                <div className="relative z-10">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-xs font-mono font-bold tracking-widest text-[#07142F] uppercase">
-                                            PRINCIPLE 04
-                                        </span>
-                                        <FiTool className="text-[#07142F]" size={18} />
+                                {/* Sticky Note Sheet (Pastel Light Lavender) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[250px] bg-gradient-to-br from-[#F7F1FE] via-[#EDE0FC] to-[#DFCEFB] border border-[#D2B6F8] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* Paper Grain Texture */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB4'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB4)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true"
+                                    />
+
+                                    {/* Organic Paper Wrinkles & Soft Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0.48) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* Playful Doodled Ray Burst in Top Right */}
+                                    <svg 
+                                        className="absolute top-3.5 right-4 w-4 h-4 text-[#7c3aed] pointer-events-none opacity-60 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none" 
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#CBACF6" />
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-xs font-mono font-bold tracking-widest text-[#7c3aed] uppercase">
+                                                PRINCIPLE 04
+                                            </span>
+                                            <FiTool className="text-[#7c3aed]" size={18} />
+                                        </div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-[#000c24] mb-2 font-sans">
+                                            Build with purpose
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed font-sans">
+                                            Focus on solutions that address real business needs.
+                                        </p>
                                     </div>
-                                    <h3 className="text-lg sm:text-xl font-bold text-[#07142F] mb-2 font-sans">
-                                        Build with purpose
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
-                                        Focus on solutions that address real business needs.
-                                    </p>
-                                    <div className="mt-5 pt-3 border-t border-[#E5DFD4]/80 flex items-center justify-between">
-                                        <span className={`${caveat.className} text-base text-[#075BFA] font-bold`}>
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#D2B6F8]/90 flex items-center justify-between">
+                                        <span className={`${caveat.className} text-base text-[#0057fe] font-bold`}>
                                             * Tangible business outcomes
                                         </span>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Principle 05: Keep improving */}
+                            {/* Principle 05: Keep improving (Pastel Pale Mint / Fresh Green) */}
                             <motion.div
                                 {...fadeInProps(0.5)}
-                                className="relative bg-gradient-to-b from-[#FEFDFB] via-[#FAF7F0] to-[#F5F2EB] border border-[#E2DDD3]/90 rounded-[14px_12px_15px_11px] p-6 sm:p-7 shadow-[0_2px_4px_rgba(30,20,10,0.03),0_8px_20px_-3px_rgba(30,20,10,0.06),0_16px_32px_-6px_rgba(30,20,10,0.04)] transform -rotate-[0.8deg] hover:rotate-0 transition-transform duration-200 select-none md:col-span-2 lg:col-span-2"
+                                className="group relative w-full h-full transform -rotate-[0.8deg] hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 ease-out origin-top select-none md:col-span-2 lg:col-span-2"
                             >
-                                {/* Fine Paper Fiber Grain Overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-multiply rounded-[inherit]"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB5'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB5)'/%3E%3C/svg%3E")`,
-                                        backgroundRepeat: "repeat",
-                                    }}
+                                {/* Hanging Paper Drop Shadow */}
+                                <div 
+                                    className="absolute inset-x-2 -bottom-2 h-8 bg-[#07142f]/[0.08] blur-[8px] rounded-[50%] pointer-events-none group-hover:bg-[#07142f]/[0.14] group-hover:blur-[12px] group-hover:-bottom-3 transition-all duration-300"
                                     aria-hidden="true"
                                 />
 
-                                {/* Realistic Silver Metal Paperclip */}
-                                <RealisticPaperclip className="absolute -top-4.5 left-8 z-20" />
+                                {/* Realistic Kraft Masking Tape */}
+                                <TopMaskingTape angle={-0.4} />
 
-                                <div className="relative z-10">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-xs font-mono font-bold tracking-widest text-[#075BFA] uppercase">
-                                            PRINCIPLE 05 · LONG-TERM HORIZON
-                                        </span>
-                                        <FiTrendingUp className="text-[#075BFA]" size={18} />
+                                {/* Sticky Note Sheet (Pastel Pale Mint / Fresh Green) */}
+                                <div
+                                    className="relative flex flex-col justify-between w-full h-full min-h-[250px] bg-gradient-to-br from-[#EDFAF2] via-[#DBF4E2] to-[#C4EED1] border border-[#B2E2C4] rounded-[2px] p-6 sm:p-7 shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)] transition-shadow duration-300 overflow-hidden"
+                                    style={{
+                                        clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
+                                    }}
+                                >
+                                    {/* Paper Grain Texture */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-multiply z-0"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainB5'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainB5)'/%3E%3C/svg%3E")`,
+                                            backgroundRepeat: "repeat",
+                                        }}
+                                        aria-hidden="true"
+                                    />
+
+                                    {/* Organic Paper Wrinkles & Soft Folds */}
+                                    <div 
+                                        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+                                        style={{
+                                            background: "linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 24%, rgba(0,0,0,0.02) 28%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0.48) 48%, rgba(0,0,0,0.025) 58%, rgba(255,255,255,0.35) 66%, rgba(255,255,255,0) 85%, rgba(0,0,0,0.02) 100%)",
+                                        }}
+                                        aria-hidden="true" 
+                                    />
+
+                                    {/* Playful Doodled Ray Burst in Top Right */}
+                                    <svg 
+                                        className="absolute top-3.5 right-4 w-4 h-4 text-[#059669] pointer-events-none opacity-60 z-10" 
+                                        viewBox="0 0 16 16" 
+                                        fill="none" 
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M3 3 L5.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M8 1 L8 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                        <path d="M13 3 L10.5 5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                                    </svg>
+
+                                    {/* 3D Corner Dog-Ear Roll */}
+                                    <RealisticCornerCurl undersideColor="#A7DDC0" />
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-xs font-mono font-bold tracking-widest text-[#059669] uppercase">
+                                                PRINCIPLE 05 · LONG-TERM HORIZON
+                                            </span>
+                                            <FiTrendingUp className="text-[#059669]" size={18} />
+                                        </div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-[#000c24] mb-2 font-sans">
+                                            Keep improving
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-[#000c24]/80 leading-relaxed max-w-2xl font-sans">
+                                            Look for better ways to make the work more useful over time.
+                                        </p>
                                     </div>
-                                    <h3 className="text-lg sm:text-xl font-bold text-[#07142F] mb-2 font-sans">
-                                        Keep improving
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed max-w-2xl font-sans">
-                                        Look for better ways to make the work more useful over time.
-                                    </p>
-                                    <div className="mt-5 pt-3 border-t border-[#E5DFD4]/80 flex items-center justify-between">
-                                        <span className={`${caveat.className} text-base text-[#075BFA] font-bold`}>
+                                    <div className="relative z-10 mt-5 pt-3.5 border-t border-[#B2E2C4]/90 flex items-center justify-between">
+                                        <span className={`${caveat.className} text-base text-[#0057fe] font-bold`}>
                                             * Practical compounding value
                                         </span>
-                                        <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase">
+                                        <span className="text-[10px] font-mono tracking-widest text-[#059669]/70 font-bold uppercase">
                                             MANIFESTO
                                         </span>
                                     </div>

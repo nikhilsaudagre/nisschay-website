@@ -258,82 +258,84 @@ export default function HomeTechStackSection() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center w-full">
                     {/* ============================================================
-                        LEFT COLUMN: Editorial Content (Strictly Preserved)
+                        LEFT COLUMN: Enclosed in Large Warm-White Card
                     ============================================================ */}
                     <div className="lg:col-span-5 flex flex-col items-start text-left w-full min-w-0">
-                        {/* Eyebrow - Matching Nisschay Homepage Design System (OUR PROCESS / WHY CHOOSE NISSCHAY) */}
-                        <div className="inline-flex items-center gap-2 mb-4">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0057fe] opacity-75" />
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0057fe]" />
-                            </span>
-                            <span className="w-5 h-[2px] bg-[#0057fe]" aria-hidden="true" />
-                            <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
-                                OUR TECHNOLOGY
-                            </span>
-                        </div>
+                        <div className="w-full max-w-[540px] mx-auto lg:max-w-none bg-[#FAF8F5] rounded-[32px] sm:rounded-[36px] lg:rounded-[40px] border border-[#EAE4DC] shadow-[0_4px_24px_rgba(7,20,47,0.04),0_1px_3px_rgba(7,20,47,0.02)] p-6 sm:p-8 lg:p-9 xl:p-10 flex flex-col items-start text-left">
+                            {/* Eyebrow - Matching Nisschay Homepage Design System (OUR PROCESS / WHY CHOOSE NISSCHAY) */}
+                            <div className="inline-flex items-center gap-2 mb-4">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0057fe] opacity-75" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0057fe]" />
+                                </span>
+                                <span className="w-5 h-[2px] bg-[#0057fe]" aria-hidden="true" />
+                                <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
+                                    OUR TECHNOLOGY
+                                </span>
+                            </div>
 
-                        {/* Headline */}
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#000c24] tracking-tight leading-[1.18] font-display mb-4">
-                            The tools behind{" "}
-                            <br className="sm:hidden" />
-                            <span className="relative inline-block text-[#0057fe]">
-                                better digital solutions.
-                                <svg
-                                    className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-[6px] text-[#93c5fd] pointer-events-none"
-                                    viewBox="0 0 200 8"
-                                    fill="none"
-                                    preserveAspectRatio="none"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        d="M 2 5.5 C 50 1.5, 150 1.5, 198 6.5"
-                                        stroke="currentColor"
-                                        strokeWidth="3.2"
-                                        strokeLinecap="round"
-                                    />
-                                </svg>
-                            </span>
-                        </h2>
-
-                        {/* Supporting Text */}
-                        <p className="text-slate-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal mb-7 sm:mb-8 max-w-lg">
-                            We use proven technologies to build websites, software, AI solutions, digital marketing platforms and reliable systems.
-                        </p>
-
-                        {/* Three Supporting Points */}
-                        <div className="flex flex-col gap-3.5 w-full mb-9 max-w-md">
-                            {supportingPoints.map((point, idx) => {
-                                const Icon = point.icon;
-                                return (
-                                    <div
-                                        key={idx}
-                                        className="flex items-start gap-3.5 p-3 rounded-2xl bg-white/80 border border-slate-200/70 shadow-2xs hover:bg-white hover:border-blue-200 hover:shadow-xs transition-all duration-200"
+                            {/* Headline */}
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] font-extrabold text-[#000c24] tracking-tight leading-[1.18] font-display mb-4">
+                                The tools behind{" "}
+                                <br className="sm:hidden" />
+                                <span className="relative inline-block text-[#0057fe]">
+                                    better digital solutions.
+                                    <svg
+                                        className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-[6px] text-[#93c5fd] pointer-events-none"
+                                        viewBox="0 0 200 8"
+                                        fill="none"
+                                        preserveAspectRatio="none"
+                                        aria-hidden="true"
                                     >
-                                        <div className="w-10 h-10 rounded-xl bg-blue-50/90 border border-blue-100 text-[#0057fe] flex items-center justify-center shrink-0 text-lg shadow-2xs mt-0.5">
-                                            <Icon />
-                                        </div>
-                                        <div className="min-w-0">
-                                            <h3 className="text-sm font-bold text-[#000c24] font-display leading-tight">
-                                                {point.title}
-                                            </h3>
-                                            <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                                                {point.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
+                                        <path
+                                            d="M 2 5.5 C 50 1.5, 150 1.5, 198 6.5"
+                                            stroke="currentColor"
+                                            strokeWidth="3.2"
+                                            strokeLinecap="round"
+                                        />
+                                    </svg>
+                                </span>
+                            </h2>
 
-                        {/* CTA Button - Clean, Glow-Free Button Matching Nisschay Design System */}
-                        <Link
-                            href="/services"
-                            className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#0057fe] hover:bg-[#0047d6] text-white font-bold font-outfit text-sm rounded-full shadow-xs hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 select-none group"
-                        >
-                            <span>Explore Our Capabilities</span>
-                            <FiArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                        </Link>
+                            {/* Supporting Text */}
+                            <p className="text-slate-600 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal mb-6 sm:mb-7">
+                                We use proven technologies to build websites, software, AI solutions, digital marketing platforms and reliable systems.
+                            </p>
+
+                            {/* Three Supporting Points */}
+                            <div className="flex flex-col gap-3 w-full mb-8">
+                                {supportingPoints.map((point, idx) => {
+                                    const Icon = point.icon;
+                                    return (
+                                        <div
+                                            key={idx}
+                                            className="flex items-start gap-3.5 p-3 sm:p-3.5 rounded-2xl bg-white border border-[#EAE4DC] shadow-[0_1px_3px_rgba(7,20,47,0.02)] hover:bg-white hover:border-[#0057fe]/30 hover:shadow-xs transition-all duration-200"
+                                        >
+                                            <div className="w-10 h-10 rounded-xl bg-blue-50/90 border border-blue-100 text-[#0057fe] flex items-center justify-center shrink-0 text-lg shadow-2xs mt-0.5">
+                                                <Icon />
+                                            </div>
+                                            <div className="min-w-0">
+                                                <h3 className="text-sm font-bold text-[#000c24] font-display leading-tight">
+                                                    {point.title}
+                                                </h3>
+                                                <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                                                    {point.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* CTA Button - Clean, Glow-Free Button Matching Nisschay Design System */}
+                            <Link
+                                href="/services"
+                                className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#0057fe] hover:bg-[#0047d6] text-white font-bold font-outfit text-sm rounded-full shadow-xs hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 select-none group"
+                            >
+                                <span>Explore Our Capabilities</span>
+                                <FiArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                            </Link>
+                        </div>
                     </div>
 
                     {/* ============================================================

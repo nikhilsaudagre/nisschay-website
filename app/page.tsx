@@ -3,10 +3,11 @@ import HeroSection from "@/components/HeroSection";
 import QuoteSection from "@/components/QuoteSection";
 import MeetNisschaySection from "@/components/MeetNisschaySection";
 import ServicesSection from "@/components/ServicesSection";
+import IndustriesSection from "@/components/IndustriesSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import ProcessSection from "@/components/ProcessSection";
 import HomeTechStackSection from "@/components/HomeTechStackSection";
-import ContactSection from "@/components/ContactSection";
+import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
   title: "Nisschay | High-Performance Software Engineering & AI Solutions",
@@ -24,10 +25,11 @@ export default function Home() {
       <QuoteSection />
       <MeetNisschaySection />
       <ServicesSection />
+      <IndustriesSection />
       <WhyChooseUsSection />
       <ProcessSection />
       <HomeTechStackSection />
-      <ContactSection />
+      <CTASection />
     </main>
   );
 }

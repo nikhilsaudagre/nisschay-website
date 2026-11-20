@@ -9,8 +9,6 @@ import {
     useReducedMotion,
     MotionValue,
 } from "framer-motion";
-import Link from "next/link";
-import { FiArrowRight } from "react-icons/fi";
 
 interface CalendarPage {
     pageNumber: string;
@@ -25,35 +23,35 @@ const calendarPages: CalendarPage[] = [
         stage: "DISCOVER",
         heading: "First, let's understand your business.",
         description:
-            "We discuss your idea, your goals and the challenges you want to solve. This helps us understand what matters most before suggesting a solution.",
+            "We understand your business, goals and project requirements before recommending the right solution.",
     },
     {
         pageNumber: "02",
         stage: "PLAN",
         heading: "Make a clear plan.",
         description:
-            "We decide what needs to be built, how it should work, and what the project will involve. You know the scope, estimated cost and timeline before development begins.",
+            "We define the project scope, features, technology and development timeline.",
     },
     {
         pageNumber: "03",
         stage: "BUILD",
         heading: "Turn the plan into reality.",
         description:
-            "We design and develop your website, software or digital solution. You can review the progress and share feedback as the work takes shape.",
+            "We design, develop and test your website, software or AI solution to meet your requirements.",
     },
     {
         pageNumber: "04",
         stage: "LAUNCH",
         heading: "Get ready to go live.",
         description:
-            "We test the important features, fix issues and prepare everything for launch. We help you get started with your new solution.",
+            "We deploy your solution and check that everything works as expected.",
     },
     {
         pageNumber: "05",
         stage: "GROW",
         heading: "Keep moving forward.",
         description:
-            "Your business will change, and your technology may need to change with it. We can help with updates, improvements and ongoing technical support.",
+            "We help with ongoing improvements, updates and technical support as your business evolves.",
     },
 ];
 
@@ -64,7 +62,7 @@ const calendarPages: CalendarPage[] = [
  */
 function RefinedTwinWireBinding() {
     return (
-        <div className="relative w-full bg-slate-50/60 pt-2.5 pb-2 select-none overflow-hidden border-b border-slate-100">
+        <div className="relative w-full bg-[#FAF8F5]/80 pt-2.5 pb-2 select-none overflow-hidden border-b border-slate-100">
             {/* 6 Refined Twin-Wire Silver Spiral Rings */}
             <div
                 className="w-full flex items-center justify-between px-7 sm:px-11 relative z-10"
@@ -184,7 +182,7 @@ function CalendarPageContent({
     total: number;
 }) {
     return (
-        <div className="w-full h-full bg-gradient-to-b from-[#fcfdfd] via-[#ffffff] to-[#f9fafb] rounded-3xl border border-slate-200/90 shadow-[inset_0_1px_1px_0_rgba(255,255,255,1),inset_1px_0_0_0_rgba(255,255,255,0.9),inset_0_-1px_0_0_rgba(226,232,240,0.5),0_2px_6px_rgba(0,14,40,0.03),0_16px_40px_rgba(0,14,40,0.06)] flex flex-col justify-between overflow-hidden relative">
+        <div className="w-full h-full bg-[#FAF8F5] rounded-3xl border border-slate-200/90 shadow-[inset_0_1px_1px_0_rgba(255,255,255,1),inset_1px_0_0_0_rgba(255,255,255,0.9),inset_0_-1px_0_0_rgba(226,232,240,0.5),0_2px_6px_rgba(0,14,40,0.03),0_16px_40px_rgba(0,14,40,0.06)] flex flex-col justify-between overflow-hidden relative">
             {/* Realistic Tactile Paper Fiber Texture */}
             <PaperTextureOverlay />
 
@@ -198,7 +196,7 @@ function CalendarPageContent({
             />
 
             {/* Calendar Stage Header Bar */}
-            <div className="pt-3 pb-4 px-6 sm:px-9 flex items-center justify-between border-b border-slate-100/90 bg-white/80 backdrop-blur-[1px] relative z-20">
+            <div className="pt-3 pb-4 px-6 sm:px-9 flex items-center justify-between border-b border-slate-100/90 bg-[#FAF8F5]/90 backdrop-blur-[1px] relative z-20">
                 <div className="flex items-center gap-3">
                     {/* Compact Date/Stage Stamp */}
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-[#0057fe] to-[#003db3] text-white flex flex-col items-center justify-center shadow-xs border border-blue-400/30 shrink-0 select-none">
@@ -452,10 +450,10 @@ export default function ProcessSection() {
                                 </div>
 
                                 {/* Headline with Subtle Handwritten Underline Swoop */}
-                                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-extrabold text-[#000c24] tracking-tight leading-[1.14] font-display">
-                                    From idea to launch,{" "}
+                                <h2 className="text-3xl sm:text-4xl md:text-[38px] lg:text-[40px] font-extrabold text-[#000c24] tracking-tight leading-[1.18] font-display">
+                                    From Idea to Launch, We Build Your Digital Solution{" "}
                                     <span className="relative inline-block text-[#0057fe]">
-                                        step by step.
+                                        Step by Step.
                                         <svg
                                             className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-[6px] text-[#93c5fd] pointer-events-none"
                                             viewBox="0 0 200 8"
@@ -474,18 +472,18 @@ export default function ProcessSection() {
                                 </h2>
 
                                 {/* Supporting Text */}
-                                <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal mt-5 max-w-md">
-                                    Every project starts with a conversation. We understand what you need, plan the work and build a solution that helps your business move forward.
+                                <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal mt-5 max-w-md">
+                                    At Nisschay, we follow a clear development process to turn your ideas into practical digital solutions. From website development and custom software to AI-powered automation, we work closely with you at every stage, from planning and development to launch and ongoing improvements.
                                 </p>
 
-                                {/* Understated Progress Tracker */}
-                                <div className="mt-7 w-full max-w-xs p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80">
-                                    <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 font-bold px-1 mb-3">
+                                {/* Understated Interactive Progress Tracker */}
+                                <div className="mt-6 w-full max-w-xs p-4 rounded-2xl bg-[#FAF8F5] border border-[#EAE4DC] shadow-[0_2px_12px_rgba(7,20,47,0.03)]">
+                                    <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 font-bold px-1 mb-2.5">
                                         DELIVERY STAGES
                                     </div>
 
                                     {/* Stage Stepper with Subtle Connecting Line */}
-                                    <div className="relative space-y-2">
+                                    <div className="relative space-y-1.5">
                                         {/* Subtle vertical connecting line */}
                                         <div
                                             className="absolute left-[13px] top-2.5 bottom-2.5 w-px bg-slate-200"
@@ -509,9 +507,9 @@ export default function ProcessSection() {
                                                     type="button"
                                                     key={p.pageNumber}
                                                     onClick={() => handleJumpToStage(idx)}
-                                                    className={`relative z-10 w-full flex items-center justify-between px-2 py-1.5 rounded-lg transition-colors duration-150 cursor-pointer text-left ${
+                                                    className={`relative z-10 w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg transition-colors duration-150 cursor-pointer text-left ${
                                                         isActive
-                                                            ? "bg-blue-50/80 text-[#0057fe]"
+                                                            ? "bg-blue-50/90 text-[#0057fe]"
                                                             : "text-slate-500 hover:text-slate-900 hover:bg-slate-100/60"
                                                     }`}
                                                 >
@@ -546,23 +544,6 @@ export default function ProcessSection() {
                                         })}
                                     </div>
                                 </div>
-
-                                {/* Understated Closing CTA Box */}
-                                <div className="mt-5 p-4 rounded-2xl bg-slate-50/70 border border-slate-200/80 w-full max-w-xs">
-                                    <h3 className="text-sm font-bold text-[#000c24] font-display tracking-tight mb-1">
-                                        Have a project in mind?
-                                    </h3>
-                                    <p className="text-xs text-slate-600 leading-relaxed mb-3.5">
-                                        Let&apos;s talk about what you want to build and how we can help.
-                                    </p>
-                                    <Link
-                                        href="/contact"
-                                        className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0057fe] hover:bg-[#0047d6] text-white text-xs font-bold font-outfit rounded-full shadow-xs transition-colors duration-200"
-                                    >
-                                        <span>Start a Project</span>
-                                        <FiArrowRight className="w-3.5 h-3.5" />
-                                    </Link>
-                                </div>
                             </div>
 
                             {/* Right Column: Desk Calendar Stage Viewport with Easel Stand */}
@@ -583,19 +564,19 @@ export default function ProcessSection() {
 
                                     {/* Layer 2 (deepest backing sheet): tactile paper caliper & tilt */}
                                     <div
-                                        className="absolute inset-0 translate-y-2.5 translate-x-1.5 rotate-[0.7deg] bg-gradient-to-b from-[#fafbfc] to-[#f4f6f8] rounded-3xl border border-slate-200/80 -z-30 shadow-[0_1px_3px_rgba(0,12,36,0.04)]"
+                                        className="absolute inset-0 translate-y-2.5 translate-x-1.5 rotate-[0.7deg] bg-[#F2EDE5] rounded-3xl border border-slate-200/80 -z-30 shadow-[0_1px_3px_rgba(0,12,36,0.04)]"
                                         aria-hidden="true"
                                     />
 
                                     {/* Layer 1 (middle underlay sheet): subtle counter tilt & caliper */}
                                     <div
-                                        className="absolute inset-0 translate-y-1.5 -translate-x-1 rotate-[-0.4deg] bg-gradient-to-b from-[#fbfcfd] to-[#f6f8fa] rounded-3xl border border-slate-200/80 -z-20 shadow-[0_1px_3px_rgba(0,12,36,0.03)]"
+                                        className="absolute inset-0 translate-y-1.5 -translate-x-1 rotate-[-0.4deg] bg-[#F7F3EB] rounded-3xl border border-slate-200/80 -z-20 shadow-[0_1px_3px_rgba(0,12,36,0.03)]"
                                         aria-hidden="true"
                                     />
 
                                     {/* Front paper pad underlay */}
                                     <div
-                                        className="absolute inset-0 translate-y-0.5 bg-white rounded-3xl border border-slate-200 -z-10 shadow-2xs"
+                                        className="absolute inset-0 translate-y-0.5 bg-[#FAF8F5] rounded-3xl border border-slate-200 -z-10 shadow-2xs"
                                         aria-hidden="true"
                                     />
 
@@ -646,10 +627,10 @@ export default function ProcessSection() {
                             </span>
                         </div>
 
-                        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#000c24] tracking-tight leading-[1.15] font-display mb-4">
-                            From idea to launch,{" "}
+                        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#000c24] tracking-tight leading-[1.16] font-display mb-4">
+                            From Idea to Launch, We Build Your Digital Solution{" "}
                             <span className="relative inline-block text-[#0057fe]">
-                                step by step.
+                                Step by Step.
                                 <svg
                                     className="absolute -bottom-1 left-0 w-full h-[5px] text-[#93c5fd] pointer-events-none"
                                     viewBox="0 0 200 8"
@@ -668,7 +649,7 @@ export default function ProcessSection() {
                         </h2>
 
                         <p className="text-slate-600 text-base leading-relaxed font-normal">
-                            Every project starts with a conversation. We understand what you need, plan the work and build a solution that helps your business move forward.
+                            At Nisschay, we follow a clear development process to turn your ideas into practical digital solutions. From website development and custom software to AI-powered automation, we work closely with you at every stage, from planning and development to launch and ongoing improvements.
                         </p>
                     </div>
 
@@ -683,23 +664,6 @@ export default function ProcessSection() {
                                 />
                             </div>
                         ))}
-                    </div>
-
-                    {/* Closing Message CTA Banner */}
-                    <div className="mt-8 p-7 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 text-center">
-                        <h3 className="text-xl sm:text-2xl font-bold text-[#000c24] font-display tracking-tight mb-2">
-                            Have a project in mind?
-                        </h3>
-                        <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-md mx-auto">
-                            Let&apos;s talk about what you want to build and how we can help.
-                        </p>
-                        <Link
-                            href="/contact"
-                            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-[#0057fe] hover:bg-[#0047d6] text-white text-sm font-bold font-outfit rounded-full shadow-xs transition-colors duration-200"
-                        >
-                            <span>Start a Project</span>
-                            <FiArrowRight className="w-4 h-4" />
-                        </Link>
                     </div>
                 </div>
             </div>
