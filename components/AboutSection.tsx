@@ -644,138 +644,14 @@ export default function AboutSection({
                         <AboutMeetNisschaySection isEmbedded={true} />
                     </div>
 
-<div id="how-we-help" className="scroll-mt-28" />
-                    <div id="what-we-do" className="scroll-mt-28" />
-                    {/* ========================================================
-                        SECTION 02 — HOW WE HELP
-                        (Exact Editorial Reference Layout)
-                    ======================================================== */}
-                    <div className="w-full">
-                        {/* Section Header: Centered Eyebrow + Headline + Supporting Paragraph */}
-                        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-                            {/* Eyebrow Label: Matching Reference Image (dot + horizontal line + uppercase tracking) */}
-                            <div className="inline-flex items-center gap-2.5 mb-4 sm:mb-5">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#075BFA]" />
-                                <span className="w-6 h-[2px] bg-[#075BFA]/70" aria-hidden="true" />
-                                <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#075BFA] uppercase">
-                                    SECTION 02 · HOW WE HELP
-                                </span>
-                            </div>
-
-                            {/* Main Heading: Centered with Blue Brush Underline */}
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-[#07142F] tracking-tight leading-[1.12] font-sans max-w-4xl mx-auto text-balance">
-                                Different challenges.{" "}
-                                <span className="relative inline-block whitespace-nowrap pb-3 sm:pb-4">
-                                    One digital partner.
-                                    {/* Hand-Drawn Blue Brush Underline */}
-                                    <svg
-                                        className="absolute bottom-0 left-0 w-full h-3 sm:h-3.5 text-[#075BFA] pointer-events-none translate-y-2 sm:translate-y-3"
-                                        viewBox="0 0 280 14"
-                                        fill="none"
-                                        preserveAspectRatio="none"
-                                        aria-hidden="true"
-                                    >
-                                        <motion.path
-                                            d="M 3 10 C 80 4, 200 4, 277 9"
-                                            stroke="currentColor"
-                                            strokeWidth="3.5"
-                                            strokeLinecap="round"
-                                            initial={shouldReduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
-                                            whileInView={{ pathLength: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.85, delay: 0.2, ease: "easeOut" }}
-                                        />
-                                    </svg>
-                                </span>
-                            </h2>
-
-                            {/* Supporting Paragraph */}
-                            <p className="mt-5 sm:mt-6 text-slate-600 text-sm sm:text-base md:text-[17px] max-w-2xl mx-auto leading-relaxed font-sans text-balance">
-                                From your first online presence to the systems that run your business, we help you find the right digital solutions and bring them together.
-                            </p>
-                        </div>
-
-                        {/* 4 Full-Width Horizontal Editorial Rows */}
-                        <div className="w-full border-t border-slate-300/80 divide-y divide-slate-300/80 border-b">
-                            {[
-                                {
-                                    num: "01",
-                                    category: "REACH CUSTOMERS",
-                                    headline: "Make your business easier to find.",
-                                    description: "Build a clear online presence that helps people understand what you offer and how to reach you.",
-                                    serviceTag: "WEB PRESENCE · ONLINE VISIBILITY",
-                                },
-                                {
-                                    num: "02",
-                                    category: "SERVE CUSTOMERS",
-                                    headline: "Give customers a better experience.",
-                                    description: "Make it easier for people to explore your services, make enquiries and work with your business.",
-                                    serviceTag: "WEBSITES · DIGITAL APPLICATIONS",
-                                },
-                                {
-                                    num: "03",
-                                    category: "SIMPLIFY WORK",
-                                    headline: "Spend less time on repetitive tasks.",
-                                    description: "Use useful software and automation to simplify everyday work and reduce manual effort.",
-                                    serviceTag: "CUSTOM SOFTWARE · AI · AUTOMATION",
-                                },
-                                {
-                                    num: "04",
-                                    category: "KEEP MOVING",
-                                    headline: "Keep your digital systems running.",
-                                    description: "Get help with hosting, deployment, maintenance and improvements as your needs change.",
-                                    serviceTag: "CLOUD · DEVOPS · TECHNICAL SUPPORT",
-                                },
-                            ].map((row) => (
-                                <div
-                                    key={row.num}
-                                    className="flex flex-col md:flex-row md:items-stretch py-7 sm:py-8 lg:py-10 transition-colors duration-200 hover:bg-white/40"
-                                >
-                                    {/* Area 1: Large Blue Number */}
-                                    <div className="w-full md:w-28 lg:w-36 shrink-0 md:border-r border-slate-300/80 md:pr-6 lg:pr-8 flex items-center mb-3 md:mb-0">
-                                        <span 
-                                            className="font-serif font-bold text-4xl sm:text-5xl lg:text-[54px] text-[#075BFA] tracking-tight leading-none"
-                                            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-                                        >
-                                            {row.num}
-                                        </span>
-                                    </div>
-
-                                    {/* Area 2: Blue Category Label & Prominent Headline */}
-                                    <div className="w-full md:flex-[1.25] md:border-r border-slate-300/80 md:px-8 lg:px-12 flex flex-col justify-center mb-4 md:mb-0">
-                                        <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#075BFA] uppercase mb-1.5 sm:mb-2 block">
-                                            {row.category}
-                                        </span>
-                                        <h3 
-                                            className="font-serif font-bold text-2xl sm:text-2xl md:text-[26px] lg:text-[29px] text-[#07142F] tracking-tight leading-snug"
-                                            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-                                        >
-                                            {row.headline}
-                                        </h3>
-                                    </div>
-
-                                    {/* Area 3: Short Explanation & Small Uppercase Service Category */}
-                                    <div className="w-full md:flex-[1.1] flex flex-col justify-center md:pl-8 lg:pl-12">
-                                        <p className="text-slate-600 text-sm sm:text-[15px] lg:text-base leading-relaxed font-sans max-w-xl">
-                                            {row.description}
-                                        </p>
-                                        <span className="text-[11px] sm:text-xs font-mono font-semibold tracking-[0.2em] text-slate-500 uppercase mt-2.5 sm:mt-3 block">
-                                            {row.serviceTag}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
                     <div id="who-we-work-with" className="scroll-mt-28" />
                     {/* ========================================================
-                        SECTION 03 — WHO WE WORK WITH
+                        SECTION 02 — WHO WE WORK WITH
                         (3 Audience Groups / Customer Starting Points)
                     ======================================================== */}
                     <div className="w-full">
                         <div className="text-center mb-10 sm:mb-14">
-                            <ChapterEyebrow label="SECTION 03 · WHO WE WORK WITH" />
+                            <ChapterEyebrow label="SECTION 02 · WHO WE WORK WITH" />
                             <motion.h2 
                                 {...fadeInProps(0.1)}
                                 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold font-sans tracking-tight text-[#07142F] max-w-3xl mx-auto leading-tight text-balance"
@@ -1102,7 +978,7 @@ export default function AboutSection({
 
                     <div id="how-we-work" className="scroll-mt-28" />
                     {/* ========================================================
-                        SECTION 04 — HOW WE WORK
+                        SECTION 03 — HOW WE WORK
                         (Exact Editorial Reference Layout: 5 Process Steps + Workspace Photo)
                     ======================================================== */}
                     <div className="w-full">
@@ -1113,7 +989,7 @@ export default function AboutSection({
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#075BFA]" />
                                 <span className="w-6 h-[2px] bg-[#075BFA]/70" aria-hidden="true" />
                                 <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#075BFA] uppercase">
-                                    SECTION 04 · HOW WE WORK
+                                    SECTION 03 · HOW WE WORK
                                 </span>
                             </div>
 
@@ -1234,12 +1110,12 @@ export default function AboutSection({
 
                     <div id="what-we-believe" className="scroll-mt-28" />
                     {/* ========================================================
-                        SECTION 05 — WHAT WE BELIEVE
+                        SECTION 04 — WHAT WE BELIEVE
                         (Studio Manifesto of Principles)
                     ======================================================== */}
                     <div className="w-full">
                         <div className="text-center mb-10 sm:mb-14">
-                            <ChapterEyebrow label="SECTION 05 · WHAT WE BELIEVE" />
+                            <ChapterEyebrow label="SECTION 04 · WHAT WE BELIEVE" />
                             <motion.h2 
                                 {...fadeInProps(0.1)}
                                 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold font-sans tracking-tight text-[#07142F] max-w-3xl mx-auto leading-tight text-balance"

@@ -115,10 +115,10 @@ export default function HeroSection() {
             <div className="relative z-10 w-full max-w-5xl mx-auto px-4 xs:px-5 sm:px-8 md:px-10 lg:px-12 flex flex-col items-center text-center">
                 
                 {/* 1. Eyebrow Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#EBF2FE] border border-[#BFDBFE]/80 text-[#000C24] text-[11px] sm:text-xs md:text-[12px] font-bold tracking-wider sm:tracking-[0.14em] uppercase shadow-[0_1px_3px_rgba(0,87,254,0.06)] select-none mb-4 sm:mb-4.5">
+                <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#EBF2FE] border border-[#BFDBFE]/80 text-[#07142F] text-[11px] sm:text-xs md:text-[12px] font-bold tracking-wider sm:tracking-[0.14em] uppercase shadow-[0_1px_3px_rgba(7,91,250,0.06)] select-none mb-4 sm:mb-4.5">
                     {/* 4-point sparkle star matching visual reference */}
                     <svg 
-                        className="w-3.5 h-3.5 text-[#0057FE] fill-[#0057FE] shrink-0" 
+                        className="w-3.5 h-3.5 text-[#075BFA] fill-[#075BFA] shrink-0" 
                         viewBox="0 0 24 24" 
                         aria-hidden="true"
                     >
@@ -131,13 +131,13 @@ export default function HeroSection() {
                 <h1 className="font-display font-black tracking-tight text-center text-[24px] xs:text-[27px] sm:text-[40px] md:text-[48px] lg:text-[58px] leading-[1.14] sm:leading-[1.11] max-w-[920px] mx-auto mb-4 sm:mb-4.5">
                     {/* Mobile Line Structure (<sm: 3 comfortable lines) */}
                     <span className="sm:hidden block">
-                        <span className="block text-[#000C24]">Grow Your Business with</span>
-                        <span className="block text-[#0057FE] mt-0.5">Custom Software,</span>
-                        <span className="relative inline-block text-[#0057FE] mt-0.5">
+                        <span className="block text-[#07142F]">Grow Your Business with</span>
+                        <span className="block text-[#075BFA] mt-0.5">Custom Software,</span>
+                        <span className="relative inline-block text-[#075BFA] mt-0.5">
                             AI &amp; Technology.
                             {/* Inverted upward arch stroke matching Nisschay brand language */}
                             <svg 
-                                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[105%] h-[8px] text-[#0057FE] pointer-events-none" 
+                                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[105%] h-[8px] text-[#075BFA] pointer-events-none" 
                                 viewBox="0 0 240 12" 
                                 fill="none" 
                                 preserveAspectRatio="none"
@@ -155,17 +155,17 @@ export default function HeroSection() {
 
                     {/* Tablet & Desktop Line Structure (>=sm: exact 3-line composition matching reference mockup) */}
                     <span className="hidden sm:inline">
-                        <span className="block text-[#000C24]">
+                        <span className="block text-[#07142F]">
                             Grow Your Business with
                         </span>
-                        <span className="block text-[#0057FE] mt-0.5 sm:mt-1">
+                        <span className="block text-[#075BFA] mt-0.5 sm:mt-1">
                             Custom Software, AI &amp;
                         </span>
-                        <span className="relative inline-block text-[#0057FE] mt-0.5 sm:mt-1">
+                        <span className="relative inline-block text-[#075BFA] mt-0.5 sm:mt-1">
                             Technology.
                             {/* Inverted upward arch stroke matching Nisschay brand language */}
                             <svg 
-                                className="absolute -bottom-2 sm:-bottom-2.5 md:-bottom-3 left-1/2 -translate-x-1/2 w-[105%] h-[9px] sm:h-[11px] text-[#0057FE] pointer-events-none" 
+                                className="absolute -bottom-2 sm:-bottom-2.5 md:-bottom-3 left-1/2 -translate-x-1/2 w-[105%] h-[9px] sm:h-[11px] text-[#075BFA] pointer-events-none" 
                                 viewBox="0 0 240 12" 
                                 fill="none" 
                                 preserveAspectRatio="none"
@@ -184,35 +184,24 @@ export default function HeroSection() {
 
                 {/* 3. Supporting Paragraph */}
                 <p className="text-slate-600 font-sans text-center text-[14px] xs:text-[14.5px] sm:text-[15.5px] md:text-[16.5px] lg:text-[17.5px] leading-relaxed sm:leading-[1.62] max-w-[670px] mx-auto mb-6 sm:mb-7">
-                    <strong className="text-[#0057FE] font-bold">Nisschay</strong> is a technology partner helping startups and growing businesses build custom software, modern websites and intelligent AI-powered solutions that simplify operations, improve efficiency and support business growth.
+                    <strong className="text-[#075BFA] font-bold">Nisschay</strong> is a technology partner helping businesses build practical custom software, modern websites and AI automation that save daily work and help your business grow.
                 </p>
 
-                {/* 4. CTA Buttons with Shimmering Light Sweep & Interactive Micro-Effects */}
+                {/* 4. CTA Buttons with Clean Tactile Elevation (Unslopped: removed infinite loop shimmer beam) */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[320px] sm:max-w-none sm:w-auto mb-7 sm:mb-8 lg:mb-9">
-                    {/* Primary CTA: "Discuss Your Project" with Shimmer Effect */}
+                    {/* Primary CTA: "Discuss Your Project" */}
                     <Link
                         href="/contact"
-                        className="group relative overflow-hidden w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 bg-[#0057FE] hover:bg-[#004cdb] text-white text-sm sm:text-[15px] font-semibold font-outfit rounded-full shadow-[0_4px_14px_rgba(0,87,254,0.28)] hover:shadow-[0_6px_20px_rgba(0,87,254,0.4)] hover:-translate-y-[2px] active:scale-[0.98] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0057FE]"
+                        className="group relative w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 bg-[#075BFA] hover:bg-[#004cdb] text-white text-sm sm:text-[15px] font-semibold font-outfit rounded-full shadow-[0_4px_14px_rgba(7,91,250,0.28)] hover:shadow-[0_8px_24px_rgba(7,91,250,0.36)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#075BFA]"
                     >
-                        {/* Glass-Edge Top Rim Light */}
-                        <span
-                            className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none z-10"
-                            aria-hidden="true"
-                        />
-                        {/* Shimmering Light Sweep Beam */}
-                        <span
-                            className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none animate-shimmer-sweep"
-                            aria-hidden="true"
-                        />
-
                         <span className="relative z-10">Discuss Your Project</span>
-                        <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-200 ease-out group-hover:translate-x-1 motion-reduce:transform-none" />
+                        <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
                     </Link>
 
                     {/* Secondary CTA: "Explore Our Services" */}
                     <Link
                         href="/services"
-                        className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center px-6 sm:px-7 py-3 bg-white hover:bg-[#F3F7FE] text-[#000C24] hover:text-[#0057FE] text-sm sm:text-[15px] font-semibold font-outfit rounded-full border border-slate-200/90 hover:border-[#93C5FD] shadow-[0_1px_4px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_14px_rgba(0,87,254,0.12)] hover:-translate-y-[2px] active:scale-[0.98] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0057FE]"
+                        className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center px-6 sm:px-7 py-3 bg-white hover:bg-[#F3F7FE] text-[#07142F] hover:text-[#075BFA] text-sm sm:text-[15px] font-semibold font-outfit rounded-full border border-slate-200/90 hover:border-[#93C5FD] shadow-[0_1px_4px_rgba(7,20,47,0.04)] hover:shadow-[0_4px_14px_rgba(7,91,250,0.12)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#075BFA]"
                     >
                         Explore Our Services
                     </Link>
@@ -223,12 +212,12 @@ export default function HeroSection() {
                     
                     {/* Highlight 1: Custom Development */}
                     <div className="flex items-center gap-2.5 w-full sm:w-auto justify-start sm:justify-center">
-                        <div className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg bg-[#EAF2FE] flex items-center justify-center text-[#0057FE] shrink-0 font-mono font-bold text-xs select-none">
+                        <div className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg bg-[#EAF2FE] flex items-center justify-center text-[#075BFA] shrink-0 font-mono font-bold text-xs select-none">
                             &lt;/&gt;
                         </div>
                         <div className="text-left leading-tight">
-                            <span className="block font-bold text-[#000C24] text-[12.5px] sm:text-[13px] font-outfit">Custom</span>
-                            <span className="block font-bold text-[#000C24] text-[12.5px] sm:text-[13px] font-outfit">Development</span>
+                            <span className="block font-bold text-[#07142F] text-[12.5px] sm:text-[13px] font-outfit">Custom</span>
+                            <span className="block font-bold text-[#07142F] text-[12.5px] sm:text-[13px] font-outfit">Development</span>
                         </div>
                     </div>
 
@@ -239,12 +228,12 @@ export default function HeroSection() {
 
                     {/* Highlight 2: AI & Automation */}
                     <div className="flex items-center gap-2.5 w-full sm:w-auto justify-start sm:justify-center">
-                        <div className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg bg-[#EAF2FE] flex items-center justify-center text-[#0057FE] shrink-0">
+                        <div className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg bg-[#EAF2FE] flex items-center justify-center text-[#075BFA] shrink-0">
                             <Layers className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.2]" />
                         </div>
                         <div className="text-left leading-tight">
-                            <span className="block font-bold text-[#000C24] text-[12.5px] sm:text-[13px] font-outfit">AI &amp;</span>
-                            <span className="block font-bold text-[#000C24] text-[12.5px] sm:text-[13px] font-outfit">Automation</span>
+                            <span className="block font-bold text-[#07142F] text-[12.5px] sm:text-[13px] font-outfit">AI &amp;</span>
+                            <span className="block font-bold text-[#07142F] text-[12.5px] sm:text-[13px] font-outfit">Automation</span>
                         </div>
                     </div>
 
@@ -255,9 +244,9 @@ export default function HeroSection() {
 
                     {/* Highlight 3: Scalable IT Solutions */}
                     <div className="flex items-center gap-2.5 w-full sm:w-auto justify-start sm:justify-center">
-                        <div className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg bg-[#EAF2FE] flex items-center justify-center text-[#0057FE] shrink-0">
+                        <div className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-lg bg-[#EAF2FE] flex items-center justify-center text-[#075BFA] shrink-0">
                             <svg 
-                                className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#0057FE]" 
+                                className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#075BFA]" 
                                 viewBox="0 0 24 24" 
                                 fill="none" 
                                 stroke="currentColor" 
@@ -274,8 +263,8 @@ export default function HeroSection() {
                             </svg>
                         </div>
                         <div className="text-left leading-tight">
-                            <span className="block font-bold text-[#000C24] text-[12.5px] sm:text-[13px] font-outfit">Scalable</span>
-                            <span className="block font-bold text-[#000C24] text-[12.5px] sm:text-[13px] font-outfit">IT Solutions</span>
+                            <span className="block font-bold text-[#07142F] text-[12.5px] sm:text-[13px] font-outfit">Scalable</span>
+                            <span className="block font-bold text-[#07142F] text-[12.5px] sm:text-[13px] font-outfit">IT Solutions</span>
                         </div>
                     </div>
 

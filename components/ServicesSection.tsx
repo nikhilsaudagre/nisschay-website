@@ -21,7 +21,7 @@ const caveat = Caveat({
 function BrowserCodeIcon() {
     return (
         <svg 
-            className="w-7 h-7 sm:w-8 sm:h-8 text-[#000c24]" 
+            className="w-7 h-7 sm:w-8 sm:h-8 text-[#07142F]" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -34,9 +34,9 @@ function BrowserCodeIcon() {
             <line x1="2.5" y1="8" x2="21.5" y2="8" />
             <circle cx="5.5" cy="5.7" r="0.75" fill="currentColor" stroke="none" />
             <circle cx="8" cy="5.7" r="0.75" fill="currentColor" stroke="none" />
-            <path d="M8.5 12 L6.5 14 L8.5 16" className="text-[#0057fe]" stroke="currentColor" />
-            <path d="M15.5 12 L17.5 14 L15.5 16" className="text-[#0057fe]" stroke="currentColor" />
-            <line x1="13" y1="11.5" x2="11" y2="16.5" className="text-[#0057fe]" stroke="currentColor" />
+            <path d="M8.5 12 L6.5 14 L8.5 16" className="text-[#075BFA]" stroke="currentColor" />
+            <path d="M15.5 12 L17.5 14 L15.5 16" className="text-[#075BFA]" stroke="currentColor" />
+            <line x1="13" y1="11.5" x2="11" y2="16.5" className="text-[#075BFA]" stroke="currentColor" />
         </svg>
     );
 }
@@ -45,7 +45,7 @@ function BrowserCodeIcon() {
 function AnalyticsDashboardIcon() {
     return (
         <svg 
-            className="w-7 h-7 sm:w-8 sm:h-8 text-[#000c24]" 
+            className="w-7 h-7 sm:w-8 sm:h-8 text-[#07142F]" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -57,10 +57,10 @@ function AnalyticsDashboardIcon() {
             <rect x="3" y="4" width="18" height="13" rx="2.5" />
             <line x1="1" y1="20" x2="23" y2="20" />
             <line x1="9" y1="20" x2="15" y2="20" strokeWidth="2.6" />
-            <rect x="5.5" y="6.5" width="4.5" height="3.5" rx="0.5" className="text-[#0057fe]" stroke="currentColor" />
-            <line x1="12.5" y1="14" x2="12.5" y2="11.5" className="text-[#0057fe]" stroke="currentColor" strokeWidth="2.5" />
-            <line x1="15.5" y1="14" x2="15.5" y2="9.5" className="text-[#0057fe]" stroke="currentColor" strokeWidth="2.5" />
-            <line x1="18.5" y1="14" x2="18.5" y2="7.5" className="text-[#0057fe]" stroke="currentColor" strokeWidth="2.5" />
+            <rect x="5.5" y="6.5" width="4.5" height="3.5" rx="0.5" className="text-[#075BFA]" stroke="currentColor" />
+            <line x1="12.5" y1="14" x2="12.5" y2="11.5" className="text-[#075BFA]" stroke="currentColor" strokeWidth="2.5" />
+            <line x1="15.5" y1="14" x2="15.5" y2="9.5" className="text-[#075BFA]" stroke="currentColor" strokeWidth="2.5" />
+            <line x1="18.5" y1="14" x2="18.5" y2="7.5" className="text-[#075BFA]" stroke="currentColor" strokeWidth="2.5" />
         </svg>
     );
 }
@@ -69,7 +69,7 @@ function AnalyticsDashboardIcon() {
 function StackedLayersIcon() {
     return (
         <svg 
-            className="w-7 h-7 sm:w-8 sm:h-8 text-[#000c24]" 
+            className="w-7 h-7 sm:w-8 sm:h-8 text-[#07142F]" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -79,7 +79,7 @@ function StackedLayersIcon() {
             aria-hidden="true"
         >
             <polygon points="12 2 2 7 12 12 22 7 12 2" />
-            <polyline points="2 12 12 17 22 12" className="text-[#0057fe]" stroke="currentColor" />
+            <polyline points="2 12 12 17 22 12" className="text-[#075BFA]" stroke="currentColor" />
             <polyline points="2 17 12 22 22 17" />
         </svg>
     );
@@ -89,7 +89,7 @@ function StackedLayersIcon() {
 function AIChipIcon() {
     return (
         <svg 
-            className="w-7 h-7 sm:w-8 sm:h-8 text-[#000c24]" 
+            className="w-7 h-7 sm:w-8 sm:h-8 text-[#07142F]" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -115,7 +115,7 @@ function AIChipIcon() {
                 x="12" 
                 y="15.2" 
                 textAnchor="middle" 
-                fill="#0057fe" 
+                fill="#075BFA" 
                 stroke="none" 
                 fontSize="7.5" 
                 fontWeight="900" 
@@ -131,7 +131,7 @@ function AIChipIcon() {
 function CloudUploadIcon() {
     return (
         <svg 
-            className="w-7 h-7 sm:w-8 sm:h-8 text-[#000c24]" 
+            className="w-7 h-7 sm:w-8 sm:h-8 text-[#07142F]" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -141,8 +141,8 @@ function CloudUploadIcon() {
             aria-hidden="true"
         >
             <path d="M18 19H6.5C4 19 2 17 2 14.5C2 12.2 3.6 10.3 5.8 10.05C6.4 6.6 9.4 4 13 4C16.3 4 19.1 6.3 19.8 9.5C21.6 9.8 23 11.4 23 13.3C23 15.3 21.4 17 19.4 17" />
-            <polyline points="9.5 13.5 12 11 14.5 13.5" className="text-[#0057fe]" stroke="currentColor" />
-            <line x1="12" y1="11" x2="12" y2="17.5" className="text-[#0057fe]" stroke="currentColor" />
+            <polyline points="9.5 13.5 12 11 14.5 13.5" className="text-[#075BFA]" stroke="currentColor" />
+            <line x1="12" y1="11" x2="12" y2="17.5" className="text-[#075BFA]" stroke="currentColor" />
         </svg>
     );
 }
@@ -315,7 +315,7 @@ function IconWithRays({ Icon }: { Icon: React.ElementType }) {
 
             {/* 3 Playful Doodled Rays Burst in Top-Right */}
             <svg 
-                className="absolute -top-1.5 -right-3.5 w-4 h-4 text-[#000c24] pointer-events-none opacity-90" 
+                className="absolute -top-1.5 -right-3.5 w-4 h-4 text-[#07142F] pointer-events-none opacity-90" 
                 viewBox="0 0 16 16" 
                 fill="none"
                 aria-hidden="true"
@@ -351,21 +351,21 @@ export default function ServicesSection() {
                     <div className="lg:col-span-7 xl:col-span-7 space-y-4">
                         {/* Eyebrow: • — OUR SERVICES */}
                         <div className="inline-flex items-center gap-2">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#0057fe]" aria-hidden="true" />
-                            <span className="w-4 h-[2px] bg-[#0057fe]" aria-hidden="true" />
-                            <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#000c24] uppercase">
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#075BFA]" aria-hidden="true" />
+                            <span className="w-4 h-[2px] bg-[#075BFA]" aria-hidden="true" />
+                            <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#07142F] uppercase">
                                 {SERVICES_SECTION_DATA.eyebrow}
                             </span>
                         </div>
 
                         {/* Main Headline (H2 for Semantic Hierarchy) */}
-                        <h2 className="text-3xl sm:text-4xl md:text-[44px] lg:text-[46px] font-black text-[#000c24] tracking-tight leading-[1.15] text-balance">
+                        <h2 className="text-3xl sm:text-4xl md:text-[44px] lg:text-[46px] font-black text-[#07142F] tracking-tight leading-[1.15] text-balance">
                             {SERVICES_SECTION_DATA.heading.line1Before}{" "}
                             {/* "Products" with 3 playful radiating doodle rays above it */}
                             <span className="relative inline-block">
                                 {SERVICES_SECTION_DATA.heading.products}
                                 <svg 
-                                    className="absolute -top-3.5 -right-5 sm:-right-6 w-6 h-6 text-[#0057fe] pointer-events-none" 
+                                    className="absolute -top-3.5 -right-5 sm:-right-6 w-6 h-6 text-[#075BFA] pointer-events-none" 
                                     viewBox="0 0 24 24" 
                                     fill="none"
                                     aria-hidden="true"
@@ -377,7 +377,7 @@ export default function ServicesSection() {
                             </span>
                             <br />
                             {SERVICES_SECTION_DATA.heading.with}{" "}
-                            <span className={`${caveat.className} text-[#0057fe] font-bold text-[1.22em] tracking-normal inline-block`}>
+                            <span className={`${caveat.className} text-[#075BFA] font-bold text-[1.22em] tracking-normal inline-block`}>
                                 {SERVICES_SECTION_DATA.heading.accent}
                             </span>
                         </h2>
@@ -492,7 +492,7 @@ function StickyNoteCard({
             <Link
                 href={service.href}
                 aria-label={`${service.title}: ${service.description}`}
-                className={`relative flex flex-col justify-between w-full h-full min-h-[210px] sm:min-h-[225px] bg-gradient-to-br ${service.paperGradient} ${service.borderColor} border rounded-[2px] p-6 sm:p-7 md:p-8 cursor-pointer select-none transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057fe] focus-visible:ring-offset-2 overflow-hidden shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)]`}
+                className={`relative flex flex-col justify-between w-full h-full min-h-[210px] sm:min-h-[225px] bg-gradient-to-br ${service.paperGradient} ${service.borderColor} border rounded-[2px] p-6 sm:p-7 md:p-8 cursor-pointer select-none transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075BFA] focus-visible:ring-offset-2 overflow-hidden shadow-[0_2px_6px_rgba(7,20,47,0.04),0_8px_18px_-3px_rgba(7,20,47,0.07)] group-hover:shadow-[0_4px_12px_rgba(7,20,47,0.06),0_18px_30px_-5px_rgba(7,20,47,0.12)]`}
                 style={{
                     /* Clipped corner for the realistic 3D bottom-right rolled curl */
                     clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0% 100%)",
@@ -526,12 +526,12 @@ function StickyNoteCard({
                     <IconWithRays Icon={Icon} />
 
                     {/* Service Title */}
-                    <h3 className="text-[17px] sm:text-[18px] md:text-[19px] font-bold text-[#000c24] tracking-tight leading-snug group-hover:text-[#0057fe] transition-colors mb-2">
+                    <h3 className="text-[17px] sm:text-[18px] md:text-[19px] font-bold text-[#07142F] tracking-tight leading-snug group-hover:text-[#075BFA] transition-colors mb-2">
                         {service.title}
                     </h3>
 
                     {/* Supporting Description: Directly Visible on Note */}
-                    <p className="text-[#000c24]/80 text-xs sm:text-[13px] leading-relaxed font-normal">
+                    <p className="text-[#07142F]/80 text-xs sm:text-[13px] leading-relaxed font-normal">
                         {service.description}
                     </p>
                 </div>

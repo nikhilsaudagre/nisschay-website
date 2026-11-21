@@ -53,18 +53,18 @@ export default function QuoteSection() {
                         {/* Central Statement */}
                         <div className="flex flex-col items-center justify-center my-auto py-1 sm:py-2 text-center w-full">
                             {/* Line 1: Modern Geometric Bold Sans */}
-                            <h2 className="font-bold text-[#08183A] tracking-[-0.02em] leading-[1.18] text-[15px] xs:text-[18px] sm:text-[25px] md:text-[30px] lg:text-[34px] max-w-4xl">
+                            <h2 className="font-bold text-[#07142F] tracking-[-0.02em] leading-[1.18] text-[15px] xs:text-[18px] sm:text-[25px] md:text-[30px] lg:text-[34px] max-w-4xl">
                                 A good idea needs someone to build it.
                             </h2>
 
                             {/* Line 2: Handwritten Script in Nisschay Electric Blue with Tapered Brush Stroke */}
                             <div className="mt-0.5 sm:mt-1 relative inline-block">
-                                <span className={`${caveat.className} text-[#0057FE] text-[20px] xs:text-[25px] sm:text-[34px] md:text-[42px] lg:text-[47px] font-bold leading-tight block px-2 relative z-10`}>
+                                <span className={`${caveat.className} text-[#075BFA] text-[20px] xs:text-[25px] sm:text-[34px] md:text-[42px] lg:text-[47px] font-bold leading-tight block px-2 relative z-10`}>
                                     and someone to help people find it.
                                 </span>
                                 {/* Crisp Vector Tapered Underline */}
                                 <svg 
-                                    className="w-[92%] sm:w-[96%] h-2 sm:h-3 text-[#0057FE] mx-auto -mt-1 sm:-mt-1.5 opacity-90" 
+                                    className="w-[92%] sm:w-[96%] h-2 sm:h-3 text-[#075BFA] mx-auto -mt-1 sm:-mt-1.5 opacity-90" 
                                     viewBox="0 0 300 10" 
                                     preserveAspectRatio="none"
                                     aria-hidden="true"

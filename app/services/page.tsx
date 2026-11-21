@@ -1,8 +1,8 @@
 import ITServicesSection from "@/components/ITServicesSection";
+import WhatWeCanBuildSection from "@/components/WhatWeCanBuildSection";
 import ServiceDetailsSection from "@/components/ServiceDetailsSection";
-import ServiceBreakdownSection from "@/components/ServiceBreakdownSection";
-import IndustrySolutionsSection from "@/components/IndustrySolutionsSection";
 import TechStackSection from "@/components/TechStackSection";
+import ServicesFAQSection from "@/components/ServicesFAQSection";
 
 export const metadata = {
     title: "IT Services - Technology Solutions That Move Your Business Forward | Nisschay",
@@ -13,10 +13,10 @@ export default function ServicesPage() {
     return (
         <main className="relative bg-[var(--site-bg)] min-h-screen pt-24 sm:pt-28 lg:pt-32">
             <ITServicesSection />
-            <ServiceBreakdownSection />
-            <IndustrySolutionsSection />
+            <WhatWeCanBuildSection />
             <ServiceDetailsSection />
             <TechStackSection />
+            <ServicesFAQSection />
         </main>
     );
 }

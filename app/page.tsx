@@ -12,7 +12,7 @@ import CTASection from "@/components/CTASection";
 export const metadata: Metadata = {
   title: "Nisschay | High-Performance Software Engineering & AI Solutions",
   description:
-    "Engineering custom software, SaaS platforms, AI automation, and high-performance websites. The premier digital technology partner in Amravati, built for enterprise scale and startup velocity.",
+    "We build custom business software, modern web applications, and practical AI automation that save you time and help your business grow. Discover Nisschay.",
   alternates: {
     canonical: "/",
   },

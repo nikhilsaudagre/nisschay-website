@@ -41,24 +41,24 @@ export default function CTASection() {
                                 {/* Eyebrow - Matching Reference */}
                                 <div className="inline-flex items-center gap-2 mb-2 xl:mb-3">
                                     <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0057fe] opacity-75" />
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0057fe]" />
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#075BFA] opacity-75" />
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#075BFA]" />
                                     </span>
-                                    <span className="w-5 h-[2px] bg-[#0057fe]" aria-hidden="true" />
-                                    <span className="text-[10px] xl:text-[11px] font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
+                                    <span className="w-5 h-[2px] bg-[#075BFA]" aria-hidden="true" />
+                                    <span className="text-[10px] xl:text-[11px] font-mono font-bold tracking-[0.22em] text-[#075BFA] uppercase">
                                         LET&apos;S BUILD TOGETHER
                                     </span>
                                 </div>
 
                                 {/* Main Heading with Signature Electric-Blue Underline */}
-                                <h2 className="text-[26px] lg:text-[29px] xl:text-[36px] font-extrabold text-[#000c24] tracking-tight leading-[1.14] font-display mb-2 xl:mb-3">
+                                <h2 className="text-[26px] lg:text-[29px] xl:text-[36px] font-extrabold text-[#07142F] tracking-tight leading-[1.14] font-display mb-2 xl:mb-3">
                                     Build, Launch &amp; Grow{" "}
                                     <br />
                                     Your Business{" "}
-                                    <span className="relative inline-block text-[#0057fe]">
+                                    <span className="relative inline-block text-[#075BFA]">
                                         Online.
                                         <svg
-                                            className="absolute -bottom-1 left-0 w-full h-[5px] xl:h-[6px] text-[#0057fe] pointer-events-none"
+                                            className="absolute -bottom-1 left-0 w-full h-[5px] xl:h-[6px] text-[#075BFA] pointer-events-none"
                                             viewBox="0 0 200 8"
                                             fill="none"
                                             preserveAspectRatio="none"
@@ -83,28 +83,28 @@ export default function CTASection() {
                                 <div className="flex items-center gap-3.5 xl:gap-6 mb-5 xl:mb-6">
                                     {/* Point 1 */}
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 xl:w-7 xl:h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#0057fe] shrink-0 text-xs shadow-2xs">
+                                        <div className="w-6 h-6 xl:w-7 xl:h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#075BFA] shrink-0 text-xs shadow-2xs">
                                             <LuMessageSquare className="w-3 xl:w-3.5 h-3 xl:h-3.5" />
                                         </div>
-                                        <span className="text-[10px] xl:text-xs font-bold text-[#000c24] leading-tight">
+                                        <span className="text-[10px] xl:text-xs font-bold text-[#07142F] leading-tight">
                                             Discuss<br />Your Requirements
                                         </span>
                                     </div>
                                     {/* Point 2 */}
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 xl:w-7 xl:h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#0057fe] shrink-0 text-xs shadow-2xs">
+                                        <div className="w-6 h-6 xl:w-7 xl:h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#075BFA] shrink-0 text-xs shadow-2xs">
                                             <LuLayers className="w-3 xl:w-3.5 h-3 xl:h-3.5" />
                                         </div>
-                                        <span className="text-[10px] xl:text-xs font-bold text-[#000c24] leading-tight">
+                                        <span className="text-[10px] xl:text-xs font-bold text-[#07142F] leading-tight">
                                             Get a<br />Tailored Plan
                                         </span>
                                     </div>
                                     {/* Point 3 */}
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 xl:w-7 xl:h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#0057fe] shrink-0 text-xs shadow-2xs">
+                                        <div className="w-6 h-6 xl:w-7 xl:h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#075BFA] shrink-0 text-xs shadow-2xs">
                                             <LuRocket className="w-3 xl:w-3.5 h-3 xl:h-3.5" />
                                         </div>
-                                        <span className="text-[10px] xl:text-xs font-bold text-[#000c24] leading-tight">
+                                        <span className="text-[10px] xl:text-xs font-bold text-[#07142F] leading-tight">
                                             Launch<br />with Confidence
                                         </span>
                                     </div>
@@ -114,7 +114,7 @@ export default function CTASection() {
                                 <div className="flex items-center gap-3 xl:gap-3.5 mb-3.5 xl:mb-4">
                                     <Link
                                         href="/contact"
-                                        className="inline-flex items-center justify-center gap-2 px-5 xl:px-6 py-2.5 xl:py-3 bg-[#0057fe] hover:bg-[#0047d6] text-white font-bold font-outfit text-xs xl:text-sm rounded-full shadow-xs hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 select-none group"
+                                        className="inline-flex items-center justify-center gap-2 px-5 xl:px-6 py-2.5 xl:py-3 bg-[#075BFA] hover:bg-[#0047d6] text-white font-bold font-outfit text-xs xl:text-sm rounded-full shadow-xs hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 select-none group"
                                     >
                                         <LuCalendar className="w-3.5 xl:w-4 h-3.5 xl:h-4" />
                                         <span>Free Consultation</span>
@@ -123,7 +123,7 @@ export default function CTASection() {
 
                                     <Link
                                         href="/services"
-                                        className="inline-flex items-center justify-center px-4 xl:px-5 py-2.5 xl:py-3 bg-white/95 hover:bg-white text-[#000c24] hover:text-[#0057fe] font-bold font-outfit text-xs xl:text-sm rounded-full border border-slate-300/80 hover:border-[#0057fe]/40 shadow-2xs hover:shadow-xs transition-all duration-200 select-none"
+                                        className="inline-flex items-center justify-center px-4 xl:px-5 py-2.5 xl:py-3 bg-white/95 hover:bg-white text-[#07142F] hover:text-[#075BFA] font-bold font-outfit text-xs xl:text-sm rounded-full border border-slate-300/80 hover:border-[#075BFA]/40 shadow-2xs hover:shadow-xs transition-all duration-200 select-none"
                                     >
                                         <span>Explore Our Services</span>
                                     </Link>
@@ -131,7 +131,7 @@ export default function CTASection() {
 
                                 {/* Reassurance Text */}
                                 <div className="inline-flex items-center gap-1.5 xl:gap-2 text-[10px] xl:text-[11px] text-slate-500 font-medium select-none">
-                                    <LuShieldCheck className="w-3 xl:w-3.5 h-3 xl:h-3.5 text-[#0057fe] shrink-0" />
+                                    <LuShieldCheck className="w-3 xl:w-3.5 h-3 xl:h-3.5 text-[#075BFA] shrink-0" />
                                     <span>No obligation</span>
                                     <span className="text-slate-300">|</span>
                                     <span>Expert advice</span>
@@ -200,24 +200,24 @@ export default function CTASection() {
                             {/* Eyebrow */}
                             <div className="inline-flex items-center gap-2 mb-3">
                                 <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0057fe] opacity-75" />
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0057fe]" />
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#075BFA] opacity-75" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#075BFA]" />
                                 </span>
-                                <span className="w-5 h-[2px] bg-[#0057fe]" aria-hidden="true" />
-                                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
+                                <span className="w-5 h-[2px] bg-[#075BFA]" aria-hidden="true" />
+                                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.22em] text-[#075BFA] uppercase">
                                     LET&apos;S BUILD TOGETHER
                                 </span>
                             </div>
 
                             {/* Headline */}
-                            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#000c24] tracking-tight leading-[1.16] font-display mb-3">
+                            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#07142F] tracking-tight leading-[1.16] font-display mb-3">
                                 Build, Launch &amp; Grow{" "}
                                 <br />
                                 Your Business{" "}
-                                <span className="relative inline-block text-[#0057fe]">
+                                <span className="relative inline-block text-[#075BFA]">
                                     Online.
                                     <svg
-                                        className="absolute -bottom-1 left-0 w-full h-[5px] text-[#0057fe] pointer-events-none"
+                                        className="absolute -bottom-1 left-0 w-full h-[5px] text-[#075BFA] pointer-events-none"
                                         viewBox="0 0 200 8"
                                         fill="none"
                                         preserveAspectRatio="none"
@@ -241,26 +241,26 @@ export default function CTASection() {
                             {/* Three Supporting Points */}
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full mb-6">
                                 <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/80 border border-[#EAE4DC]/80 shadow-2xs">
-                                    <div className="w-7 h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#0057fe] shrink-0 text-xs shadow-2xs">
+                                    <div className="w-7 h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#075BFA] shrink-0 text-xs shadow-2xs">
                                         <LuMessageSquare className="w-3.5 h-3.5" />
                                     </div>
-                                    <span className="text-xs font-bold text-[#000c24] leading-tight">
+                                    <span className="text-xs font-bold text-[#07142F] leading-tight">
                                         Discuss Your Requirements
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/80 border border-[#EAE4DC]/80 shadow-2xs">
-                                    <div className="w-7 h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#0057fe] shrink-0 text-xs shadow-2xs">
+                                    <div className="w-7 h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#075BFA] shrink-0 text-xs shadow-2xs">
                                         <LuLayers className="w-3.5 h-3.5" />
                                     </div>
-                                    <span className="text-xs font-bold text-[#000c24] leading-tight">
+                                    <span className="text-xs font-bold text-[#07142F] leading-tight">
                                         Get a Tailored Plan
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/80 border border-[#EAE4DC]/80 shadow-2xs">
-                                    <div className="w-7 h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#0057fe] shrink-0 text-xs shadow-2xs">
+                                    <div className="w-7 h-7 rounded-lg bg-blue-50/90 border border-blue-100/80 flex items-center justify-center text-[#075BFA] shrink-0 text-xs shadow-2xs">
                                         <LuRocket className="w-3.5 h-3.5" />
                                     </div>
-                                    <span className="text-xs font-bold text-[#000c24] leading-tight">
+                                    <span className="text-xs font-bold text-[#07142F] leading-tight">
                                         Launch with Confidence
                                     </span>
                                 </div>
@@ -270,7 +270,7 @@ export default function CTASection() {
                             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full mb-4">
                                 <Link
                                     href="/contact"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0057fe] hover:bg-[#0047d6] text-white font-bold font-outfit text-sm rounded-full shadow-xs active:scale-[0.98] transition-all duration-200 select-none group text-center"
+                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#075BFA] hover:bg-[#0047d6] text-white font-bold font-outfit text-sm rounded-full shadow-xs active:scale-[0.98] transition-all duration-200 select-none group text-center"
                                 >
                                     <LuCalendar className="w-4 h-4" />
                                     <span>Free Consultation</span>
@@ -279,7 +279,7 @@ export default function CTASection() {
 
                                 <Link
                                     href="/services"
-                                    className="inline-flex items-center justify-center px-5 py-3.5 bg-white hover:bg-slate-50 text-[#000c24] hover:text-[#0057fe] font-bold font-outfit text-sm rounded-full border border-slate-300/80 shadow-2xs transition-all duration-200 select-none text-center"
+                                    className="inline-flex items-center justify-center px-5 py-3.5 bg-white hover:bg-slate-50 text-[#07142F] hover:text-[#075BFA] font-bold font-outfit text-sm rounded-full border border-slate-300/80 shadow-2xs transition-all duration-200 select-none text-center"
                                 >
                                     <span>Explore Our Services</span>
                                 </Link>
@@ -287,7 +287,7 @@ export default function CTASection() {
 
                             {/* Reassurance Commitments */}
                             <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500 font-medium select-none mb-6">
-                                <LuShieldCheck className="w-3.5 h-3.5 text-[#0057fe] shrink-0" />
+                                <LuShieldCheck className="w-3.5 h-3.5 text-[#075BFA] shrink-0" />
                                 <span>No obligation</span>
                                 <span className="text-slate-300">|</span>
                                 <span>Expert advice</span>

@@ -72,21 +72,21 @@ export default function WhyChooseUsSection() {
                         <div>
                             {/* Eyebrow Label */}
                             <div className="inline-flex items-center gap-2 mb-3.5 sm:mb-4">
-                                <span className="w-5 h-[2px] bg-[#0057fe]" aria-hidden="true" />
-                                <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#000c24] uppercase">
+                                <span className="w-5 h-[2px] bg-[#075BFA]" aria-hidden="true" />
+                                <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#07142F] uppercase">
                                     WHY BUSINESSES CHOOSE NISSCHAY
                                 </span>
                             </div>
 
                             {/* Main Heading with Signature Nisschay Blue Highlight, Rays & Curved Underline */}
-                            <h2 className="text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-[#000c24] tracking-tight leading-[1.14] text-balance mb-4 sm:mb-5">
+                            <h2 className="text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-[#07142F] tracking-tight leading-[1.14] text-balance mb-4 sm:mb-5">
                                 A Technology<br />
                                 Partner for<br />
-                                <span className="relative inline-block text-[#0057fe] whitespace-nowrap">
+                                <span className="relative inline-block text-[#075BFA] whitespace-nowrap">
                                     Real Business
                                     {/* 3 Playful Rays at top right */}
                                     <svg
-                                        className="absolute -top-3.5 -right-4 w-6 h-6 text-[#0057fe] pointer-events-none"
+                                        className="absolute -top-3.5 -right-4 w-6 h-6 text-[#075BFA] pointer-events-none"
                                         viewBox="0 0 24 24"
                                         fill="none"
                                         aria-hidden="true"
@@ -97,7 +97,7 @@ export default function WhyChooseUsSection() {
                                     </svg>
                                     {/* Curved Underline Brush Stroke */}
                                     <svg
-                                        className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-full h-2.5 sm:h-3 text-[#0057fe] pointer-events-none"
+                                        className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-full h-2.5 sm:h-3 text-[#075BFA] pointer-events-none"
                                         viewBox="0 0 160 12"
                                         fill="none"
                                         preserveAspectRatio="none"
@@ -125,7 +125,7 @@ export default function WhyChooseUsSection() {
                             {/* Subtle Oversized N-Monogram Arch behind building */}
                             <div className="absolute -top-8 sm:-top-12 lg:-top-14 left-1/2 -translate-x-1/2 lg:left-10 lg:translate-x-0 w-52 sm:w-64 lg:w-72 h-48 sm:h-56 lg:h-64 pointer-events-none z-0">
                                 <svg
-                                    className="w-full h-full text-[#0057fe]"
+                                    className="w-full h-full text-[#075BFA]"
                                     viewBox="0 0 340 280"
                                     fill="none"
                                     aria-hidden="true"
@@ -188,20 +188,20 @@ function BenefitCard({ card }: { card: BenefitCardItem }) {
     const Icon = card.icon;
 
     return (
-        <article className="group relative flex flex-col justify-between w-full h-full min-h-[200px] sm:min-h-[215px] rounded-[22px] sm:rounded-[26px] p-5 sm:p-6 bg-[#FAF8F5] border border-[#EAE4DC] shadow-[0_4px_20px_rgba(7,20,47,0.03),0_1px_3px_rgba(7,20,47,0.02)] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_-4px_rgba(0,87,254,0.10)] hover:border-[#0057fe]/30 transition-all duration-300">
+        <article className="group relative flex flex-col justify-between w-full h-full min-h-[200px] sm:min-h-[215px] rounded-[22px] sm:rounded-[26px] p-5 sm:p-6 bg-[#FAF8F5] border border-[#EAE4DC] shadow-[0_4px_20px_rgba(7,20,47,0.03),0_1px_3px_rgba(7,20,47,0.02)] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_-4px_rgba(0,87,254,0.10)] hover:border-[#075BFA]/30 transition-all duration-300">
             {/* Top Row: Icon Container on Left, Number Badge on Right */}
             <div className="relative z-10 flex items-center justify-between gap-3 mb-4 sm:mb-4.5">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-50/70 border border-blue-100/60 flex items-center justify-center text-[#0057fe] shrink-0 shadow-2xs group-hover:bg-[#0057fe] group-hover:text-white group-hover:scale-105 transition-all duration-300">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-50/70 border border-blue-100/60 flex items-center justify-center text-[#075BFA] shrink-0 shadow-2xs group-hover:bg-[#075BFA] group-hover:text-white group-hover:scale-105 transition-all duration-300">
                     <Icon size={22} aria-hidden="true" />
                 </div>
-                <span className="font-mono font-bold text-xs tracking-wider px-2.5 py-0.5 rounded-full bg-[#EBF5FE] text-[#0057fe] border border-blue-100/60 shrink-0 select-none">
+                <span className="font-mono font-bold text-xs tracking-wider px-2.5 py-0.5 rounded-full bg-[#EBF5FE] text-[#075BFA] border border-blue-100/60 shrink-0 select-none">
                     {card.number}
                 </span>
             </div>
 
             {/* Middle: Title & Description */}
             <div className="relative z-10 flex-1">
-                <h3 className="text-base sm:text-lg font-bold text-[#000c24] tracking-tight leading-snug mb-2 group-hover:text-[#0057fe] transition-colors">
+                <h3 className="text-base sm:text-lg font-bold text-[#07142F] tracking-tight leading-snug mb-2 group-hover:text-[#075BFA] transition-colors">
                     {card.title}
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed font-normal">

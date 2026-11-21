@@ -41,9 +41,9 @@ export const INDUSTRIES_DATA: IndustryItem[] = [
         cardGradient: "from-[#F3F8FE] via-[#FFFFFF] to-[#F7FAFD]",
         cardBorder: "border-[#D6EAFE]",
         badgeBg: "bg-[#EBF5FE]",
-        badgeText: "text-[#0057fe]",
-        accentColor: "#0057fe",
-        shadowGlow: "hover:shadow-[0_16px_36px_rgba(0,87,254,0.12)]",
+        badgeText: "text-[#075BFA]",
+        accentColor: "#075BFA",
+        shadowGlow: "hover:shadow-[0_16px_36px_rgba(7,91,250,0.12)]",
     },
     {
         id: "education",
@@ -292,20 +292,20 @@ export default function IndustriesSection() {
                 <div className="max-w-2xl sm:max-w-3xl space-y-3.5 sm:space-y-4">
                     {/* Eyebrow: — INDUSTRIES WE SERVE */}
                     <div className="inline-flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#0057fe]" aria-hidden="true" />
-                        <span className="w-4 h-[2px] bg-[#0057fe]" aria-hidden="true" />
-                        <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#0057fe] uppercase">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#075BFA]" aria-hidden="true" />
+                        <span className="w-4 h-[2px] bg-[#075BFA]" aria-hidden="true" />
+                        <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#075BFA] uppercase">
                             INDUSTRIES WE SERVE
                         </span>
                     </div>
 
                     {/* Semantic H2 Heading with Signature Brand Underline Stroke */}
-                    <h2 className="text-3xl sm:text-4xl md:text-[42px] lg:text-[46px] font-black text-[#000c24] tracking-tight leading-[1.14] text-balance">
+                    <h2 className="text-3xl sm:text-4xl md:text-[42px] lg:text-[46px] font-black text-[#07142F] tracking-tight leading-[1.14] text-balance">
                         Industries We{" "}
-                        <span className="relative inline-block text-[#0057fe] whitespace-nowrap">
+                        <span className="relative inline-block text-[#075BFA] whitespace-nowrap">
                             Build For
                             <svg
-                                className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-full h-2.5 sm:h-3 text-[#0057fe] pointer-events-none"
+                                className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-full h-2.5 sm:h-3 text-[#075BFA] pointer-events-none"
                                 viewBox="0 0 160 12"
                                 fill="none"
                                 preserveAspectRatio="none"
@@ -392,9 +392,9 @@ export default function IndustriesSection() {
                                     role="tab"
                                     aria-selected={isActive}
                                     aria-label={`Show ${ind.title}`}
-                                    className={`transition-all duration-300 rounded-full h-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057fe] cursor-pointer ${
+                                    className={`transition-all duration-300 rounded-full h-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075BFA] cursor-pointer ${
                                         isActive
-                                            ? "w-8 bg-[#0057fe]"
+                                            ? "w-8 bg-[#075BFA]"
                                             : "w-2.5 bg-slate-300 hover:bg-slate-400"
                                     }`}
                                 />
@@ -407,14 +407,14 @@ export default function IndustriesSection() {
                         <button
                             onClick={prevSlide}
                             aria-label="Previous industry card"
-                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-slate-200 bg-white hover:border-[#0057fe] hover:text-[#0057fe] text-slate-700 shadow-sm flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057fe] cursor-pointer"
+                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-slate-200 bg-white hover:border-[#075BFA] hover:text-[#075BFA] text-slate-700 shadow-sm flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075BFA] cursor-pointer"
                         >
                             <FiChevronLeft size={19} aria-hidden="true" />
                         </button>
                         <button
                             onClick={nextSlide}
                             aria-label="Next industry card"
-                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-slate-200 bg-white hover:border-[#0057fe] hover:text-[#0057fe] text-slate-700 shadow-sm flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057fe] cursor-pointer"
+                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-slate-200 bg-white hover:border-[#075BFA] hover:text-[#075BFA] text-slate-700 shadow-sm flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075BFA] cursor-pointer"
                         >
                             <FiChevronRight size={19} aria-hidden="true" />
                         </button>
@@ -435,7 +435,7 @@ function IndustryCard({ industry }: { industry: IndustryItem }) {
         <Link
             href={industry.href}
             aria-label={`${industry.title}: ${industry.description}`}
-            className={`group relative flex flex-col justify-between w-full h-[370px] sm:h-[390px] rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 bg-gradient-to-b ${industry.cardGradient} ${industry.cardBorder} border shadow-[0_4px_16px_rgba(7,20,47,0.04),0_12px_28px_-4px_rgba(7,20,47,0.06)] ${industry.shadowGlow} hover:-translate-y-2 hover:border-[#0057fe]/40 transition-all duration-300 overflow-hidden`}
+            className={`group relative flex flex-col justify-between w-full h-[370px] sm:h-[390px] rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 bg-gradient-to-b ${industry.cardGradient} ${industry.cardBorder} border shadow-[0_4px_16px_rgba(7,20,47,0.04),0_12px_28px_-4px_rgba(7,20,47,0.06)] ${industry.shadowGlow} hover:-translate-y-2 hover:border-[#075BFA]/40 transition-all duration-300 overflow-hidden`}
         >
             {/* Top Area: Category Badge, Heading & Description */}
             <div className="relative z-10">
@@ -447,7 +447,7 @@ function IndustryCard({ industry }: { industry: IndustryItem }) {
                 </span>
 
                 {/* Card Title (Semantic H3) */}
-                <h3 className="text-lg sm:text-xl font-bold text-[#000c24] tracking-tight leading-snug group-hover:text-[#0057fe] transition-colors mb-1.5">
+                <h3 className="text-lg sm:text-xl font-bold text-[#07142F] tracking-tight leading-snug group-hover:text-[#075BFA] transition-colors mb-1.5">
                     {industry.title}
                 </h3>
 
